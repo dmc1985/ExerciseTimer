@@ -10,8 +10,17 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/async-storage": "react-native-community/async-storage",
+    "formik": "^2.0.3",
+    "lodash": "^4.17.15",
     "react": "16.9.0",
-    "react-native": "0.61.4"
+    "react-native": "0.61.4",
+    "react-native-gesture-handler": "^1.5.0",
+    "react-native-reanimated": "^1.4.0",
+    "react-native-screens": "^2.0.0-alpha.8",
+    "react-navigation": "^4.0.10",
+    "react-navigation-stack": "^1.10.3",
+    "styled-components": "^4.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
@@ -20,7 +29,9 @@
     "@types/jest": "^24.0.22",
     "@types/react": "^16.9.11",
     "@types/react-native": "^0.60.22",
+    "@types/react-navigation": "^3.4.0",
     "@types/react-test-renderer": "^16.9.1",
+    "@types/styled-components": "^4.4.0",
     "babel-jest": "^24.9.0",
     "eslint": "^6.6.0",
     "jest": "^24.9.0",
