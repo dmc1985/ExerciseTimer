@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { Formik, FormikProps } from 'formik';
 import { Button, View, Text } from 'react-native';
 import { addRoutine, AddRoutineResult } from '../../core/helper';
-import { Exercise, sampleRoutine } from '../../core/typings';
+import { Exercise } from '../../core/typings';
 import { StyledTextInput } from './styledComponents';
 
 type Values = {
@@ -74,7 +74,6 @@ const NewRoutineForm = (): ReactElement => {
                 ...values,
                 exercises: [...values.exercises, values.exerciseToAdd],
               });
-              console.log(values);
             }}
           />
           <Button onPress={handleSubmit} title="Add New Routine" />

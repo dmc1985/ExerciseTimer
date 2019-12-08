@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { getAllRoutineNames, getRoutines } from '../../core/helper';
 import RoutineList from '../../components/RoutineList';
 import { StyledButton, Container } from './styledComponents';
-import { Routine, sampleRoutine } from '../../core/typings';
+import { Routine } from '../../core/typings';
 import { NavigationScreenProp } from 'react-navigation';
 import Screen from '../../core/Screen';
 import { Text } from 'react-native';
@@ -16,8 +16,8 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
   useEffect(() => {
     async function getAllRoutines() {
       const routineNames = await getAllRoutineNames();
-      const allRoutines11 = await getRoutines(routineNames);
-      setAllRoutines(allRoutines11);
+      const allRoutines = await getRoutines(routineNames);
+      setAllRoutines(allRoutines);
     }
 
     getAllRoutines();
@@ -25,8 +25,7 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
 
   return (
     <Container>
-      <Text>Hi!</Text>
-      <RoutineList routines={allRoutines} />
+      <RoutineList navigation={navigation} routines={allRoutines} />
       <StyledButton
         title="Add New Routine"
         onPress={() => navigation.navigate(Screen.NewRoutineForm)}

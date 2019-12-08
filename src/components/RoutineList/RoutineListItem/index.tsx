@@ -1,13 +1,13 @@
 import React, { ReactElement } from 'react';
-import { Text } from 'react-native';
+import { Text, TouchableOpacityProps } from 'react-native';
 import { Container } from './styledComponents';
 
-interface Props {
+interface Props extends TouchableOpacityProps {
   name: string;
 }
 
-const RoutineListItem = ({ name }: Props): ReactElement => (
-  <Container>
+const RoutineListItem = ({ name, onPress }: Props): ReactElement => (
+  <Container onPress={onPress}>
     <Text>{name}</Text>
   </Container>
 );

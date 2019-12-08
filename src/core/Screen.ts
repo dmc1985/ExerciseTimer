@@ -5,6 +5,8 @@ enum Screen {
   HomeScreen = 'HomeScreen',
   NewRoutineForm = 'NewRoutineForm',
 
+  RoutineDetail = 'RoutineDetail',
+
   /** Landing */
   Landing = 'Landing',
 
