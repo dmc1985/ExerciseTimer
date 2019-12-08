@@ -1,6 +1,6 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from '../containers/HomeScreen';
-import NewRoutineForm from '../components/NewRoutineForm';
+import NewRoutineForm from '../containers/NewRoutineForm';
 import Screen from '../core/Screen';
 
 const AppNavigator = createStackNavigator(
