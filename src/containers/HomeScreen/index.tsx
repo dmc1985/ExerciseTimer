@@ -5,7 +5,6 @@ import { StyledButton, Container } from './styledComponents';
 import { Routine } from '../../core/typings';
 import { NavigationScreenProp } from 'react-navigation';
 import Screen from '../../core/Screen';
-import { Text } from 'react-native';
 
 export interface Props {
   navigation: NavigationScreenProp<{}>;
@@ -21,7 +20,7 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
     }
 
     getAllRoutines();
-  }, []);
+  }, [allRoutines]);
 
   return (
     <Container>
@@ -29,9 +28,7 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
       <StyledButton
         title="Add New Routine"
         onPress={() => navigation.navigate(Screen.NewRoutineForm)}
-      >
-        <Text>AAA</Text>
-      </StyledButton>
+      />
     </Container>
   );
 };
