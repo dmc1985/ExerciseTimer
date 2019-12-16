@@ -1,11 +1,11 @@
 enum Screen {
   App = 'AppNavigator',
-  Select = 'Select',
 
   HomeScreen = 'HomeScreen',
   NewRoutineForm = 'NewRoutineForm',
 
   RoutineDetail = 'RoutineDetail',
+  PerformRoutineScreen = 'PerformRoutineScreen',
 
   /** Landing */
   Landing = 'Landing',

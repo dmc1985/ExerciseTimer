@@ -3,7 +3,7 @@ import { Formik, FormikProps } from 'formik';
 import { Text, View } from 'react-native';
 import { addRoutine, AddRoutineResult } from '../../core/helper';
 import { Exercise } from '../../core/typings';
-import NewExerciseForm from './NewExceriseFields';
+import NewExerciseForm from './NewExerciseFields';
 import ExerciseDetail from '../RoutineDetail/ExerciseDetail';
 import { StyledButton, StyledTextInput } from './styledComponents';
 import { ScreenTitle } from '../RoutineDetail/styledComponents';

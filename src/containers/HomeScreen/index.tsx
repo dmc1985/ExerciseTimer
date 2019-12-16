@@ -20,7 +20,7 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
     }
 
     getAllRoutines();
-  }, [allRoutines]);
+  }, []);
 
   return (
     <Container>

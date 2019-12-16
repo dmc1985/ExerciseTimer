@@ -5,7 +5,6 @@ import { em } from '../../common/helper';
 export const Container = styled(View)`
   height: 100%;
   width: 100%;
-  background-color: gray;
 `;
 
 export const StyledButton = styled(Button)`
