@@ -12,7 +12,7 @@ export function useInterval(callback: () => any, delay: Nullable<number>) {
   // Set up the interval.
   useEffect(() => {
     function tick() {
-      savedCallback.current!();
+      savedCallback.current();
     }
     if (delay !== null) {
       let id = setInterval(tick, delay);
@@ -32,9 +32,9 @@ export function useTimer(
     setRemainingTime(repLengthSeconds);
   }
 
-  if (!remainingTime) {
-    setRemainingTime(repLengthSeconds);
-  }
+  // if (!remainingTime) {
+  //   shouldRun = false;
+  // }
 
   useInterval(
     () => setRemainingTime(+(remainingTime - 0.1).toFixed(1)),

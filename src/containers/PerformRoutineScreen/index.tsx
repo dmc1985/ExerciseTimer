@@ -1,10 +1,11 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { Container } from './styledComponents';
 import { Button, Text } from 'react-native';
 import { Exercise } from '../../core/typings';
 import PerformExerciseView from '../../components/PerformExerciseView';
 import { NavigationScreenProp } from 'react-navigation';
 import { useTimer } from './hooks';
+import isEqual from 'lodash/isEqual';
 
 interface Props {
   navigation: NavigationScreenProp<{}>;
@@ -12,48 +13,72 @@ interface Props {
 
 const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
   const routine = navigation.getParam('routine');
-  const [currentExerciseIndex, setCurrentExerciseIndex] = useState<number>(0);
-  const exercise: Exercise = routine.exercises[currentExerciseIndex];
-  const [isReset, toggleReset] = useState<boolean>(false);
+
+  const [currentExercise, setCurrentExercise] = useState<Exercise>(
+    routine.exercises[0],
+  );
+  const [isTimerRunning, toggleTimer] = useState<boolean>(false);
   const [currentRep, setCurrentRep] = useState<number>(1);
   const [isRoutineFinished, toggleRoutineFinished] = useState<boolean>(false);
-  // const [isRepBreak, toggleRepBreak] = useState<boolean>(false);
+  const [isReset, toggleReset] = useState<boolean>(false);
+  const [isBreak, toggleBreak] = useState<boolean>(false);
 
-  const [repTimerRunning, toggleRepTimer] = useState<boolean>(false);
-  const [breakTimerRunning, toggleBreakTimer] = useState<boolean>(false);
-
-  const remainingRepTime = useTimer(
-    exercise.repLengthSeconds,
-    repTimerRunning,
+  const timeRemaining = useTimer(
+    isBreak
+      ? currentExercise.breakLengthSeconds
+      : currentExercise.repLengthSeconds,
+    isTimerRunning,
     isReset,
   );
 
-  const remainingBreakTime = useTimer(
-    exercise.breakLengthSeconds,
-    breakTimerRunning,
-    isReset,
-  );
-
-  if ((!remainingRepTime || !remainingBreakTime) && !isRoutineFinished) {
-    toggleRepTimer(!repTimerRunning);
-    toggleBreakTimer(!breakTimerRunning);
-    if (!remainingBreakTime) {
-      setCurrentRep(currentRep + 1);
-    }
+  function getCurrentExerciseIndex() {
+    return routine.exercises.findIndex((exercise: Exercise) =>
+      isEqual(exercise, currentExercise),
+    );
   }
 
-  if (currentRep === +exercise.numReps && remainingBreakTime === 0) {
-    if (currentExerciseIndex + 1 === routine.exercises.length) {
-      toggleBreakTimer(false);
-      toggleRoutineFinished(true);
-    } else {
-      setCurrentExerciseIndex(currentExerciseIndex + 1);
-      setCurrentRep(1);
+  function getNextExercise() {
+    const currentIndex: number = getCurrentExerciseIndex();
+
+    if (currentIndex === -1 || currentIndex + 1 >= routine.exercises.length) {
+      return routine.exercises[0];
     }
+    return routine.exercises[currentIndex + 1];
   }
+
+  useEffect(() => {
+    if (timeRemaining === 0) {
+      toggleBreak(!isBreak);
+      toggleReset(true);
+
+      if (isBreak) {
+        if (currentRep < currentExercise.numReps) {
+          setCurrentRep(currentRep + 1);
+          toggleReset(true);
+        } else {
+          if (getCurrentExerciseIndex() === routine.exercises.length - 1) {
+            toggleRoutineFinished(true);
+            toggleTimer(false);
+          } else {
+            setCurrentExercise(getNextExercise());
+            setCurrentRep(1);
+            toggleReset(true);
+          }
+        }
+      }
+    }
+  }, [
+    timeRemaining,
+    isBreak,
+    currentRep,
+    currentExercise.numReps,
+    getNextExercise,
+    currentExercise,
+    getCurrentExerciseIndex,
+    routine.exercises.length,
+  ]);
 
   if (isReset) {
-    setCurrentRep(exercise.numReps);
     toggleReset(false);
   }
 
@@ -62,15 +87,22 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
       {isRoutineFinished && <Text>Finished!!</Text>}
       <Text>Routine: {routine.name}</Text>
       <Button
-        title={repTimerRunning ? 'Pause' : 'Start'}
-        onPress={(): void => toggleRepTimer(!repTimerRunning)}
+        title={isTimerRunning ? 'Pause' : 'Start'}
+        onPress={(): void => toggleTimer(!isTimerRunning)}
       />
       <Button title="Reset" onPress={() => toggleReset(true)} />
+      <Button
+        title="Next Exercise"
+        onPress={() => {
+          setCurrentExercise(getNextExercise());
+          toggleReset(true);
+        }}
+      />
       <PerformExerciseView
-        exercise={exercise}
+        exercise={currentExercise}
         currentRep={currentRep}
-        timeRemaining={repTimerRunning ? remainingRepTime : remainingBreakTime}
-        isRepBreak={!!breakTimerRunning}
+        timeRemaining={timeRemaining}
+        isBreak={!!isBreak}
       />
     </Container>
   );
