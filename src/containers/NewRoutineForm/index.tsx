@@ -19,6 +19,13 @@ type Values = {
   exerciseToAdd: Exercise;
 };
 
+const blankExercise: Exercise = {
+  name: '',
+  numReps: 0,
+  repLengthSeconds: 0,
+  breakLengthSeconds: 0,
+};
+
 const NewRoutineForm = (): ReactElement => {
   const [exercises, setExercises] = useState<Exercise[]>([]);
   return (
@@ -26,12 +33,7 @@ const NewRoutineForm = (): ReactElement => {
       initialValues={{
         name: '',
         exercises: [],
-        exerciseToAdd: {
-          name: '',
-          numReps: '',
-          repLengthSeconds: '',
-          breakLengthSeconds: '',
-        },
+        exerciseToAdd: { ...blankExercise },
       }}
       onSubmit={(values: Values): Promise<AddRoutineResult> =>
         addRoutine({ name: values.name, exercises: values.exercises })
@@ -63,6 +65,7 @@ const NewRoutineForm = (): ReactElement => {
               onPress={() => {
                 setValues({
                   ...values,
+                  exerciseToAdd: { ...blankExercise },
                   exercises: [...values.exercises, values.exerciseToAdd],
                 });
                 setExercises([...exercises, values.exerciseToAdd]);
