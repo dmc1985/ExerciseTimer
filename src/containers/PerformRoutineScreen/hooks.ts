@@ -32,10 +32,6 @@ export function useTimer(
     setRemainingTime(repLengthSeconds);
   }
 
-  // if (!remainingTime) {
-  //   shouldRun = false;
-  // }
-
   useInterval(
     () => setRemainingTime(+(remainingTime - 0.1).toFixed(1)),
     remainingTime >= 0 && shouldRun ? 100 : null,

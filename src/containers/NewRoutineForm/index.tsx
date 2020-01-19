@@ -1,12 +1,17 @@
 import React, { ReactElement, useState } from 'react';
 import { Formik, FormikProps } from 'formik';
-import { Text, View } from 'react-native';
 import { addRoutine, AddRoutineResult } from '../../core/helper';
 import { Exercise } from '../../core/typings';
 import NewExerciseForm from './NewExerciseFields';
 import ExerciseDetail from '../RoutineDetail/ExerciseDetail';
-import { StyledButton, StyledTextInput } from './styledComponents';
+import {
+  Container,
+  StyledButton,
+  StyledTextInput,
+  InputLabel,
+} from './styledComponents';
 import { ScreenTitle } from '../RoutineDetail/styledComponents';
+import { removeListItem } from '../../common/helper';
 
 type Values = {
   name: string;
@@ -40,9 +45,9 @@ const NewRoutineForm = (): ReactElement => {
         setValues,
       }: FormikProps<Values>) => {
         return (
-          <View>
+          <Container>
             <ScreenTitle>Add New Routine</ScreenTitle>
-            <Text>Routine Name</Text>
+            <InputLabel>Routine Name</InputLabel>
             <StyledTextInput
               onChangeText={handleChange('name')}
               onBlur={handleBlur('name')}
@@ -64,12 +69,28 @@ const NewRoutineForm = (): ReactElement => {
               }}
             />
             {exercises.map(
-              (exercise: Exercise): ReactElement => (
-                <ExerciseDetail exercise={exercise} />
+              (exercise: Exercise, index: number): ReactElement => (
+                <ExerciseDetail
+                  key={`${exercise.name}${index}`}
+                  exercise={exercise}
+                  handleRemove={() => {
+                    setValues({
+                      ...values,
+                      exercises: removeListItem<Exercise>(
+                        values.exercises,
+                        index,
+                      ),
+                    });
+                    setExercises(
+                      removeListItem<Exercise>(values.exercises, index),
+                    );
+                  }}
+                  isFormInput
+                />
               ),
             )}
             <StyledButton onPress={handleSubmit} title="Add New Routine" />
-          </View>
+          </Container>
         );
       }}
     </Formik>

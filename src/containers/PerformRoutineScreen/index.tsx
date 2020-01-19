@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { Container } from './styledComponents';
 import { Button, Text } from 'react-native';
 import { Exercise } from '../../core/typings';

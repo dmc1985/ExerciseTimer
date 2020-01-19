@@ -1,6 +1,10 @@
 import React, { ReactElement } from 'react';
 import { Text } from 'react-native';
-import { ExerciseFieldsContainer, StyledTextInput } from './styledComponents';
+import {
+  ExerciseFieldsContainer,
+  InputLabel,
+  StyledTextInput,
+} from './styledComponents';
 import { FormikProps } from 'formik';
 import { Exercise } from '../../core/typings';
 
@@ -16,25 +20,25 @@ const NewExerciseFields = ({
   values,
 }: FormikProps<Values>): ReactElement => (
   <ExerciseFieldsContainer>
-    <Text>Exercise Name</Text>
+    <InputLabel>Exercise Name</InputLabel>
     <StyledTextInput
       onChangeText={handleChange('exerciseToAdd.name')}
       onBlur={handleBlur('exerciseToAdd.name')}
       value={values.exerciseToAdd.name}
     />
-    <Text>Number of reps</Text>
+    <InputLabel>Number of reps</InputLabel>
     <StyledTextInput
       onChangeText={handleChange('exerciseToAdd.numReps')}
       onBlur={handleBlur('exerciseToAdd.numReps')}
       value={values.exerciseToAdd.numReps}
     />
-    <Text>Rep Length (seconds)</Text>
+    <InputLabel>Rep Length (seconds)</InputLabel>
     <StyledTextInput
       onChangeText={handleChange('exerciseToAdd.repLengthSeconds')}
       onBlur={handleBlur('exerciseToAdd.repLengthSeconds')}
       value={values.exerciseToAdd.repLengthSeconds}
     />
-    <Text>Break Length (seconds)</Text>
+    <InputLabel>Break Length (seconds)</InputLabel>
     <StyledTextInput
       onChangeText={handleChange('exerciseToAdd.breakLengthSeconds')}
       onBlur={handleBlur('exerciseToAdd.breakLengthSeconds')}

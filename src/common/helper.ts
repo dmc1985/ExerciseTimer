@@ -43,3 +43,7 @@ export function scaleUnitLess(
 ): number {
   return unit * BASE_SCALE * (forFont ? 1 : FONT_SCALE);
 }
+
+export function removeListItem<T>(items: T[], index: number): T[] {
+  return [...items.slice(0, index), ...items.slice(index + 1)];
+}
