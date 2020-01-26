@@ -5646,6 +5646,11 @@ react-native-screens@^2.0.0-alpha.8:
   dependencies:
     debounce "^1.2.0"
 
+react-native-sound-player@^0.10.3:
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/react-native-sound-player/-/react-native-sound-player-0.10.3.tgz#42f5c7c80d1d015dd89d01da8318a39900321f6f"
+  integrity sha512-YiNpH58bDWJlpmlvwMnBAuqmZiikykn/8EfMD4ReF9qvGZe4haIVjZd40r0MleCn8BaxDhBj55w8Vnfy3qdBbQ==
+
 react-native-typescript-transformer@^1.2.13:
   version "1.2.13"
   resolved "https://registry.yarnpkg.com/react-native-typescript-transformer/-/react-native-typescript-transformer-1.2.13.tgz#be92a3d110dbb2cf2f4aebe60a935be124cfb7ed"

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* ExerciseTimerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ExerciseTimerTests.m */; };
+		116BE1C423DE043600B45002 /* break.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 116BE1C323DE043500B45002 /* break.mp3 */; };
+		116BE1C623DE076100B45002 /* change.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 116BE1C523DE076100B45002 /* change.mp3 */; };
+		116BE1C823DE080B00B45002 /* finished.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 116BE1C723DE080B00B45002 /* finished.mp3 */; };
+		116BE1CA23DE0D3B00B45002 /* next.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 116BE1C923DE0D3A00B45002 /* next.mp3 */; };
 		124AAB9372C9F41F04BB3188 /* libPods-ExerciseTimer-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 991B514C101936EE85164D14 /* libPods-ExerciseTimer-tvOS.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
@@ -44,6 +48,10 @@
 		00E356EE1AD99517003FC87E /* ExerciseTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExerciseTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ExerciseTimerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExerciseTimerTests.m; sourceTree = "<group>"; };
+		116BE1C323DE043500B45002 /* break.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = break.mp3; sourceTree = "<group>"; };
+		116BE1C523DE076100B45002 /* change.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = change.mp3; sourceTree = "<group>"; };
+		116BE1C723DE080B00B45002 /* finished.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = finished.mp3; sourceTree = "<group>"; };
+		116BE1C923DE0D3A00B45002 /* next.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = next.mp3; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* ExerciseTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExerciseTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ExerciseTimer/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ExerciseTimer/AppDelegate.m; sourceTree = "<group>"; };
@@ -125,6 +133,10 @@
 		13B07FAE1A68108700A75B9A /* ExerciseTimer */ = {
 			isa = PBXGroup;
 			children = (
+				116BE1C723DE080B00B45002 /* finished.mp3 */,
+				116BE1C523DE076100B45002 /* change.mp3 */,
+				116BE1C323DE043500B45002 /* break.mp3 */,
+				116BE1C923DE0D3A00B45002 /* next.mp3 */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -161,7 +173,6 @@
 				C35BE5ED1719884EC9972425 /* Pods-ExerciseTimerTests.debug.xcconfig */,
 				70D680CEC6518F2DCFF8679C /* Pods-ExerciseTimerTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -308,6 +319,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -336,7 +348,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				116BE1C623DE076100B45002 /* change.mp3 in Resources */,
+				116BE1C423DE043600B45002 /* break.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				116BE1CA23DE0D3B00B45002 /* next.mp3 in Resources */,
+				116BE1C823DE080B00B45002 /* finished.mp3 in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

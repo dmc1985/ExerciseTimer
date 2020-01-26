@@ -6,6 +6,7 @@ import PerformExerciseView from '../../components/PerformExerciseView';
 import { NavigationScreenProp } from 'react-navigation';
 import { useTimer } from './hooks';
 import isEqual from 'lodash/isEqual';
+import { playSound } from './helper';
 
 interface Props {
   navigation: NavigationScreenProp<{}>;
@@ -49,20 +50,26 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
   useEffect(() => {
     if (timeRemaining === 0) {
       toggleBreak(!isBreak);
+      if (!isBreak) {
+        playSound('break');
+      }
       toggleReset(true);
 
       if (isBreak) {
         if (currentRep < currentExercise.numReps) {
           setCurrentRep(currentRep + 1);
           toggleReset(true);
+          playSound('next');
         } else {
           if (getCurrentExerciseIndex() === routine.exercises.length - 1) {
             toggleRoutineFinished(true);
             toggleTimer(false);
+            playSound('finished');
           } else {
             setCurrentExercise(getNextExercise());
             setCurrentRep(1);
             toggleReset(true);
+            playSound('change');
           }
         }
       }
