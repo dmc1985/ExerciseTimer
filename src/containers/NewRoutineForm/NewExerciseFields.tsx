@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
-import { Text } from 'react-native';
 import {
+  ErrorText,
   ExerciseFieldsContainer,
   InputLabel,
   StyledTextInput,
@@ -18,9 +18,13 @@ const NewExerciseFields = ({
   handleChange,
   handleBlur,
   values,
+  errors,
 }: FormikProps<Values>): ReactElement => (
   <ExerciseFieldsContainer>
     <InputLabel>Exercise Name</InputLabel>
+    {errors?.exerciseToAdd?.name && (
+      <ErrorText>errors.exerciseToAdd.name</ErrorText>
+    )}
     <StyledTextInput
       onChangeText={handleChange('exerciseToAdd.name')}
       onBlur={handleBlur('exerciseToAdd.name')}

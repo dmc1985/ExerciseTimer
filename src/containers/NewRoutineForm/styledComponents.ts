@@ -17,6 +17,11 @@ export const InputLabel = styled(Text)`
   font-size: ${em(1.5)};
 `;
 
+export const ErrorText = styled(Text)`
+  font-size: ${em(1)};
+  color: red;
+`;
+
 export const StyledButton = styled(Button)`
   height: ${em(2)}
   width: ${em(2)}
