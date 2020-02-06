@@ -22,6 +22,7 @@ const NewRoutineForm = ({ navigation }: Props): ReactElement => (
     onSubmit={(values: NewRoutineValues) =>
       navigation.navigate(Screen.NewExercisesForm, {
         routineName: values.name,
+        toggleShouldReloadList: navigation.getParam('toggleShouldReloadList'),
       })
     }
   >

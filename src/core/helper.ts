@@ -67,3 +67,13 @@ export async function getAllRoutineNames(): Promise<Optional<String[]>> {
 export interface NavigationProp {
   navigation: NavigationScreenProp<{}>;
 }
+
+export async function deleteRoutine(routineName: string): Promise<void> {
+  try {
+    await AsyncStorage.removeItem(routineName);
+
+    console.log(`${routineName} successfully removed`);
+  } catch {
+    console.log(`error removing ${routineName}`);
+  }
+}

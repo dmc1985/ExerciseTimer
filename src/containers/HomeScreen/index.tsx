@@ -12,22 +12,33 @@ export interface Props {
 
 const HomeScreen = ({ navigation }: Props): ReactElement => {
   const [allRoutines, setAllRoutines] = useState<Routine[]>([]);
+  const [shouldReloadList, toggleShouldReloadList] = useState<boolean>(false);
+
   useEffect(() => {
     async function getAllRoutines() {
       const routineNames = await getAllRoutineNames();
+
       const allRoutines = await getRoutines(routineNames);
       setAllRoutines(allRoutines);
     }
 
+    toggleShouldReloadList(false);
+    // toggleIsRoutineAdded(false);
     getAllRoutines();
-  }, []);
+  }, [shouldReloadList]);
 
   return (
     <Container>
-      <RoutineList navigation={navigation} routines={allRoutines} />
+      <RoutineList
+        navigation={navigation}
+        routines={allRoutines}
+        toggleShouldReloadList={toggleShouldReloadList}
+      />
       <StyledButton
         title="Add New Routine"
-        onPress={() => navigation.navigate(Screen.NewRoutineForm)}
+        onPress={() =>
+          navigation.navigate(Screen.NewRoutineForm, { toggleShouldReloadList })
+        }
       />
     </Container>
   );

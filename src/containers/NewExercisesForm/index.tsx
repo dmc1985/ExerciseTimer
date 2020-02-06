@@ -19,6 +19,7 @@ export interface Props extends NavigationProp {}
 const NewExercisesForm = ({ navigation }: Props): ReactElement => {
   const routineName = navigation.getParam('routineName');
   const [exercises, setExercises] = useState<Exercise[]>([]);
+  const toggleShouldReloadList = navigation.getParam('toggleShouldReloadList');
 
   return (
     <Formik
@@ -30,10 +31,11 @@ const NewExercisesForm = ({ navigation }: Props): ReactElement => {
       onSubmit={async (values: NewExerciseValues): Promise<void> => {
         try {
           await addRoutine({ name: routineName, exercises: values.exercises });
+          toggleShouldReloadList(true);
+          navigation.navigate(Screen.HomeScreen);
         } catch (err) {
           console.log('err', err);
         }
-        navigation.navigate(Screen.HomeScreen);
       }}
     >
       {({ submitForm, values, setValues }: FormikProps<NewExerciseValues>) => {
