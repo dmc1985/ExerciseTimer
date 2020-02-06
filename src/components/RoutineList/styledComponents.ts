@@ -1,7 +1,7 @@
-import { View } from 'react-native';
+import { Animated, ScrollView } from 'react-native';
 import styled from 'styled-components';
 
-export const Container = styled(View)`
+export const Container = styled(ScrollView)`
   height: 70%
   width: 100%;
   display: flex;

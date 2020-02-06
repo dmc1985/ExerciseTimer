@@ -1,114 +1,47 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { Formik, FormikProps } from 'formik';
-import { addRoutine, AddRoutineResult } from '../../core/helper';
-import { Exercise } from '../../core/typings';
-import NewExerciseForm from './NewExerciseFields';
-import ExerciseDetail from '../RoutineDetail/ExerciseDetail';
-import {
-  Container,
-  StyledButton,
-  StyledTextInput,
-  InputLabel,
-  ErrorText,
-} from './styledComponents';
+import { Container, InputLabel, StyledTextInput } from './styledComponents';
 import { ScreenTitle } from '../RoutineDetail/styledComponents';
-import { removeListItem } from '../../common/helper';
-import {
-  blankExercise,
-  validateNewExercise,
-  validateNewRoutine,
-} from './helper';
-import { Values } from './typings';
+import { Button } from 'react-native';
+import Screen from '../../core/Screen';
+import { NavigationProp } from '../../core/helper';
+import { validate } from './helper';
+import FormErrorMessage from '../../components/FormErrorMessage';
 
-const NewRoutineForm = (): ReactElement => {
-  const [exercises, setExercises] = useState<Exercise[]>([]);
-  const [showNewExerciseError, toggleNewExerciseError] = useState<boolean>(
-    false,
-  );
-  return (
-    <Formik
-      initialValues={{
-        name: '',
-        exercises: [],
-        exerciseToAdd: { ...blankExercise },
-      }}
-      validate={validateNewRoutine}
-      validateOnChange={false}
-      onSubmit={(values: Values): Promise<AddRoutineResult> =>
-        addRoutine({ name: values.name, exercises: values.exercises })
-      }
-    >
-      {({
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        values,
-        setValues,
-        errors,
-      }: FormikProps<Values>) => {
-        return (
-          <Container>
-            <ScreenTitle>Add New Routine</ScreenTitle>
-            <InputLabel>Routine Name</InputLabel>
-            {errors.name && <ErrorText>{errors.name}</ErrorText>}
-            <StyledTextInput
-              onChangeText={handleChange('name')}
-              onBlur={handleBlur('name')}
-              value={values.name}
-            />
-            {showNewExerciseError && (
-              <ErrorText>All New Exercise Fields are required</ErrorText>
-            )}
-            <NewExerciseForm
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-              values={values}
-              errors={errors}
-            />
-            <StyledButton
-              title="Add Exercise"
-              onPress={() => {
-                if (validateNewExercise(values.exerciseToAdd)) {
-                  setValues({
-                    ...values,
-                    exerciseToAdd: { ...blankExercise },
-                    exercises: [...values.exercises, values.exerciseToAdd],
-                  });
-                  setExercises([...exercises, values.exerciseToAdd]);
-                  toggleNewExerciseError(false);
-                } else {
-                  toggleNewExerciseError(true);
-                }
-              }}
-            />
-            {exercises.map(
-              (exercise: Exercise, index: number): ReactElement => (
-                <ExerciseDetail
-                  key={`${exercise.name}${index}`}
-                  exercise={exercise}
-                  handleRemove={() => {
-                    setValues({
-                      ...values,
-                      exercises: removeListItem<Exercise>(
-                        values.exercises,
-                        index,
-                      ),
-                    });
-                    setExercises(
-                      removeListItem<Exercise>(values.exercises, index),
-                    );
-                  }}
-                  isFormInput
-                />
-              ),
-            )}
-            {errors.exercises && <ErrorText>{errors.exercises}</ErrorText>}
-            <StyledButton onPress={handleSubmit} title="Add New Routine" />
-          </Container>
-        );
-      }}
-    </Formik>
-  );
-};
+export interface Props extends NavigationProp {}
+
+export interface NewRoutineValues {
+  name: '';
+}
+
+const NewRoutineForm = ({ navigation }: Props): ReactElement => (
+  <Formik
+    initialValues={{ name: '' }}
+    validate={validate}
+    validateOnChange
+    onSubmit={(values: NewRoutineValues) =>
+      navigation.navigate(Screen.NewExercisesForm, {
+        routineName: values.name,
+      })
+    }
+  >
+    {(formikBag: FormikProps<NewRoutineValues>) => (
+      <Container>
+        <ScreenTitle>Add New Routine</ScreenTitle>
+        <InputLabel>Routine Name</InputLabel>
+        <StyledTextInput
+          onChangeText={formikBag.handleChange('name')}
+          onBlur={formikBag.handleBlur('name')}
+          value={formikBag.values.name}
+        />
+        <FormErrorMessage name="name" />
+        <Button
+          title="Add Exercises to Routine"
+          onPress={formikBag.submitForm}
+        />
+      </Container>
+    )}
+  </Formik>
+);
 
 export default NewRoutineForm;

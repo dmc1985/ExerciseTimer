@@ -12,8 +12,6 @@ interface Props {
 }
 
 const RoutineList = ({ routines, navigation }: Props): ReactElement => {
-  console.log('nav', navigation);
-
   return (
     <Container>
       <Text>Routine List</Text>

@@ -1,6 +1,7 @@
 import { Routine } from './typings';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Optional } from '../common/typings';
+import { NavigationScreenProp } from 'react-navigation';
 
 export interface AddRoutineResult {
   success: boolean;
@@ -43,7 +44,7 @@ export async function getRoutines(
     await AsyncStorage.multiGet(routineNames!, (err, stores) => {
       stores!.forEach((result, i, store) => {
         let value = store[i][1];
-        routines.push(JSON.parse(value));
+        routines.push(JSON.parse(value!));
       });
     });
     if (routines) {
@@ -61,4 +62,8 @@ export async function getAllRoutineNames(): Promise<Optional<String[]>> {
   } catch (error) {
     console.log(error);
   }
+}
+
+export interface NavigationProp {
+  navigation: NavigationScreenProp<{}>;
 }

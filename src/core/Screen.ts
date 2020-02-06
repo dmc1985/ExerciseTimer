@@ -3,6 +3,7 @@ enum Screen {
 
   HomeScreen = 'HomeScreen',
   NewRoutineForm = 'NewRoutineForm',
+  NewExercisesForm = 'NewExercisesForm',
 
   RoutineDetail = 'RoutineDetail',
   PerformRoutineScreen = 'PerformRoutineScreen',
