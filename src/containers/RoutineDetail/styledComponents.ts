@@ -18,13 +18,13 @@ export const ScreenTitle = styled(Text)`
 export const DetailContainer = styled(View)`
   width: 100%;
   display: flex;
-  padding: ${em(2)} ${em(1)};
+  padding: ${em(0.5)} ${em(1)};
   border: 1px solid red;
 `;
 
 export const DetailInfo = styled(Text)`
   width: 100%;
-  height: ${em(3)};
+  height: ${em(2)};
 `;
 
 export const PerformButton = styled(Button)`
