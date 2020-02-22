@@ -5,6 +5,7 @@ import { StyledButton, Container } from './styledComponents';
 import { Routine } from '../../core/typings';
 import { NavigationScreenProp } from 'react-navigation';
 import Screen from '../../core/Screen';
+import { Nullable } from '../../common/typings';
 
 export interface Props {
   navigation: NavigationScreenProp<{}>;
@@ -16,14 +17,19 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
 
   useEffect(() => {
     async function getAllRoutines() {
-      const routineNames = await getAllRoutineNames();
+      const routineNames: Nullable<string[]> = await getAllRoutineNames();
+      if (!routineNames) {
+        return setAllRoutines([]);
+      }
 
-      const allRoutines = await getRoutines(routineNames);
+      const allRoutines: Nullable<Routine[]> = await getRoutines(routineNames);
+      if (!allRoutines) {
+        return setAllRoutines([]);
+      }
       setAllRoutines(allRoutines);
     }
 
     toggleShouldReloadList(false);
-    // toggleIsRoutineAdded(false);
     getAllRoutines();
   }, [shouldReloadList]);
 

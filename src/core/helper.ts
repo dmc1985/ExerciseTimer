@@ -1,6 +1,6 @@
 import { Routine } from './typings';
 import AsyncStorage from '@react-native-community/async-storage';
-import { Optional } from '../common/typings';
+import { Nullable } from '../common/typings';
 import { NavigationScreenProp } from 'react-navigation';
 
 export interface AddRoutineResult {
@@ -9,12 +9,9 @@ export interface AddRoutineResult {
 
 export const ROUTINE_IDS_KEY = 'routine_ids';
 
-export async function addRoutine(
-  routine: Routine,
-): Promise<Optional<AddRoutineResult>> {
+export async function addRoutine(routine: Routine): Promise<AddRoutineResult> {
   try {
     await AsyncStorage.setItem(routine.name, JSON.stringify(routine));
-    console.log('success!');
     return { success: true };
   } catch (err) {
     console.log(err);
@@ -24,21 +21,23 @@ export async function addRoutine(
 
 export async function getRoutine(
   routineName: string,
-): Promise<Optional<Routine>> {
+): Promise<Nullable<Routine>> {
   try {
     const routine = await AsyncStorage.getItem(routineName);
     if (routine !== null) {
       console.log(routine);
       return JSON.parse(routine);
     }
+    return null;
   } catch (error) {
     console.log(error);
+    return null;
   }
 }
 
 export async function getRoutines(
-  routineNames: Optional<string[]>,
-): Promise<Optional<Routine[]>> {
+  routineNames: string[],
+): Promise<Nullable<Routine[]>> {
   try {
     const routines: Routine[] = [];
     await AsyncStorage.multiGet(routineNames!, (err, stores) => {
@@ -50,17 +49,20 @@ export async function getRoutines(
     if (routines) {
       return routines;
     }
+    return null;
   } catch (error) {
     console.log(error);
+    return null;
   }
 }
 
-export async function getAllRoutineNames(): Promise<Optional<String[]>> {
+export async function getAllRoutineNames(): Promise<Nullable<string[]>> {
   try {
     const allRoutineNames = await AsyncStorage.getAllKeys();
     return allRoutineNames;
   } catch (error) {
     console.log(error);
+    return null;
   }
 }
 

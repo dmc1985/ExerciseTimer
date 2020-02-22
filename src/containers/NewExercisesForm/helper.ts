@@ -51,18 +51,22 @@ export function validateExercise(values: ExerciseValues): ExerciseErrors {
   return errors;
 }
 
+enum ExerciseValuesNumericInputs {
+  NUM_REPS = 'numReps',
+  BREAK_LENGTH_SECONDS = 'breakLengthSeconds',
+  REP_LENGTH_SECONDS = 'repLengthSeconds',
+}
+
 export function formatExerciseValues(
   values: ExerciseValues,
 ): FormattedExerciseValues {
-  const result: FormattedExerciseValues = { name: values.name };
-  const numericInputs: string[] = [
-    'numReps',
-    'repLengthSeconds',
-    'breakLengthSeconds',
-  ];
+  const result: FormattedExerciseValues = {
+    ...blankExercise,
+    name: values.name,
+  };
 
-  numericInputs.forEach(
-    (input: string): void => {
+  Object.values(ExerciseValuesNumericInputs).forEach(
+    (input: ExerciseValuesNumericInputs): void => {
       result[input] = +values[input];
     },
   );

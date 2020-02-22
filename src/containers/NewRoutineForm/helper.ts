@@ -1,6 +1,7 @@
-import { Errors, NewExerciseValues } from './typings';
+import { Errors } from './typings';
+import { ExerciseValues } from '../NewExercisesForm/typings';
 
-interface Values extends Pick<NewExerciseValues, 'name'> {}
+interface Values extends Pick<ExerciseValues, 'name'> {}
 
 export function validate(values: Values): Errors {
   const errors: Errors = {};

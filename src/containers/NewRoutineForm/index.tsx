@@ -1,9 +1,11 @@
 import React, { ReactElement } from 'react';
-import { Formik, FormikProps } from 'formik';
 import { Container, InputLabel, StyledTextInput } from './styledComponents';
+import { Formik, FormikProps } from 'formik';
 import { ScreenTitle } from '../RoutineDetail/styledComponents';
-import { Button } from 'react-native';
 import Screen from '../../core/Screen';
+
+import { Button } from 'react-native';
+
 import { NavigationProp } from '../../core/helper';
 import { validate } from './helper';
 import FormErrorMessage from '../../components/FormErrorMessage';
