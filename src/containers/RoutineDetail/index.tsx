@@ -14,6 +14,9 @@ const RoutineDetail = ({ navigation }: Props): ReactElement => {
   return (
     <Container>
       <ScreenTitle>{routine.name}</ScreenTitle>
+      <ScreenTitle>
+        {routine.secondsBetweenExercises} second interval
+      </ScreenTitle>
       {routine.exercises.map(
         (exercise: Exercise): ReactElement => (
           <ExerciseDetail exercise={exercise} key={exercise.name} showName />

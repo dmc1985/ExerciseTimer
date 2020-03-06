@@ -14,15 +14,21 @@ import FormErrorMessage from '../../components/FormErrorMessage';
 interface Props {
   exercises: Exercise[];
   setExercises: Dispatch<SetStateAction<Exercise[]>>;
+  defaultSecondsBeforeNextExercise: string;
 }
 
-const AddExerciseForm = ({ exercises, setExercises }: Props): ReactElement => (
+const AddExerciseForm = ({
+  exercises,
+  setExercises,
+  defaultSecondsBeforeNextExercise,
+}: Props): ReactElement => (
   <Formik
     initialValues={{
       name: '',
       numReps: '0',
       repLengthSeconds: '0',
       breakLengthSeconds: '0',
+      secondsBeforeNextExercise: defaultSecondsBeforeNextExercise,
     }}
     validate={validateExercise}
     validateOnChange
@@ -65,6 +71,13 @@ const AddExerciseForm = ({ exercises, setExercises }: Props): ReactElement => (
           onChangeText={handleChange('breakLengthSeconds')}
           onBlur={handleBlur('breakLengthSeconds')}
           value={values.breakLengthSeconds}
+        />
+        <InputLabel>Seconds before next exercise</InputLabel>
+        <FormErrorMessage name="breakLengthSeconds" />
+        <StyledTextInput
+          onChangeText={handleChange('secondsBeforeNextExercise')}
+          onBlur={handleBlur('secondsBeforeNextExercise')}
+          value={values.secondsBeforeNextExercise}
         />
         <StyledButton title="Add Exercise" onPress={submitForm} />
       </ExerciseFieldsContainer>

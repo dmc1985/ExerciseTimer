@@ -5,6 +5,7 @@ export interface ExerciseValues {
   numReps: string;
   repLengthSeconds: string;
   breakLengthSeconds: string;
+  secondsBeforeNextExercise: string;
 }
 
 export interface FormattedExerciseValues {
@@ -12,10 +13,12 @@ export interface FormattedExerciseValues {
   numReps: number;
   repLengthSeconds: number;
   breakLengthSeconds: number;
+  secondsBeforeNextExercise: number;
 }
 
 export interface RoutineValues {
   name: string;
+  secondsBetweenExercises: string;
   exercises: Exercise[];
   exerciseToAdd: Exercise;
 }

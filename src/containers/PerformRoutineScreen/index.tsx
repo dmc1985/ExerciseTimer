@@ -23,19 +23,31 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
   const [isRoutineFinished, toggleRoutineFinished] = useState<boolean>(false);
   const [isReset, toggleReset] = useState<boolean>(false);
   const [isBreak, toggleBreak] = useState<boolean>(false);
+  const [isExerciseBreak, toggleExerciseBreak] = useState<boolean>(false);
 
   const timeRemaining = useTimer(
-    isBreak
-      ? currentExercise.breakLengthSeconds
-      : currentExercise.repLengthSeconds,
+    getTimerDuration(),
+    // isBreak
+    //   ? currentExercise.breakLengthSeconds
+    //   : currentExercise.repLengthSeconds,
     isTimerRunning,
     isReset,
   );
 
-  function getCurrentExerciseIndex() {
+  function getCurrentExerciseIndex(): number {
     return routine.exercises.findIndex((exercise: Exercise) =>
       isEqual(exercise, currentExercise),
     );
+  }
+
+  function getTimerDuration(): number {
+    if (isExerciseBreak) {
+      return currentExercise.secondsBeforeNextExercise;
+    }
+    if (isBreak) {
+      return currentExercise.breakLengthSeconds;
+    }
+    return currentExercise.repLengthSeconds;
   }
 
   function getNextExercise() {
@@ -49,11 +61,20 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
 
   useEffect(() => {
     if (timeRemaining === 0) {
-      toggleBreak(!isBreak);
-      if (!isBreak) {
-        playSound('break');
+      if (!isExerciseBreak) {
+        toggleBreak(!isBreak);
+        if (!isBreak) {
+          playSound('break');
+        }
       }
       toggleReset(true);
+      if (isExerciseBreak) {
+        setCurrentExercise(getNextExercise());
+        setCurrentRep(1);
+        toggleReset(true);
+        toggleExerciseBreak(false);
+        playSound('change');
+      }
 
       if (isBreak) {
         if (currentRep < currentExercise.numReps) {
@@ -66,10 +87,19 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
             toggleTimer(false);
             playSound('finished');
           } else {
-            setCurrentExercise(getNextExercise());
-            setCurrentRep(1);
-            toggleReset(true);
-            playSound('change');
+            console.log('exer break?', isExerciseBreak);
+            if (!isExerciseBreak) {
+              toggleExerciseBreak(true);
+              toggleReset(true);
+            }
+            if (isExerciseBreak) {
+              console.log('hihi!');
+              setCurrentExercise(getNextExercise());
+              setCurrentRep(1);
+              toggleReset(true);
+              toggleExerciseBreak(false);
+              playSound('change');
+            }
           }
         }
       }
@@ -83,6 +113,7 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
     currentExercise,
     getCurrentExerciseIndex,
     routine.exercises.length,
+    isExerciseBreak,
   ]);
 
   if (isReset) {
@@ -110,6 +141,7 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
         currentRep={currentRep}
         timeRemaining={timeRemaining}
         isBreak={!!isBreak}
+        isExerciseBreak={!!isExerciseBreak}
       />
     </Container>
   );

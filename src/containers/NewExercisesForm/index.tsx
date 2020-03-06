@@ -18,9 +18,12 @@ export interface Props extends NavigationProp {}
 
 const NewExercisesForm = ({ navigation }: Props): ReactElement => {
   const routineName = navigation.getParam('routineName');
+  const secondsBetweenExercises = navigation.getParam(
+    'secondsBetweenExercises',
+  );
   const [exercises, setExercises] = useState<Exercise[]>([]);
   const toggleShouldReloadList = navigation.getParam('toggleShouldReloadList');
-
+  console.log('sec - nef', secondsBetweenExercises);
   return (
     <Formik
       initialValues={{
@@ -30,7 +33,11 @@ const NewExercisesForm = ({ navigation }: Props): ReactElement => {
       validateOnChange={false}
       onSubmit={async (values: NewExerciseValues): Promise<void> => {
         try {
-          await addRoutine({ name: routineName, exercises: values.exercises });
+          await addRoutine({
+            name: routineName,
+            secondsBetweenExercises: secondsBetweenExercises,
+            exercises: values.exercises,
+          });
           toggleShouldReloadList(true);
           navigation.navigate(Screen.HomeScreen);
         } catch (err) {
@@ -47,6 +54,7 @@ const NewExercisesForm = ({ navigation }: Props): ReactElement => {
             <AddExerciseForm
               exercises={exercises}
               setExercises={setExercises}
+              defaultSecondsBeforeNextExercise={secondsBetweenExercises}
             />
             {exercises.map(
               (exercise: Exercise, index: number): ReactElement => (

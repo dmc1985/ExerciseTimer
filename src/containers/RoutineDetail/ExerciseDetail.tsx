@@ -21,6 +21,9 @@ const ExerciseDetail = ({
     <DetailInfo>Number of Reps: {exercise.numReps}</DetailInfo>
     <DetailInfo>Rep Length(s): {exercise.repLengthSeconds}</DetailInfo>
     <DetailInfo>Break Length(s) : {exercise.breakLengthSeconds}</DetailInfo>
+    <DetailInfo>
+      Seconds Between Exercises : {exercise.secondsBeforeNextExercise}
+    </DetailInfo>
     {isFormInput && <Button title="Remove" onPress={handleRemove!} />}
   </DetailContainer>
 );

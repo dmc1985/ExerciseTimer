@@ -8,6 +8,7 @@ export const blankExercise: Exercise = {
   numReps: 0,
   repLengthSeconds: 0,
   breakLengthSeconds: 0,
+  secondsBeforeNextExercise: 0,
 };
 
 export function validate(values: NewExerciseValues): Errors {
@@ -63,6 +64,7 @@ export function formatExerciseValues(
   const result: FormattedExerciseValues = {
     ...blankExercise,
     name: values.name,
+    secondsBeforeNextExercise: +values.secondsBeforeNextExercise,
   };
 
   Object.values(ExerciseValuesNumericInputs).forEach(
