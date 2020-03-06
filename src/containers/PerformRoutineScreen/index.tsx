@@ -90,6 +90,7 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
             console.log('exer break?', isExerciseBreak);
             if (!isExerciseBreak) {
               toggleExerciseBreak(true);
+              playSound('interval');
               toggleReset(true);
             }
             if (isExerciseBreak) {
