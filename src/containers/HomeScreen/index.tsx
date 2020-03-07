@@ -1,7 +1,8 @@
 import React, { ReactElement, useEffect, useState } from 'react';
+import { Text } from 'react-native';
 import { getAllRoutineNames, getRoutines } from '../../core/helper';
 import RoutineList from '../../components/RoutineList';
-import { StyledButton, Container } from './styledComponents';
+import { Container, StyledFAB } from './styledComponents';
 import { Routine } from '../../core/typings';
 import { NavigationScreenProp } from 'react-navigation';
 import Screen from '../../core/Screen';
@@ -40,8 +41,9 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
         routines={allRoutines}
         toggleShouldReloadList={toggleShouldReloadList}
       />
-      <StyledButton
-        title="Add New Routine"
+      <StyledFAB
+        small
+        icon="plus"
         onPress={() =>
           navigation.navigate(Screen.NewRoutineForm, { toggleShouldReloadList })
         }
@@ -49,5 +51,13 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
     </Container>
   );
 };
+
+export function navigationOptions() {
+  return {
+    headerTitle: <Text>Home</Text>,
+  };
+}
+
+HomeScreen.navigationOptions = navigationOptions;
 
 export default HomeScreen;

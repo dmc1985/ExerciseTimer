@@ -1,10 +1,9 @@
 import React, { Dispatch, ReactElement, SetStateAction } from 'react';
-import { Text } from 'react-native';
-import { Container } from './styledComponents';
+import { deleteRoutine } from '../../core/helper';
 import { Routine } from '../../core/typings';
-import RoutineListItem from './RoutineListItem';
 import { NavigationScreenProp } from 'react-navigation';
 import Screen from '../../core/Screen';
+import { Button, Colors, List } from 'react-native-paper';
 
 interface Props {
   routines: Routine[];
@@ -18,21 +17,31 @@ const RoutineList = ({
   toggleShouldReloadList,
 }: Props): ReactElement => {
   return (
-    <Container>
-      <Text>Routine List</Text>
+    <List.Section>
+      <List.Subheader>Routine List</List.Subheader>
       {routines.map(
         (routine: Routine): ReactElement => (
-          <RoutineListItem
-            name={routine.name}
+          <List.Item
+            title={routine.name}
             key={routine.name}
-            onPress={() =>
-              navigation.navigate(Screen.RoutineDetail, { routine })
-            }
-            toggleShouldReloadList={toggleShouldReloadList}
+            onPress={() => {
+              navigation.navigate(Screen.RoutineDetail, { routine });
+            }}
+            left={() => <List.Icon color={Colors.blue500} icon="forward" />}
+            right={() => (
+              <Button
+                onPress={() => {
+                  deleteRoutine(routine.name);
+                  toggleShouldReloadList(true);
+                }}
+              >
+                Delete
+              </Button>
+            )}
           />
         ),
       )}
-    </Container>
+    </List.Section>
   );
 };
 

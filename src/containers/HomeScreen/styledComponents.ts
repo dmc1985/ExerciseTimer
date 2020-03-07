@@ -1,13 +1,14 @@
 import styled from 'styled-components';
-import { Button, View } from 'react-native';
-import { em } from '../../common/helper';
+import { View } from 'react-native';
+import { FAB } from 'react-native-paper';
 
 export const Container = styled(View)`
   height: 100%;
   width: 100%;
 `;
 
-export const StyledButton = styled(Button)`
-  height: ${em(6)};
-  width: 100%;
+export const StyledFAB = styled(FAB)`
+  position: absolute;
+  right: 10%;
+  bottom: 10%;
 `;
