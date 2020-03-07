@@ -8,6 +8,7 @@ export interface Props {
   timeRemaining: number;
   isBreak: boolean;
   isExerciseBreak: boolean;
+  isPreroutineCountdown: boolean;
 }
 
 const PerformExerciseView = ({
@@ -16,6 +17,7 @@ const PerformExerciseView = ({
   timeRemaining,
   isBreak,
   isExerciseBreak,
+  isPreroutineCountdown,
 }: Props): ReactElement => {
   return (
     <Container>
@@ -24,7 +26,13 @@ const PerformExerciseView = ({
         Current Rep: {currentRep}/{exercise.numReps}
       </ScreenTitle>
       <ScreenTitle>
-        {isExerciseBreak ? 'Interval' : isBreak ? 'Break' : 'Rep'}
+        {isPreroutineCountdown
+          ? 'Get ready to start...'
+          : isExerciseBreak
+          ? 'Interval'
+          : isBreak
+          ? 'Break'
+          : 'Rep'}
       </ScreenTitle>
       <TimeDisplay>{timeRemaining}</TimeDisplay>
     </Container>

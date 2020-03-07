@@ -23,7 +23,7 @@ const NewExercisesForm = ({ navigation }: Props): ReactElement => {
   );
   const [exercises, setExercises] = useState<Exercise[]>([]);
   const toggleShouldReloadList = navigation.getParam('toggleShouldReloadList');
-  console.log('sec - nef', secondsBetweenExercises);
+
   return (
     <Formik
       initialValues={{

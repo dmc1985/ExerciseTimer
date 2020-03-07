@@ -12,9 +12,14 @@ interface Props {
   navigation: NavigationScreenProp<{}>;
 }
 
+const PREROUTINE_COUNTDOWN_DURATION_SECONDS: number = 3;
+
 const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
   const routine = navigation.getParam('routine');
 
+  const [isPreroutineCountdown, togglePreroutineCountdown] = useState<boolean>(
+    true,
+  );
   const [currentExercise, setCurrentExercise] = useState<Exercise>(
     routine.exercises[0],
   );
@@ -25,14 +30,7 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
   const [isBreak, toggleBreak] = useState<boolean>(false);
   const [isExerciseBreak, toggleExerciseBreak] = useState<boolean>(false);
 
-  const timeRemaining = useTimer(
-    getTimerDuration(),
-    // isBreak
-    //   ? currentExercise.breakLengthSeconds
-    //   : currentExercise.repLengthSeconds,
-    isTimerRunning,
-    isReset,
-  );
+  const timeRemaining = useTimer(getTimerDuration(), isTimerRunning, isReset);
 
   function getCurrentExerciseIndex(): number {
     return routine.exercises.findIndex((exercise: Exercise) =>
@@ -41,6 +39,9 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
   }
 
   function getTimerDuration(): number {
+    if (isPreroutineCountdown) {
+      return PREROUTINE_COUNTDOWN_DURATION_SECONDS;
+    }
     if (isExerciseBreak) {
       return currentExercise.secondsBeforeNextExercise;
     }
@@ -61,45 +62,50 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
 
   useEffect(() => {
     if (timeRemaining === 0) {
-      if (!isExerciseBreak) {
-        toggleBreak(!isBreak);
-        if (!isBreak) {
-          playSound('break');
-        }
-      }
-      toggleReset(true);
-      if (isExerciseBreak) {
-        setCurrentExercise(getNextExercise());
-        setCurrentRep(1);
+      if (isPreroutineCountdown) {
+        togglePreroutineCountdown(false);
+        playSound('begin');
         toggleReset(true);
-        toggleExerciseBreak(false);
-        playSound('change');
       }
-
-      if (isBreak) {
-        if (currentRep < currentExercise.numReps) {
-          setCurrentRep(currentRep + 1);
+      if (!isPreroutineCountdown) {
+        if (!isExerciseBreak) {
+          toggleBreak(!isBreak);
+          if (!isBreak) {
+            playSound('break');
+          }
+        }
+        toggleReset(true);
+        if (isExerciseBreak) {
+          setCurrentExercise(getNextExercise());
+          setCurrentRep(1);
           toggleReset(true);
-          playSound('next');
-        } else {
-          if (getCurrentExerciseIndex() === routine.exercises.length - 1) {
-            toggleRoutineFinished(true);
-            toggleTimer(false);
-            playSound('finished');
+          toggleExerciseBreak(false);
+          playSound('change');
+        }
+
+        if (isBreak) {
+          if (currentRep < currentExercise.numReps) {
+            setCurrentRep(currentRep + 1);
+            toggleReset(true);
+            playSound('next');
           } else {
-            console.log('exer break?', isExerciseBreak);
-            if (!isExerciseBreak) {
-              toggleExerciseBreak(true);
-              playSound('interval');
-              toggleReset(true);
-            }
-            if (isExerciseBreak) {
-              console.log('hihi!');
-              setCurrentExercise(getNextExercise());
-              setCurrentRep(1);
-              toggleReset(true);
-              toggleExerciseBreak(false);
-              playSound('change');
+            if (getCurrentExerciseIndex() === routine.exercises.length - 1) {
+              toggleRoutineFinished(true);
+              toggleTimer(false);
+              playSound('finished');
+            } else {
+              if (!isExerciseBreak) {
+                toggleExerciseBreak(true);
+                playSound('interval');
+                toggleReset(true);
+              }
+              if (isExerciseBreak) {
+                setCurrentExercise(getNextExercise());
+                setCurrentRep(1);
+                toggleReset(true);
+                toggleExerciseBreak(false);
+                playSound('change');
+              }
             }
           }
         }
@@ -115,6 +121,7 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
     getCurrentExerciseIndex,
     routine.exercises.length,
     isExerciseBreak,
+    isPreroutineCountdown,
   ]);
 
   if (isReset) {
@@ -143,6 +150,7 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
         timeRemaining={timeRemaining}
         isBreak={!!isBreak}
         isExerciseBreak={!!isExerciseBreak}
+        isPreroutineCountdown={!!isPreroutineCountdown}
       />
     </Container>
   );
