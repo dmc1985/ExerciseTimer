@@ -1,14 +1,11 @@
 import React, { ReactElement } from 'react';
-import { Container, InputLabel, StyledTextInput } from './styledComponents';
+import { Button, Title } from 'react-native-paper';
+import { Container, StyledTextInput } from './styledComponents';
 import { Formik, FormikProps } from 'formik';
-import { ScreenTitle } from '../RoutineDetail/styledComponents';
 import Screen from '../../core/Screen';
-
-import { Button } from 'react-native';
 
 import { NavigationProp } from '../../core/helper';
 import { validate } from './helper';
-import FormErrorMessage from '../../components/FormErrorMessage';
 
 export interface Props extends NavigationProp {}
 
@@ -33,27 +30,31 @@ const NewRoutineForm = ({ navigation }: Props): ReactElement => (
   >
     {(formikBag: FormikProps<NewRoutineValues>) => (
       <Container>
-        <ScreenTitle>Add New Routine</ScreenTitle>
-        <InputLabel>Routine Name</InputLabel>
         <StyledTextInput
           onChangeText={formikBag.handleChange('name')}
           onBlur={formikBag.handleBlur('name')}
           value={formikBag.values.name}
+          label="Routine Name"
+          error={!!formikBag.errors.name}
         />
-        <FormErrorMessage name="name" />
-        <InputLabel>Seconds Between Exercises</InputLabel>
         <StyledTextInput
           onChangeText={formikBag.handleChange('secondsBetweenExercises')}
           onBlur={formikBag.handleBlur('secondsBetweenExercises')}
           value={formikBag.values.secondsBetweenExercises}
+          label="Seconds Between Exercises"
         />
-        <Button
-          title="Add Exercises to Routine"
-          onPress={formikBag.submitForm}
-        />
+        <Button onPress={formikBag.submitForm}>Add Exercises to Routine</Button>
       </Container>
     )}
   </Formik>
 );
+
+export function navigationOptions() {
+  return {
+    headerTitle: <Title>Add Routine</Title>,
+  };
+}
+
+NewRoutineForm.navigationOptions = navigationOptions;
 
 export default NewRoutineForm;

@@ -1,15 +1,13 @@
 import React, { Dispatch, ReactElement, SetStateAction } from 'react';
 import {
   ExerciseFieldsContainer,
-  InputLabel,
   StyledButton,
-  StyledTextInput,
 } from '../NewRoutineForm/styledComponents';
 import { FormikProps, Formik } from 'formik';
 import { Exercise } from '../../core/typings';
+import { StyledTextInput } from './styledComponents';
 import { ExerciseValues } from './typings';
 import { formatExerciseValues, validateExercise } from './helper';
-import FormErrorMessage from '../../components/FormErrorMessage';
 
 interface Props {
   exercises: Exercise[];
@@ -42,42 +40,43 @@ const AddExerciseForm = ({
       handleBlur,
       values,
       submitForm,
+      errors,
     }: FormikProps<ExerciseValues>): ReactElement => (
       <ExerciseFieldsContainer>
-        <InputLabel>Exercise Name</InputLabel>
-        <FormErrorMessage name="name" />
         <StyledTextInput
+          label="Exercise Name"
           onChangeText={handleChange('name')}
           onBlur={handleBlur('name')}
           value={values.name}
+          error={!!errors.name}
         />
-        <InputLabel>Number of reps</InputLabel>
-        <FormErrorMessage name="numReps" />
         <StyledTextInput
+          label="Number of reps"
           onChangeText={handleChange('numReps')}
           onBlur={handleBlur('numReps')}
           value={values.numReps}
+          error={!!errors.numReps}
         />
-        <InputLabel>Rep Length (seconds)</InputLabel>
-        <FormErrorMessage name="repLengthSeconds" />
         <StyledTextInput
+          label="Rep Length (seconds)"
           onChangeText={handleChange('repLengthSeconds')}
           onBlur={handleBlur('repLengthSeconds')}
           value={values.repLengthSeconds}
+          error={!!errors.repLengthSeconds}
         />
-        <InputLabel>Break Length (seconds)</InputLabel>
-        <FormErrorMessage name="breakLengthSeconds" />
         <StyledTextInput
+          label="Break Length (seconds)"
           onChangeText={handleChange('breakLengthSeconds')}
           onBlur={handleBlur('breakLengthSeconds')}
           value={values.breakLengthSeconds}
+          error={!!errors.breakLengthSeconds}
         />
-        <InputLabel>Seconds before next exercise</InputLabel>
-        <FormErrorMessage name="breakLengthSeconds" />
         <StyledTextInput
+          label="Seconds before next exercise"
           onChangeText={handleChange('secondsBeforeNextExercise')}
           onBlur={handleBlur('secondsBeforeNextExercise')}
           value={values.secondsBeforeNextExercise}
+          error={!!errors.secondsBeforeNextExercise}
         />
         <StyledButton title="Add Exercise" onPress={submitForm} />
       </ExerciseFieldsContainer>

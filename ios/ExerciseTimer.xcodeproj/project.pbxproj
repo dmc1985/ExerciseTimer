@@ -8,28 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* ExerciseTimerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ExerciseTimerTests.m */; };
-		116BE1C423DE043600B45002 /* break.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 116BE1C323DE043500B45002 /* break.mp3 */; };
-		116BE1C623DE076100B45002 /* change.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 116BE1C523DE076100B45002 /* change.mp3 */; };
-		116BE1C823DE080B00B45002 /* finished.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 116BE1C723DE080B00B45002 /* finished.mp3 */; };
-		116BE1CA23DE0D3B00B45002 /* next.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 116BE1C923DE0D3A00B45002 /* next.mp3 */; };
-		118E50C52413E740004ED240 /* interval.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 118E50C42413E740004ED240 /* interval.mp3 */; };
-		118E50C72413E7F5004ED240 /* begin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 118E50C62413E7F5004ED240 /* begin.mp3 */; };
-		11D2FFBC2413F77800E35847 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11D2FFAC2413F77800E35847 /* Fontisto.ttf */; };
-		11D2FFBD2413F77800E35847 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11D2FFAD2413F77800E35847 /* Octicons.ttf */; };
-		11D2FFBE2413F77800E35847 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11D2FFAE2413F77800E35847 /* Feather.ttf */; };
-		11D2FFBF2413F77800E35847 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11D2FFAF2413F77800E35847 /* Entypo.ttf */; };
-		11D2FFC02413F77800E35847 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11D2FFB02413F77800E35847 /* FontAwesome5_Brands.ttf */; };
-		11D2FFC12413F77800E35847 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11D2FFB12413F77800E35847 /* MaterialCommunityIcons.ttf */; };
-		11D2FFC22413F77800E35847 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11D2FFB22413F77800E35847 /* AntDesign.ttf */; };
-		11D2FFC32413F77800E35847 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11D2FFB32413F77800E35847 /* Foundation.ttf */; };
-		11D2FFC42413F77800E35847 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11D2FFB42413F77800E35847 /* Ionicons.ttf */; };
-		11D2FFC52413F77800E35847 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11D2FFB52413F77800E35847 /* FontAwesome5_Solid.ttf */; };
-		11D2FFC62413F77800E35847 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11D2FFB62413F77800E35847 /* FontAwesome5_Regular.ttf */; };
-		11D2FFC72413F77800E35847 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11D2FFB72413F77800E35847 /* FontAwesome.ttf */; };
-		11D2FFC82413F77800E35847 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11D2FFB82413F77800E35847 /* Zocial.ttf */; };
-		11D2FFC92413F77800E35847 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11D2FFB92413F77800E35847 /* EvilIcons.ttf */; };
-		11D2FFCA2413F77800E35847 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11D2FFBA2413F77800E35847 /* SimpleLineIcons.ttf */; };
-		11D2FFCB2413F77800E35847 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11D2FFBB2413F77800E35847 /* MaterialIcons.ttf */; };
+		11230C7824157C0A0098C88D /* break.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11230C7224157C0A0098C88D /* break.mp3 */; };
+		11230C7924157C0A0098C88D /* begin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11230C7324157C0A0098C88D /* begin.mp3 */; };
+		11230C7A24157C0A0098C88D /* finished.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11230C7424157C0A0098C88D /* finished.mp3 */; };
+		11230C7B24157C0A0098C88D /* change.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11230C7524157C0A0098C88D /* change.mp3 */; };
+		11230C7C24157C0A0098C88D /* interval.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11230C7724157C0A0098C88D /* interval.mp3 */; };
 		124AAB9372C9F41F04BB3188 /* libPods-ExerciseTimer-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 991B514C101936EE85164D14 /* libPods-ExerciseTimer-tvOS.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
@@ -66,28 +49,11 @@
 		00E356EE1AD99517003FC87E /* ExerciseTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExerciseTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ExerciseTimerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExerciseTimerTests.m; sourceTree = "<group>"; };
-		116BE1C323DE043500B45002 /* break.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = break.mp3; sourceTree = "<group>"; };
-		116BE1C523DE076100B45002 /* change.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = change.mp3; sourceTree = "<group>"; };
-		116BE1C723DE080B00B45002 /* finished.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = finished.mp3; sourceTree = "<group>"; };
-		116BE1C923DE0D3A00B45002 /* next.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = next.mp3; sourceTree = "<group>"; };
-		118E50C42413E740004ED240 /* interval.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = interval.mp3; sourceTree = "<group>"; };
-		118E50C62413E7F5004ED240 /* begin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = begin.mp3; sourceTree = "<group>"; };
-		11D2FFAC2413F77800E35847 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
-		11D2FFAD2413F77800E35847 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
-		11D2FFAE2413F77800E35847 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
-		11D2FFAF2413F77800E35847 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
-		11D2FFB02413F77800E35847 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Brands.ttf; sourceTree = "<group>"; };
-		11D2FFB12413F77800E35847 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
-		11D2FFB22413F77800E35847 /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AntDesign.ttf; sourceTree = "<group>"; };
-		11D2FFB32413F77800E35847 /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Foundation.ttf; sourceTree = "<group>"; };
-		11D2FFB42413F77800E35847 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
-		11D2FFB52413F77800E35847 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
-		11D2FFB62413F77800E35847 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Regular.ttf; sourceTree = "<group>"; };
-		11D2FFB72413F77800E35847 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
-		11D2FFB82413F77800E35847 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
-		11D2FFB92413F77800E35847 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
-		11D2FFBA2413F77800E35847 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
-		11D2FFBB2413F77800E35847 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
+		11230C7224157C0A0098C88D /* break.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = break.mp3; sourceTree = "<group>"; };
+		11230C7324157C0A0098C88D /* begin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = begin.mp3; sourceTree = "<group>"; };
+		11230C7424157C0A0098C88D /* finished.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = finished.mp3; sourceTree = "<group>"; };
+		11230C7524157C0A0098C88D /* change.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = change.mp3; sourceTree = "<group>"; };
+		11230C7724157C0A0098C88D /* interval.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = interval.mp3; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* ExerciseTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExerciseTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ExerciseTimer/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ExerciseTimer/AppDelegate.m; sourceTree = "<group>"; };
@@ -166,25 +132,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		11D2FFAB2413F77800E35847 /* Fonts */ = {
+		11230C7124157C0A0098C88D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				11D2FFAC2413F77800E35847 /* Fontisto.ttf */,
-				11D2FFAD2413F77800E35847 /* Octicons.ttf */,
-				11D2FFAE2413F77800E35847 /* Feather.ttf */,
-				11D2FFAF2413F77800E35847 /* Entypo.ttf */,
-				11D2FFB02413F77800E35847 /* FontAwesome5_Brands.ttf */,
-				11D2FFB12413F77800E35847 /* MaterialCommunityIcons.ttf */,
-				11D2FFB22413F77800E35847 /* AntDesign.ttf */,
-				11D2FFB32413F77800E35847 /* Foundation.ttf */,
-				11D2FFB42413F77800E35847 /* Ionicons.ttf */,
-				11D2FFB52413F77800E35847 /* FontAwesome5_Solid.ttf */,
-				11D2FFB62413F77800E35847 /* FontAwesome5_Regular.ttf */,
-				11D2FFB72413F77800E35847 /* FontAwesome.ttf */,
-				11D2FFB82413F77800E35847 /* Zocial.ttf */,
-				11D2FFB92413F77800E35847 /* EvilIcons.ttf */,
-				11D2FFBA2413F77800E35847 /* SimpleLineIcons.ttf */,
-				11D2FFBB2413F77800E35847 /* MaterialIcons.ttf */,
+				11230C7224157C0A0098C88D /* break.mp3 */,
+				11230C7324157C0A0098C88D /* begin.mp3 */,
+				11230C7424157C0A0098C88D /* finished.mp3 */,
+				11230C7524157C0A0098C88D /* change.mp3 */,
+				11230C7624157C0A0098C88D /* Fonts */,
+				11230C7724157C0A0098C88D /* interval.mp3 */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		11230C7624157C0A0098C88D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -192,13 +155,7 @@
 		13B07FAE1A68108700A75B9A /* ExerciseTimer */ = {
 			isa = PBXGroup;
 			children = (
-				11D2FFAB2413F77800E35847 /* Fonts */,
-				118E50C62413E7F5004ED240 /* begin.mp3 */,
-				116BE1C723DE080B00B45002 /* finished.mp3 */,
-				118E50C42413E740004ED240 /* interval.mp3 */,
-				116BE1C523DE076100B45002 /* change.mp3 */,
-				116BE1C323DE043500B45002 /* break.mp3 */,
-				116BE1C923DE0D3A00B45002 /* next.mp3 */,
+				11230C7124157C0A0098C88D /* Resources */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -311,6 +268,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				2661440E4448E87FB06BE20C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -371,14 +329,20 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = RTKP2J4AYD;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = RTKP2J4AYD;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = RTKP2J4AYD;
 						ProvisioningStyle = Automatic;
 					};
 					2D02E48F1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = RTKP2J4AYD;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
 					};
@@ -418,30 +382,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11D2FFBD2413F77800E35847 /* Octicons.ttf in Resources */,
-				11D2FFC92413F77800E35847 /* EvilIcons.ttf in Resources */,
-				11D2FFC32413F77800E35847 /* Foundation.ttf in Resources */,
-				11D2FFBF2413F77800E35847 /* Entypo.ttf in Resources */,
-				11D2FFBE2413F77800E35847 /* Feather.ttf in Resources */,
-				11D2FFC42413F77800E35847 /* Ionicons.ttf in Resources */,
-				11D2FFBC2413F77800E35847 /* Fontisto.ttf in Resources */,
-				116BE1C623DE076100B45002 /* change.mp3 in Resources */,
-				11D2FFCB2413F77800E35847 /* MaterialIcons.ttf in Resources */,
-				11D2FFC02413F77800E35847 /* FontAwesome5_Brands.ttf in Resources */,
-				116BE1C423DE043600B45002 /* break.mp3 in Resources */,
+				11230C7924157C0A0098C88D /* begin.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				11D2FFC62413F77800E35847 /* FontAwesome5_Regular.ttf in Resources */,
-				11D2FFC72413F77800E35847 /* FontAwesome.ttf in Resources */,
-				11D2FFC12413F77800E35847 /* MaterialCommunityIcons.ttf in Resources */,
-				11D2FFC82413F77800E35847 /* Zocial.ttf in Resources */,
-				11D2FFC22413F77800E35847 /* AntDesign.ttf in Resources */,
-				118E50C52413E740004ED240 /* interval.mp3 in Resources */,
-				118E50C72413E7F5004ED240 /* begin.mp3 in Resources */,
-				116BE1CA23DE0D3B00B45002 /* next.mp3 in Resources */,
-				11D2FFC52413F77800E35847 /* FontAwesome5_Solid.ttf in Resources */,
-				11D2FFCA2413F77800E35847 /* SimpleLineIcons.ttf in Resources */,
-				116BE1C823DE080B00B45002 /* finished.mp3 in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				11230C7C24157C0A0098C88D /* interval.mp3 in Resources */,
+				11230C7824157C0A0098C88D /* break.mp3 in Resources */,
+				11230C7B24157C0A0098C88D /* change.mp3 in Resources */,
+				11230C7A24157C0A0098C88D /* finished.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +466,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2661440E4448E87FB06BE20C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ExerciseTimer/Pods-ExerciseTimer-resources.sh",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ExerciseTimer/Pods-ExerciseTimer-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
@@ -687,6 +682,7 @@
 			baseConfigurationReference = C35BE5ED1719884EC9972425 /* Pods-ExerciseTimerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = RTKP2J4AYD;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -711,6 +707,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = RTKP2J4AYD;
 				INFOPLIST_FILE = ExerciseTimerTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -732,6 +729,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = RTKP2J4AYD;
 				INFOPLIST_FILE = ExerciseTimer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -751,6 +749,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RTKP2J4AYD;
 				INFOPLIST_FILE = ExerciseTimer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -774,7 +773,10 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = RTKP2J4AYD;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "ExerciseTimer-tvOS/Info.plist";
@@ -784,8 +786,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.ExerciseTimer-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ExerciseTimer-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
@@ -802,8 +805,11 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = RTKP2J4AYD;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "ExerciseTimer-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -812,8 +818,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.ExerciseTimer-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ExerciseTimer-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
@@ -829,7 +836,10 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = RTKP2J4AYD;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "ExerciseTimer-tvOSTests/Info.plist";
@@ -841,6 +851,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.ExerciseTimer-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExerciseTimer-tvOS.app/ExerciseTimer-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
@@ -856,8 +867,11 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = RTKP2J4AYD;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "ExerciseTimer-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -868,6 +882,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.ExerciseTimer-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExerciseTimer-tvOS.app/ExerciseTimer-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
