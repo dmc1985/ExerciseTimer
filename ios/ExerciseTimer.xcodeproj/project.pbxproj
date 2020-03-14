@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* ExerciseTimerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ExerciseTimerTests.m */; };
-		11230C7824157C0A0098C88D /* break.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11230C7224157C0A0098C88D /* break.mp3 */; };
-		11230C7924157C0A0098C88D /* begin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11230C7324157C0A0098C88D /* begin.mp3 */; };
-		11230C7A24157C0A0098C88D /* finished.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11230C7424157C0A0098C88D /* finished.mp3 */; };
-		11230C7B24157C0A0098C88D /* change.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11230C7524157C0A0098C88D /* change.mp3 */; };
-		11230C7C24157C0A0098C88D /* interval.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11230C7724157C0A0098C88D /* interval.mp3 */; };
+		11230C912415A0E20098C88D /* break.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11230C8B2415A0E20098C88D /* break.mp3 */; };
+		11230C922415A0E20098C88D /* begin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11230C8C2415A0E20098C88D /* begin.mp3 */; };
+		11230C932415A0E20098C88D /* finished.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11230C8D2415A0E20098C88D /* finished.mp3 */; };
+		11230C942415A0E20098C88D /* change.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11230C8E2415A0E20098C88D /* change.mp3 */; };
+		11230C952415A0E20098C88D /* interval.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11230C902415A0E20098C88D /* interval.mp3 */; };
+		11EF0BF82418BE7A003A0FBE /* next.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11EF0BF72418BE7A003A0FBE /* next.mp3 */; };
 		124AAB9372C9F41F04BB3188 /* libPods-ExerciseTimer-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 991B514C101936EE85164D14 /* libPods-ExerciseTimer-tvOS.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
@@ -49,11 +50,14 @@
 		00E356EE1AD99517003FC87E /* ExerciseTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExerciseTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ExerciseTimerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExerciseTimerTests.m; sourceTree = "<group>"; };
-		11230C7224157C0A0098C88D /* break.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = break.mp3; sourceTree = "<group>"; };
-		11230C7324157C0A0098C88D /* begin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = begin.mp3; sourceTree = "<group>"; };
-		11230C7424157C0A0098C88D /* finished.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = finished.mp3; sourceTree = "<group>"; };
-		11230C7524157C0A0098C88D /* change.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = change.mp3; sourceTree = "<group>"; };
-		11230C7724157C0A0098C88D /* interval.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = interval.mp3; sourceTree = "<group>"; };
+		11230C7D24159B620098C88D /* ExerciseTimerDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ExerciseTimerDebug.entitlements; path = ExerciseTimer/ExerciseTimerDebug.entitlements; sourceTree = "<group>"; };
+		11230C8B2415A0E20098C88D /* break.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = break.mp3; sourceTree = "<group>"; };
+		11230C8C2415A0E20098C88D /* begin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = begin.mp3; sourceTree = "<group>"; };
+		11230C8D2415A0E20098C88D /* finished.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = finished.mp3; sourceTree = "<group>"; };
+		11230C8E2415A0E20098C88D /* change.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = change.mp3; sourceTree = "<group>"; };
+		11230C902415A0E20098C88D /* interval.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = interval.mp3; sourceTree = "<group>"; };
+		112771C5241C074D002EC983 /* ExerciseTimer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ExerciseTimer.entitlements; path = ExerciseTimer/ExerciseTimer.entitlements; sourceTree = "<group>"; };
+		11EF0BF72418BE7A003A0FBE /* next.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = next.mp3; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* ExerciseTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExerciseTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ExerciseTimer/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ExerciseTimer/AppDelegate.m; sourceTree = "<group>"; };
@@ -132,20 +136,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		11230C7124157C0A0098C88D /* Resources */ = {
+		11230C8A2415A0E20098C88D /* Resources1 */ = {
 			isa = PBXGroup;
 			children = (
-				11230C7224157C0A0098C88D /* break.mp3 */,
-				11230C7324157C0A0098C88D /* begin.mp3 */,
-				11230C7424157C0A0098C88D /* finished.mp3 */,
-				11230C7524157C0A0098C88D /* change.mp3 */,
-				11230C7624157C0A0098C88D /* Fonts */,
-				11230C7724157C0A0098C88D /* interval.mp3 */,
+				11230C8B2415A0E20098C88D /* break.mp3 */,
+				11230C8C2415A0E20098C88D /* begin.mp3 */,
+				11230C8D2415A0E20098C88D /* finished.mp3 */,
+				11EF0BF72418BE7A003A0FBE /* next.mp3 */,
+				11230C8E2415A0E20098C88D /* change.mp3 */,
+				11230C8F2415A0E20098C88D /* Fonts */,
+				11230C902415A0E20098C88D /* interval.mp3 */,
 			);
-			path = Resources;
+			path = Resources1;
 			sourceTree = "<group>";
 		};
-		11230C7624157C0A0098C88D /* Fonts */ = {
+		11230C8F2415A0E20098C88D /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -155,7 +160,9 @@
 		13B07FAE1A68108700A75B9A /* ExerciseTimer */ = {
 			isa = PBXGroup;
 			children = (
-				11230C7124157C0A0098C88D /* Resources */,
+				112771C5241C074D002EC983 /* ExerciseTimer.entitlements */,
+				11230C8A2415A0E20098C88D /* Resources1 */,
+				11230C7D24159B620098C88D /* ExerciseTimerDebug.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -330,19 +337,19 @@
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = RTKP2J4AYD;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = RTKP2J4AYD;
+						ProvisioningStyle = Automatic;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = RTKP2J4AYD;
 						ProvisioningStyle = Automatic;
 					};
 					2D02E48F1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = RTKP2J4AYD;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
 					};
@@ -382,13 +389,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11230C7924157C0A0098C88D /* begin.mp3 in Resources */,
+				11230C922415A0E20098C88D /* begin.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				11230C7C24157C0A0098C88D /* interval.mp3 in Resources */,
-				11230C7824157C0A0098C88D /* break.mp3 in Resources */,
-				11230C7B24157C0A0098C88D /* change.mp3 in Resources */,
-				11230C7A24157C0A0098C88D /* finished.mp3 in Resources */,
+				11230C952415A0E20098C88D /* interval.mp3 in Resources */,
+				11230C912415A0E20098C88D /* break.mp3 in Resources */,
+				11EF0BF82418BE7A003A0FBE /* next.mp3 in Resources */,
+				11230C942415A0E20098C88D /* change.mp3 in Resources */,
+				11230C932415A0E20098C88D /* finished.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,6 +690,9 @@
 			baseConfigurationReference = C35BE5ED1719884EC9972425 /* Pods-ExerciseTimerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RTKP2J4AYD;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -697,6 +708,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExerciseTimer.app/ExerciseTimer";
 			};
 			name = Debug;
@@ -706,6 +719,9 @@
 			baseConfigurationReference = 70D680CEC6518F2DCFF8679C /* Pods-ExerciseTimerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = RTKP2J4AYD;
 				INFOPLIST_FILE = ExerciseTimerTests/Info.plist;
@@ -718,6 +734,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExerciseTimer.app/ExerciseTimer";
 			};
 			name = Release;
@@ -727,6 +745,9 @@
 			baseConfigurationReference = 91BCB359F76480A7DB884784 /* Pods-ExerciseTimer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ExerciseTimer/ExerciseTimerDebug.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = RTKP2J4AYD;
@@ -739,6 +760,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ExerciseTimer;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -748,6 +770,10 @@
 			baseConfigurationReference = 8279272F995EB2444D2F29B6 /* Pods-ExerciseTimer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ExerciseTimer/ExerciseTimer.entitlements;
+				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RTKP2J4AYD;
 				INFOPLIST_FILE = ExerciseTimer/Info.plist;
@@ -759,6 +785,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ExerciseTimer;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -776,7 +803,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = RTKP2J4AYD;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "ExerciseTimer-tvOS/Info.plist";
@@ -786,7 +813,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ExerciseTimer-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.react.native.ExerciseTimer-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
@@ -809,7 +836,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = RTKP2J4AYD;
+				DEVELOPMENT_TEAM = "";
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "ExerciseTimer-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -818,7 +845,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ExerciseTimer-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.react.native.ExerciseTimer-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
@@ -839,7 +866,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = RTKP2J4AYD;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "ExerciseTimer-tvOSTests/Info.plist";
@@ -871,7 +898,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = RTKP2J4AYD;
+				DEVELOPMENT_TEAM = "";
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "ExerciseTimer-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -916,7 +943,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development: davidmartincohen@gmail.com (5J9QC5VFLN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: davidmartincohen@gmail.com (5J9QC5VFLN)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -969,7 +997,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development: davidmartincohen@gmail.com (5J9QC5VFLN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: davidmartincohen@gmail.com (5J9QC5VFLN)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
