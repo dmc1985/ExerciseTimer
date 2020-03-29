@@ -20,7 +20,6 @@ const NewRoutineForm = ({ navigation }: Props): ReactElement => (
     validate={validate}
     validateOnChange
     onSubmit={(values: NewRoutineValues) => {
-      console.log('values', values);
       navigation.navigate(Screen.NewExercisesForm, {
         routineName: values.name,
         secondsBetweenExercises: values.secondsBetweenExercises,

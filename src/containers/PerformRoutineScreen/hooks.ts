@@ -26,7 +26,6 @@ export function useTimer(
   shouldRun: boolean,
   isReset: boolean,
 ) {
-  // console.log('repLength -timer', repLengthSeconds);
   const [remainingTime, setRemainingTime] = useState<number>(repLengthSeconds);
   if (isReset) {
     setRemainingTime(repLengthSeconds);
