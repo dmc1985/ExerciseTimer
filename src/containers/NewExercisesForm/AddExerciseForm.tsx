@@ -13,12 +13,14 @@ interface Props {
   exercises: Exercise[];
   setExercises: Dispatch<SetStateAction<Exercise[]>>;
   defaultSecondsBeforeNextExercise: string;
+  toggleDrawer?: () => void;
 }
 
 const AddExerciseForm = ({
   exercises,
   setExercises,
   defaultSecondsBeforeNextExercise,
+  toggleDrawer,
 }: Props): ReactElement => (
   <Formik
     initialValues={{
@@ -31,6 +33,9 @@ const AddExerciseForm = ({
     validate={validateExercise}
     validateOnChange
     onSubmit={(values: ExerciseValues, { resetForm }) => {
+      if (toggleDrawer) {
+        toggleDrawer();
+      }
       setExercises([...exercises, formatExerciseValues(values)]);
       resetForm();
     }}

@@ -29,4 +29,6 @@ export const StyledButton = styled(Button)`
   margin-bottom: ${em(3)};
 `;
 
-export const ExerciseFieldsContainer = styled(View)``;
+export const ExerciseFieldsContainer = styled(View)`
+  width: 100%;
+`;
