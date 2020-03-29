@@ -41,6 +41,7 @@ const NewRoutineForm = ({ navigation }: Props): ReactElement => (
           onBlur={formikBag.handleBlur('secondsBetweenExercises')}
           value={formikBag.values.secondsBetweenExercises}
           label="Seconds Between Exercises"
+          keyboardType="number-pad"
         />
         <Button onPress={formikBag.submitForm}>Add Exercises to Routine</Button>
       </Container>

@@ -61,6 +61,7 @@ const AddExerciseForm = ({
           onBlur={handleBlur('numReps')}
           value={values.numReps}
           error={!!errors.numReps}
+          keyboardType="number-pad"
         />
         <StyledTextInput
           label="Rep Length (seconds)"
@@ -68,6 +69,7 @@ const AddExerciseForm = ({
           onBlur={handleBlur('repLengthSeconds')}
           value={values.repLengthSeconds}
           error={!!errors.repLengthSeconds}
+          keyboardType="number-pad"
         />
         <StyledTextInput
           label="Break Length (seconds)"
@@ -75,6 +77,7 @@ const AddExerciseForm = ({
           onBlur={handleBlur('breakLengthSeconds')}
           value={values.breakLengthSeconds}
           error={!!errors.breakLengthSeconds}
+          keyboardType="number-pad"
         />
         <StyledTextInput
           label="Seconds before next exercise"
@@ -82,6 +85,7 @@ const AddExerciseForm = ({
           onBlur={handleBlur('secondsBeforeNextExercise')}
           value={values.secondsBeforeNextExercise}
           error={!!errors.secondsBeforeNextExercise}
+          keyboardType="number-pad"
         />
         <StyledButton title="Add Exercise" onPress={submitForm} />
       </ExerciseFieldsContainer>
