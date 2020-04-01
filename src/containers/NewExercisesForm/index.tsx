@@ -108,7 +108,7 @@ const NewExercisesForm = ({ navigation }: Props): ReactElement => {
                           removeListItem<Exercise>(values.exercises, index),
                         );
                       }}
-                      isFormInput
+                      hasRemoveOption
                     />
                   ),
                 )}

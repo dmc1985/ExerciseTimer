@@ -1,8 +1,9 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Text } from 'react-native';
+import FloatingActionButton from '../../common/components/FloatingActionButton';
 import { getAllRoutineNames, getRoutines } from '../../core/helper';
 import RoutineList from '../../components/RoutineList';
-import { Container, StyledFAB } from './styledComponents';
+import { Container } from './styledComponents';
 import { Routine } from '../../core/typings';
 import { NavigationScreenProp } from 'react-navigation';
 import Screen from '../../core/Screen';
@@ -41,7 +42,7 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
         routines={allRoutines}
         toggleShouldReloadList={toggleShouldReloadList}
       />
-      <StyledFAB
+      <FloatingActionButton
         small
         icon="plus"
         onPress={() =>
@@ -54,7 +55,7 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
 
 export function navigationOptions() {
   return {
-    headerTitle: <Text>Home</Text>,
+    headerTitle: <Text>Exercise Timer</Text>,
   };
 }
 

@@ -1,31 +1,37 @@
 import React, { ReactElement } from 'react';
-import { DetailContainer, DetailInfo } from './styledComponents';
 import { Exercise } from '../../core/typings';
-import { Button } from 'react-native';
+import { Colors, List } from 'react-native-paper';
 
 interface Props {
   exercise: Exercise;
-  showName?: boolean;
-  isFormInput?: boolean;
+  hasRemoveOption?: boolean;
   handleRemove?: () => void;
 }
 
 const ExerciseDetail = ({
   exercise,
-  showName = true,
-  isFormInput = false,
+  hasRemoveOption = false,
   handleRemove,
 }: Props): ReactElement => (
-  <DetailContainer>
-    {showName && <DetailInfo>Exercise Name: {exercise.name}</DetailInfo>}
-    <DetailInfo>Number of Reps: {exercise.numReps}</DetailInfo>
-    <DetailInfo>Rep Length(s): {exercise.repLengthSeconds}</DetailInfo>
-    <DetailInfo>Break Length(s) : {exercise.breakLengthSeconds}</DetailInfo>
-    <DetailInfo>
-      Seconds Between Exercises : {exercise.secondsBeforeNextExercise}
-    </DetailInfo>
-    {isFormInput && <Button title="Remove" onPress={handleRemove!} />}
-  </DetailContainer>
+  <List.Section>
+    <List.Accordion title={exercise.name}>
+      <List.Item title={`Number of Reps: ${exercise.numReps}`} />
+      <List.Item title={`Rep Length: ${exercise.repLengthSeconds} seconds`} />
+      <List.Item
+        title={`Break Length : ${exercise.breakLengthSeconds} seconds`}
+      />
+      <List.Item
+        title={`Seconds Between Exercises : ${exercise.secondsBeforeNextExercise}`}
+      />
+      {hasRemoveOption && (
+        <List.Item
+          title="Remove"
+          left={() => <List.Icon color={Colors.red100} icon="delete" />}
+          onPress={handleRemove}
+        />
+      )}
+    </List.Accordion>
+  </List.Section>
 );
 
 export default ExerciseDetail;

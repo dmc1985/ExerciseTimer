@@ -27,7 +27,7 @@ const RoutineList = ({
             onPress={() => {
               navigation.navigate(Screen.RoutineDetail, { routine });
             }}
-            left={() => <List.Icon color={Colors.blue500} icon="forward" />}
+            left={() => <List.Icon color={Colors.blue500} icon="run-fast" />}
             right={() => (
               <Button
                 onPress={() => {
