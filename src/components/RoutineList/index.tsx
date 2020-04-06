@@ -18,7 +18,7 @@ const RoutineList = ({
 }: Props): ReactElement => {
   return (
     <List.Section>
-      <List.Subheader>Routine List</List.Subheader>
+      <List.Subheader>My Routines</List.Subheader>
       {routines.map(
         (routine: Routine): ReactElement => (
           <List.Item
