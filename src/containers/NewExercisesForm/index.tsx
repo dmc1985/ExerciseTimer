@@ -3,14 +3,21 @@ import { Animated } from 'react-native';
 import { addRoutine, NavigationProp } from '../../core/helper';
 import { Formik, FormikProps } from 'formik';
 import { validate } from './helper';
-import { Container, StyledButton } from '../NewRoutineForm/styledComponents';
+import {
+  BottomButtonContainer,
+  Container,
+  StyledButton,
+} from '../NewRoutineForm/styledComponents';
 import AddExerciseForm from './AddExerciseForm';
 import { Exercise } from '../../core/typings';
 import ExerciseDetail from '../RoutineDetail/ExerciseDetail';
 import { removeListItem } from '../../common/helper';
 import Screen from '../../core/Screen';
-import FormErrorMessage from '../../components/FormErrorMessage';
-import { DRAWER_WIDTH, DrawerContainer } from './styledComponents';
+import {
+  DRAWER_WIDTH,
+  DrawerContainer,
+  StyledHeadline,
+} from './styledComponents';
 
 export type NewExerciseValues = {
   exercises: Exercise[];
@@ -30,6 +37,7 @@ const NewExercisesForm = ({ navigation }: Props): ReactElement => {
   const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
 
   const [opacityAnimation] = useState(new Animated.Value(0));
+  const [reverseOpacityAnimation] = useState(new Animated.Value(0));
   const animatedValue = opacityAnimation.interpolate({
     inputRange: [0, 1],
     outputRange: [-DRAWER_WIDTH, 0],
@@ -40,7 +48,12 @@ const NewExercisesForm = ({ navigation }: Props): ReactElement => {
       toValue: isDrawerOpen ? 1 : 0,
       duration: 500,
     }).start();
-  }, [isDrawerOpen, opacityAnimation]);
+
+    Animated.timing(reverseOpacityAnimation, {
+      toValue: isDrawerOpen ? 0 : 1,
+      duration: 500,
+    }).start();
+  }, [isDrawerOpen, opacityAnimation, reverseOpacityAnimation]);
 
   return (
     <Formik
@@ -83,14 +96,15 @@ const NewExercisesForm = ({ navigation }: Props): ReactElement => {
                   defaultSecondsBeforeNextExercise={secondsBetweenExercises}
                   toggleDrawer={toggleDrawer}
                 />
-                <StyledButton
-                  onPress={() => toggleDrawer()}
-                  title="Close Drawer"
-                />
               </DrawerContainer>
             </Animated.View>
-            <Animated.View style={{ opacity: isDrawerOpen ? 0 : 1 }}>
+            <Animated.View style={{ opacity: reverseOpacityAnimation }}>
               <Container>
+                {exercises.length === 0 && (
+                  <StyledHeadline>
+                    This routine contains no exercises
+                  </StyledHeadline>
+                )}
                 {exercises.map(
                   (exercise: Exercise, index: number): ReactElement => (
                     <ExerciseDetail
@@ -112,14 +126,14 @@ const NewExercisesForm = ({ navigation }: Props): ReactElement => {
                     />
                   ),
                 )}
-                <StyledButton onPress={submitForm} title="Add New Routine" />
-                <StyledButton
-                  onPress={() => toggleDrawer()}
-                  title="Add Exercise"
-                />
-                <FormErrorMessage name="exercises" />
               </Container>
             </Animated.View>
+            <BottomButtonContainer>
+              <StyledButton onPress={submitForm}>Add Routine</StyledButton>
+              <StyledButton onPress={() => toggleDrawer()}>
+                {isDrawerOpen ? 'Close Drawer' : 'Add Exercise'}
+              </StyledButton>
+            </BottomButtonContainer>
           </>
         );
       }}

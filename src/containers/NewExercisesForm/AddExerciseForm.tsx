@@ -1,5 +1,6 @@
 import React, { Dispatch, ReactElement, SetStateAction } from 'react';
 import {
+  ButtonContainer,
   ExerciseFieldsContainer,
   StyledButton,
 } from '../NewRoutineForm/styledComponents';
@@ -13,7 +14,7 @@ interface Props {
   exercises: Exercise[];
   setExercises: Dispatch<SetStateAction<Exercise[]>>;
   defaultSecondsBeforeNextExercise: string;
-  toggleDrawer?: () => void;
+  toggleDrawer: () => void;
 }
 
 const AddExerciseForm = ({
@@ -33,9 +34,7 @@ const AddExerciseForm = ({
     validate={validateExercise}
     validateOnChange
     onSubmit={(values: ExerciseValues, { resetForm }) => {
-      if (toggleDrawer) {
-        toggleDrawer();
-      }
+      toggleDrawer();
       setExercises([...exercises, formatExerciseValues(values)]);
       resetForm();
     }}
@@ -87,7 +86,11 @@ const AddExerciseForm = ({
           error={!!errors.secondsBeforeNextExercise}
           keyboardType="number-pad"
         />
-        <StyledButton title="Add Exercise" onPress={submitForm} />
+        <ButtonContainer>
+          <StyledButton mode="contained" onPress={submitForm}>
+            Add Exercise
+          </StyledButton>
+        </ButtonContainer>
       </ExerciseFieldsContainer>
     )}
   </Formik>

@@ -36,12 +36,14 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
   }, [shouldReloadList]);
 
   return (
-    <Container>
-      <RoutineList
-        navigation={navigation}
-        routines={allRoutines}
-        toggleShouldReloadList={toggleShouldReloadList}
-      />
+    <>
+      <Container>
+        <RoutineList
+          navigation={navigation}
+          routines={allRoutines}
+          toggleShouldReloadList={toggleShouldReloadList}
+        />
+      </Container>
       <FloatingActionButton
         small
         icon="plus"
@@ -49,7 +51,7 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
           navigation.navigate(Screen.NewRoutineForm, { toggleShouldReloadList })
         }
       />
-    </Container>
+    </>
   );
 };
 

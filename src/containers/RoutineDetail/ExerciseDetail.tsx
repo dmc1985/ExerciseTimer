@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Exercise } from '../../core/typings';
 import { Colors, List } from 'react-native-paper';
+import { Container } from './styledComponents';
 
 interface Props {
   exercise: Exercise;
@@ -13,25 +14,27 @@ const ExerciseDetail = ({
   hasRemoveOption = false,
   handleRemove,
 }: Props): ReactElement => (
-  <List.Section>
-    <List.Accordion title={exercise.name}>
-      <List.Item title={`Number of Reps: ${exercise.numReps}`} />
-      <List.Item title={`Rep Length: ${exercise.repLengthSeconds} seconds`} />
-      <List.Item
-        title={`Break Length : ${exercise.breakLengthSeconds} seconds`}
-      />
-      <List.Item
-        title={`Seconds Between Exercises : ${exercise.secondsBeforeNextExercise}`}
-      />
-      {hasRemoveOption && (
+  <Container>
+    <List.Section>
+      <List.Accordion title={exercise.name}>
+        <List.Item title={`Number of Reps: ${exercise.numReps}`} />
+        <List.Item title={`Rep Length: ${exercise.repLengthSeconds} seconds`} />
         <List.Item
-          title="Remove"
-          left={() => <List.Icon color={Colors.red100} icon="delete" />}
-          onPress={handleRemove}
+          title={`Break Length : ${exercise.breakLengthSeconds} seconds`}
         />
-      )}
-    </List.Accordion>
-  </List.Section>
+        <List.Item
+          title={`Seconds Between Exercises : ${exercise.secondsBeforeNextExercise}`}
+        />
+        {hasRemoveOption && (
+          <List.Item
+            title="Remove"
+            left={() => <List.Icon color={Colors.red100} icon="delete" />}
+            onPress={handleRemove}
+          />
+        )}
+      </List.Accordion>
+    </List.Section>
+  </Container>
 );
 
 export default ExerciseDetail;

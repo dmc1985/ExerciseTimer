@@ -1,12 +1,13 @@
-import { View, ScrollView, Button, Text } from 'react-native';
-import { TextInput } from 'react-native-paper';
+import { View, ScrollView, Text } from 'react-native';
+import { Button, TextInput } from 'react-native-paper';
 import styled from 'styled-components';
 import { em } from '../../common/helper';
 
+const BOTTOM_BUTTON_POSITION = 16;
+
 export const Container = styled(ScrollView)`
   width: 100%;
-  height: 100%;
-  margin-top: ${em(2)};
+  margin: ${em(2)} 0 ${em((BOTTOM_BUTTON_POSITION * 2) / 16)};
 `;
 
 export const StyledTextInput = styled(TextInput)`
@@ -22,13 +23,25 @@ export const ErrorText = styled(Text)`
   color: red;
 `;
 
+export const ButtonContainer = styled(View)`
+  width: 100%;
+  display: flex;
+  align-items: center;
+`;
+
 export const StyledButton = styled(Button)`
-  height: ${em(2)}
-  width: ${em(2)}
-  background-color: green;
-  margin-bottom: ${em(3)};
+  width: 50%;
 `;
 
 export const ExerciseFieldsContainer = styled(View)`
   width: 100%;
+`;
+
+export const BottomButtonContainer = styled(View)`
+  width: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  bottom: ${BOTTOM_BUTTON_POSITION};
 `;

@@ -1,5 +1,5 @@
-import { ScrollView, View } from 'react-native';
-import { TextInput } from 'react-native-paper';
+import { Dimensions, ScrollView, View } from 'react-native';
+import { TextInput, Headline } from 'react-native-paper';
 import styled from 'styled-components';
 import { em } from '../../common/helper';
 
@@ -9,11 +9,15 @@ export const Container = styled(ScrollView)`
   margin-top: ${em(2)};
 `;
 
+export const StyledHeadline = styled(Headline)`
+  padding: ${em(5)} ${em(2)};
+`;
+
 export const StyledTextInput = styled(TextInput)`
   margin-bottom: ${em(0.5)};
 `;
 
-export const DRAWER_WIDTH = 300;
+export const DRAWER_WIDTH = Math.round(Dimensions.get('window').width);
 
 export const DrawerContainer = styled(View)`
   display: flex;
