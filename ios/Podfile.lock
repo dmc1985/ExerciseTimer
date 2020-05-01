@@ -221,11 +221,13 @@ PODS:
     - React
   - RNGestureHandler (1.5.0):
     - React
-  - RNReanimated (1.4.0):
+  - RNReanimated (1.8.0):
     - React
   - RNScreens (2.0.0-alpha.8):
     - React
   - RNSoundPlayer (0.10.3):
+    - React
+  - RNSVG (12.1.0):
     - React
   - RNVectorIcons (6.6.0):
     - React
@@ -264,6 +266,7 @@ DEPENDENCIES:
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSoundPlayer (from `../node_modules/react-native-sound-player`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -330,6 +333,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screens"
   RNSoundPlayer:
     :path: "../node_modules/react-native-sound-player"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   Yoga:
@@ -363,9 +368,10 @@ SPEC CHECKSUMS:
   ReactCommon: a6a294e7028ed67b926d29551aa9394fd989c24c
   RNCAsyncStorage: 3c304d1adfaea02ec732ac218801cb13897aa8c0
   RNGestureHandler: a4ddde1ffc6e590c8127b8b7eabfdade45475c74
-  RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
+  RNReanimated: 955cf4068714003d2f1a6e2bae3fb1118f359aff
   RNScreens: bfa9143ca291bcf3804c932f77b9617ff324704f
   RNSoundPlayer: 36fe7b7390a62c81a7eb4deeca07420399699872
+  RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   Yoga: ba3d99dbee6c15ea6bbe3783d1f0cb1ffb79af0f
 
