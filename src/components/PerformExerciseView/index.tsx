@@ -1,11 +1,19 @@
 import React, { ReactElement } from 'react';
-import { Container, ScreenTitle, TimeDisplay } from './styledComponents';
+import CircularProgress from './CircularProgress';
+import {
+  Container,
+  CurrentRep,
+  ExerciseName,
+  ScreenTitle,
+} from './styledComponents';
 import { Exercise } from '../../core/typings';
 
 export interface Props {
+  isTimerRunning: boolean;
   exercise: Exercise;
   currentRep: number;
   timeRemaining: number;
+  timerDuration: number;
   isBreak: boolean;
   isExerciseBreak: boolean;
   isPreroutineCountdown: boolean;
@@ -15,16 +23,17 @@ const PerformExerciseView = ({
   exercise,
   currentRep,
   timeRemaining,
+  timerDuration,
   isBreak,
   isExerciseBreak,
   isPreroutineCountdown,
 }: Props): ReactElement => {
   return (
     <Container>
-      <ScreenTitle>Exercise Name: {exercise.name}</ScreenTitle>
-      <ScreenTitle>
+      <ExerciseName>Exercise Name: {exercise.name}</ExerciseName>
+      <CurrentRep>
         Current Rep: {currentRep}/{exercise.numReps}
-      </ScreenTitle>
+      </CurrentRep>
       <ScreenTitle>
         {isPreroutineCountdown
           ? 'Get ready to start...'
@@ -34,7 +43,10 @@ const PerformExerciseView = ({
           ? 'Break'
           : 'Rep'}
       </ScreenTitle>
-      <TimeDisplay>{timeRemaining}</TimeDisplay>
+      <CircularProgress
+        timeRemaining={timeRemaining}
+        timerDuration={timerDuration}
+      />
     </Container>
   );
 };

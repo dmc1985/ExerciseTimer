@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Nullable } from '../../common/typings';
 
 export function useInterval(callback: () => any, delay: Nullable<number>) {
-  const savedCallback = useRef();
+  const savedCallback = useRef(null);
 
   // Remember the latest callback.
   useEffect(() => {
@@ -32,8 +32,8 @@ export function useTimer(
   }
 
   useInterval(
-    () => setRemainingTime(+(remainingTime - 0.1).toFixed(1)),
-    remainingTime >= 0 && shouldRun ? 100 : null,
+    () => setRemainingTime(+(remainingTime - 0.01).toFixed(2)),
+    remainingTime >= 0 && shouldRun ? 10 : null,
   );
 
   return remainingTime;

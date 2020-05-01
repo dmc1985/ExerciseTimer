@@ -1,7 +1,8 @@
 import React, { ReactElement, useEffect, useState } from 'react';
-import { Container } from './styledComponents';
-import { Button, Text } from 'react-native';
-import { Exercise } from '../../core/typings';
+import { Colors, IconButton } from 'react-native-paper';
+import { ButtonContainer, Container } from './styledComponents';
+import { Text } from 'react-native';
+import { Exercise, Routine } from '../../core/typings';
 import PerformExerciseView from '../../components/PerformExerciseView';
 import { NavigationScreenProp } from 'react-navigation';
 import { useTimer } from './hooks';
@@ -58,6 +59,15 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
       return routine.exercises[0];
     }
     return routine.exercises[currentIndex + 1];
+  }
+
+  function getPreviousExercise() {
+    const currentIndex: number = getCurrentExerciseIndex();
+
+    if (currentIndex === -1 || currentIndex === 0) {
+      return routine.exercises[routine.exercises.length - 1];
+    }
+    return routine.exercises[currentIndex - 1];
   }
 
   useEffect(() => {
@@ -131,29 +141,60 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
   return (
     <Container>
       {isRoutineFinished && <Text>Finished!!</Text>}
-      <Text>Routine: {routine.name}</Text>
-      <Button
-        title={isTimerRunning ? 'Pause' : 'Start'}
-        onPress={(): void => toggleTimer(!isTimerRunning)}
-      />
-      <Button title="Reset" onPress={() => toggleReset(true)} />
-      <Button
-        title="Next Exercise"
-        onPress={() => {
-          setCurrentExercise(getNextExercise());
-          toggleReset(true);
-        }}
-      />
       <PerformExerciseView
+        isTimerRunning={isTimerRunning}
         exercise={currentExercise}
         currentRep={currentRep}
         timeRemaining={timeRemaining}
+        timerDuration={getTimerDuration()}
         isBreak={!!isBreak}
         isExerciseBreak={!!isExerciseBreak}
         isPreroutineCountdown={!!isPreroutineCountdown}
       />
+      <ButtonContainer>
+        <IconButton
+          icon="skip-previous"
+          color={Colors.green500}
+          size={75}
+          onPress={() => {
+            setCurrentExercise(getPreviousExercise());
+            toggleReset(true);
+          }}
+        />
+        <IconButton
+          icon={isTimerRunning ? 'pause' : 'play'}
+          color={Colors.green500}
+          size={100}
+          onPress={(): void => toggleTimer(!isTimerRunning)}
+        />
+        <IconButton
+          icon="skip-next"
+          color={Colors.green500}
+          size={75}
+          onPress={() => {
+            setCurrentExercise(getNextExercise());
+            toggleReset(true);
+          }}
+        />
+        <IconButton
+          icon="restore"
+          color={Colors.green500}
+          size={75}
+          onPress={() => toggleReset(true)}
+        />
+      </ButtonContainer>
     </Container>
   );
 };
+
+function navigationOptions({ navigation }) {
+  const routine: Routine = navigation.getParam('routine');
+
+  return {
+    headerTitle: <Text>{routine.name}</Text>,
+  };
+}
+
+PerformExerciseScreen.navigationOptions = navigationOptions;
 
 export default PerformExerciseScreen;
