@@ -6,7 +6,7 @@ export const Container = styled(View)`
   width: 100%;
 `;
 
-export const ButtonContainer = styled(View)`
+export const ControlPanelContainer = styled(View)`
   position: absolute;
   bottom: 0
   width: 100%;
@@ -14,4 +14,5 @@ export const ButtonContainer = styled(View)`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  overflow: visible;
 `;

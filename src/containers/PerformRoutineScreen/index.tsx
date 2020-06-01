@@ -1,6 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Colors, IconButton } from 'react-native-paper';
-import { ButtonContainer, Container } from './styledComponents';
+import ControlPanel from './ControlPanel';
+import { ControlPanelContainer, Container } from './styledComponents';
 import { Text } from 'react-native';
 import { Exercise, Routine } from '../../core/typings';
 import PerformExerciseView from '../../components/PerformExerciseView';
@@ -17,6 +18,8 @@ const PREROUTINE_COUNTDOWN_DURATION_SECONDS: number = 3;
 
 const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
   const routine = navigation.getParam('routine');
+
+  const [shouldShowMoreControls, setShowMoreControls] = useState(false);
 
   const [isPreroutineCountdown, togglePreroutineCountdown] = useState<boolean>(
     true,
@@ -52,7 +55,7 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
     return currentExercise.repLengthSeconds;
   }
 
-  function getNextExercise() {
+  function getNextExercise(): Exercise {
     const currentIndex: number = getCurrentExerciseIndex();
 
     if (currentIndex === -1 || currentIndex + 1 >= routine.exercises.length) {
@@ -61,7 +64,7 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
     return routine.exercises[currentIndex + 1];
   }
 
-  function getPreviousExercise() {
+  function getPreviousExercise(): Exercise {
     const currentIndex: number = getCurrentExerciseIndex();
 
     if (currentIndex === -1 || currentIndex === 0) {
@@ -151,38 +154,16 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
         isExerciseBreak={!!isExerciseBreak}
         isPreroutineCountdown={!!isPreroutineCountdown}
       />
-      <ButtonContainer>
-        <IconButton
-          icon="skip-previous"
-          color={Colors.green500}
-          size={75}
-          onPress={() => {
-            setCurrentExercise(getPreviousExercise());
-            toggleReset(true);
-          }}
-        />
-        <IconButton
-          icon={isTimerRunning ? 'pause' : 'play'}
-          color={Colors.green500}
-          size={100}
-          onPress={(): void => toggleTimer(!isTimerRunning)}
-        />
-        <IconButton
-          icon="skip-next"
-          color={Colors.green500}
-          size={75}
-          onPress={() => {
-            setCurrentExercise(getNextExercise());
-            toggleReset(true);
-          }}
-        />
-        <IconButton
-          icon="restore"
-          color={Colors.green500}
-          size={75}
-          onPress={() => toggleReset(true)}
-        />
-      </ButtonContainer>
+      <ControlPanel
+        toggleReset={toggleReset}
+        isTimerRunning={isTimerRunning}
+        toggleTimer={toggleTimer}
+        shouldShowMoreControls={shouldShowMoreControls}
+        setShowMoreControls={setShowMoreControls}
+        setCurrentExercise={setCurrentExercise}
+        getPreviousExercise={getPreviousExercise}
+        getNextExercise={getNextExercise}
+      />
     </Container>
   );
 };

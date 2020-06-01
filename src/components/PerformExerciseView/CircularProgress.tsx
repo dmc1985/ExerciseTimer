@@ -1,27 +1,21 @@
-import React, { ReactElement } from 'react';
+import React, { PropsWithChildren, ReactElement } from 'react';
 import { Dimensions } from 'react-native';
-import { Circle } from 'react-native-svg';
+import Svg, { Circle } from 'react-native-svg';
 import Animated, { Value, multiply } from 'react-native-reanimated';
-import {
-  CircularProgressContainer,
-  StyledSvg,
-  TimeDisplay,
-  TimeDisplayContainer,
-} from './styledComponents';
+import { CircularProgressContainer } from './styledComponents';
 
 const { width } = Dimensions.get('window');
-const size = width - 150;
-const strokeWidth = 20;
+const size = width - 200;
+const strokeWidth = 10;
 const radius = (size - strokeWidth) / 2;
 const circumference = radius * 2 * Math.PI;
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
-interface Props {
+interface Props extends PropsWithChildren<{}> {
   progress: number;
-  timeRemaining: number;
 }
 
-const CircularProgress = ({ progress, timeRemaining }: Props): ReactElement => {
+const CircularProgress = ({ progress, children }: Props): ReactElement => {
   const alpha = Animated.interpolate(new Value(progress), {
     inputRange: [0, 1],
     outputRange: [0, Math.PI * 2],
@@ -29,7 +23,7 @@ const CircularProgress = ({ progress, timeRemaining }: Props): ReactElement => {
   const strokeDashoffset = multiply(alpha, radius);
   return (
     <CircularProgressContainer>
-      <StyledSvg width={size} height={size}>
+      <Svg width={size} height={size}>
         <AnimatedCircle
           stroke="blue"
           fill="transparent"
@@ -39,10 +33,8 @@ const CircularProgress = ({ progress, timeRemaining }: Props): ReactElement => {
           strokeDasharray={`${circumference} ${circumference}`}
           {...{ strokeDashoffset, strokeWidth }}
         />
-        <TimeDisplayContainer>
-          <TimeDisplay>{timeRemaining}</TimeDisplay>
-        </TimeDisplayContainer>
-      </StyledSvg>
+        {children}
+      </Svg>
     </CircularProgressContainer>
   );
 };
