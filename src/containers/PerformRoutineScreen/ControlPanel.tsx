@@ -42,6 +42,7 @@ const ControlPanel = ({
       color={Colors.green500}
       size={shouldShowMoreControls ? 75 : 100}
       onPress={(): void => toggleTimer(!isTimerRunning)}
+      animated
     />
 
     <IconButton
