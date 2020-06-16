@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 export const DRAWER_WIDTH = Math.round(Dimensions.get('window').width);
 
+export const DRAWER_Z_INDEX = 100;
+
 const AnimatedDrawer = styled(View)`
   display: flex;
   position: absolute;

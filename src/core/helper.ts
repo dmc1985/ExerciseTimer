@@ -25,7 +25,6 @@ export async function getRoutine(
   try {
     const routine = await AsyncStorage.getItem(routineName);
     if (routine !== null) {
-      console.log(routine);
       return JSON.parse(routine);
     }
     return null;
@@ -77,5 +76,18 @@ export async function deleteRoutine(routineName: string): Promise<void> {
     console.log(`${routineName} successfully removed`);
   } catch {
     console.log(`error removing ${routineName}`);
+  }
+}
+
+export async function editRoutine(
+  routineName: string,
+  update: Partial<Routine>,
+): Promise<AddRoutineResult> {
+  try {
+    await AsyncStorage.mergeItem(routineName, JSON.stringify(update));
+    return { success: true };
+  } catch (err) {
+    console.log(err);
+    return { success: false };
   }
 }

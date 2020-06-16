@@ -1,10 +1,12 @@
 import React, { ReactElement, useState } from 'react';
 import { Animated } from 'react-native';
-import AnimatedDrawer from '../../common/components/AnimatedDrawer';
+import AnimatedDrawer, {
+  DRAWER_Z_INDEX,
+} from '../../common/components/AnimatedDrawer';
 import { useAnimatedDrawer } from '../../common/hooks';
 import { addRoutine, NavigationProp } from '../../core/helper';
 import { Formik, FormikProps } from 'formik';
-import { validate } from './helper';
+import { formatExerciseValues, validate } from './helper';
 import {
   BottomButtonContainer,
   Container,
@@ -16,6 +18,7 @@ import ExerciseDetail from '../RoutineDetail/ExerciseDetail';
 import { removeListItem } from '../../common/helper';
 import Screen from '../../core/Screen';
 import { StyledHeadline } from './styledComponents';
+import { ExerciseValues } from './typings';
 
 export type NewExerciseValues = {
   exercises: Exercise[];
@@ -70,15 +73,17 @@ const NewExercisesForm = ({ navigation }: Props): ReactElement => {
               style={{
                 transform: [{ translateX: animatedValue }],
                 opacity: opacityAnimation,
-                zIndex: 100,
+                zIndex: DRAWER_Z_INDEX,
               }}
             >
               <AnimatedDrawer>
                 <AddExerciseForm
-                  exercises={exercises}
-                  setExercises={setExercises}
                   defaultSecondsBeforeNextExercise={secondsBetweenExercises}
-                  toggleDrawer={toggleDrawer}
+                  onSubmit={(values: ExerciseValues, { resetForm }) => {
+                    toggleDrawer();
+                    setExercises([...exercises, formatExerciseValues(values)]);
+                    resetForm();
+                  }}
                 />
               </AnimatedDrawer>
             </Animated.View>
