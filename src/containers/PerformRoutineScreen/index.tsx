@@ -1,7 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react';
-import { Colors, IconButton } from 'react-native-paper';
 import ControlPanel from './ControlPanel';
-import { ControlPanelContainer, Container } from './styledComponents';
+import { Container } from './styledComponents';
 import { Text } from 'react-native';
 import { Exercise, Routine } from '../../core/typings';
 import PerformExerciseView from '../../components/PerformExerciseView';

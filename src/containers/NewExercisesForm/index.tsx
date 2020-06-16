@@ -1,5 +1,7 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { Animated } from 'react-native';
+import AnimatedDrawer from '../../common/components/AnimatedDrawer';
+import { useAnimatedDrawer } from '../../common/hooks';
 import { addRoutine, NavigationProp } from '../../core/helper';
 import { Formik, FormikProps } from 'formik';
 import { validate } from './helper';
@@ -13,11 +15,7 @@ import { Exercise } from '../../core/typings';
 import ExerciseDetail from '../RoutineDetail/ExerciseDetail';
 import { removeListItem } from '../../common/helper';
 import Screen from '../../core/Screen';
-import {
-  DRAWER_WIDTH,
-  DrawerContainer,
-  StyledHeadline,
-} from './styledComponents';
+import { StyledHeadline } from './styledComponents';
 
 export type NewExerciseValues = {
   exercises: Exercise[];
@@ -33,27 +31,13 @@ const NewExercisesForm = ({ navigation }: Props): ReactElement => {
   const [exercises, setExercises] = useState<Exercise[]>([]);
   const toggleShouldReloadList = navigation.getParam('toggleShouldReloadList');
 
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
-
-  const [opacityAnimation] = useState(new Animated.Value(0));
-  const [reverseOpacityAnimation] = useState(new Animated.Value(0));
-  const animatedValue = opacityAnimation.interpolate({
-    inputRange: [0, 1],
-    outputRange: [-DRAWER_WIDTH, 0],
-  });
-
-  useEffect(() => {
-    Animated.timing(opacityAnimation, {
-      toValue: isDrawerOpen ? 1 : 0,
-      duration: 500,
-    }).start();
-
-    Animated.timing(reverseOpacityAnimation, {
-      toValue: isDrawerOpen ? 0 : 1,
-      duration: 500,
-    }).start();
-  }, [isDrawerOpen, opacityAnimation, reverseOpacityAnimation]);
+  const {
+    toggleDrawer,
+    animatedValue,
+    opacityAnimation,
+    reverseOpacityAnimation,
+    isDrawerOpen,
+  } = useAnimatedDrawer();
 
   return (
     <Formik
@@ -89,14 +73,14 @@ const NewExercisesForm = ({ navigation }: Props): ReactElement => {
                 zIndex: 100,
               }}
             >
-              <DrawerContainer>
+              <AnimatedDrawer>
                 <AddExerciseForm
                   exercises={exercises}
                   setExercises={setExercises}
                   defaultSecondsBeforeNextExercise={secondsBetweenExercises}
                   toggleDrawer={toggleDrawer}
                 />
-              </DrawerContainer>
+              </AnimatedDrawer>
             </Animated.View>
             <Animated.View style={{ opacity: reverseOpacityAnimation }}>
               <Container>
