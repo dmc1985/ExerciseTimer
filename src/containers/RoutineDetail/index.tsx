@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react';
-import { Animated, Text } from 'react-native';
+import { Animated, KeyboardAvoidingView, Text } from 'react-native';
 import AnimatedDrawer, {
   DRAWER_Z_INDEX,
 } from '../../common/components/AnimatedDrawer';

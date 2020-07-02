@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import isEmpty from 'lodash/isEmpty';
+import { ScrollView } from 'react-native';
 import {
   ButtonContainer,
   ExerciseFieldsContainer,

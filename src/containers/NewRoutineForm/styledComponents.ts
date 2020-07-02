@@ -1,11 +1,12 @@
-import { View, ScrollView, Text } from 'react-native';
+import { View, Text } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import { Button, TextInput } from 'react-native-paper';
 import styled from 'styled-components';
 import { em } from '../../common/helper';
 
 const BOTTOM_BUTTON_POSITION = 16;
 
-export const Container = styled(ScrollView)`
+export const Container = styled(View)`
   width: 100%;
   margin: ${em(2)} 0 ${em((BOTTOM_BUTTON_POSITION * 2) / 16)};
 `;
@@ -33,8 +34,9 @@ export const StyledButton = styled(Button)`
   width: 50%;
 `;
 
-export const ExerciseFieldsContainer = styled(View)`
+export const ExerciseFieldsContainer = styled(KeyboardAwareScrollView)`
   width: 100%;
+  height: 100%;
 `;
 
 export const BottomButtonContainer = styled(View)`

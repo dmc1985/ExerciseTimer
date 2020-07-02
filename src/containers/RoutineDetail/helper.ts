@@ -45,7 +45,7 @@ export function handleSubmit({
       },
     );
 
-    editRoutine(routine.name, { exercises: updatedExercises });
+    await editRoutine(routine.name, { exercises: updatedExercises });
     setShouldRefreshRoutine(true);
   };
 }
