@@ -1,6 +1,11 @@
 import React, { ReactElement, useState } from 'react';
 import ControlPanel from './ControlPanel';
 import {
+  getNextExercise,
+  getPreviousExercise,
+  getTimerDuration,
+} from './helper';
+import {
   setCurrentExercise,
   setIsTimerRunning,
   setShouldTimerReset,
@@ -10,12 +15,7 @@ import { Text } from 'react-native';
 import { Routine } from '../../core/typings';
 import PerformExerciseView from '../../components/PerformExerciseView';
 import { NavigationScreenProp } from 'react-navigation';
-import {
-  getNextExercise,
-  getPreviousExercise,
-  getTimerDuration,
-  useExerciseTimer,
-} from './hooks';
+import { useExerciseTimer } from './hooks';
 
 interface Props {
   navigation: NavigationScreenProp<{}>;
