@@ -14,19 +14,18 @@ import {
   setIsTimerRunning,
   setShouldTimerReset,
 } from './store/actions';
+import { ExerciseReducer, State } from './typings';
 
 export function useInterval(callback: () => any, delay: Nullable<number>) {
-  const savedCallback = useRef(null);
+  const savedCallback = useRef<() => void>();
 
-  // Remember the latest callback.
   useEffect(() => {
     savedCallback.current = callback;
   }, [callback]);
 
-  // Set up the interval.
   useEffect(() => {
     function tick() {
-      savedCallback.current();
+      savedCallback.current!();
     }
     if (delay !== null) {
       let id = setInterval(tick, delay);
@@ -36,18 +35,18 @@ export function useInterval(callback: () => any, delay: Nullable<number>) {
 }
 
 export function useTimer(
-  repLengthSeconds: number,
-  shouldRun: boolean,
+  timerDuration: number,
+  shouldTimerRun: boolean,
   shouldTimerReset: boolean,
 ) {
-  const [remainingTime, setRemainingTime] = useState<number>(repLengthSeconds);
+  const [remainingTime, setRemainingTime] = useState<number>(timerDuration);
   if (shouldTimerReset) {
-    setRemainingTime(repLengthSeconds);
+    setRemainingTime(timerDuration);
   }
 
   useInterval(
     () => setRemainingTime(+(remainingTime - 1).toFixed(1)),
-    remainingTime >= 0 && shouldRun ? 1000 : null,
+    remainingTime >= 0 && shouldTimerRun ? 1000 : null,
   );
 
   return remainingTime;
@@ -55,18 +54,35 @@ export function useTimer(
 
 const PREROUTINE_COUNTDOWN_DURATION_SECONDS: number = 3;
 
-function getCurrentExerciseIndex({ routine, currentExercise }): number {
+interface CurrentExerciseParams {
+  routine: Routine;
+  currentExercise: Exercise;
+}
+
+function getCurrentExerciseIndex({
+  routine,
+  currentExercise,
+}: CurrentExerciseParams): number {
   return routine.exercises.findIndex((exercise: Exercise) =>
     isEqual(exercise, currentExercise),
   );
 }
+
+interface TimerDurationParams
+  extends Pick<
+    State,
+    | 'isPreroutineCountdown'
+    | 'isRepBreak'
+    | 'isExerciseBreak'
+    | 'currentExercise'
+  > {}
 
 export function getTimerDuration({
   isPreroutineCountdown,
   isRepBreak,
   isExerciseBreak,
   currentExercise,
-}): number {
+}: TimerDurationParams): number {
   if (isPreroutineCountdown) {
     return PREROUTINE_COUNTDOWN_DURATION_SECONDS;
   }
@@ -79,7 +95,10 @@ export function getTimerDuration({
   return currentExercise.repLengthSeconds;
 }
 
-export function getNextExercise({ routine, currentExercise }): Exercise {
+export function getNextExercise({
+  routine,
+  currentExercise,
+}: CurrentExerciseParams): Exercise {
   const currentIndex: number = getCurrentExerciseIndex({
     routine,
     currentExercise,
@@ -91,7 +110,10 @@ export function getNextExercise({ routine, currentExercise }): Exercise {
   return routine.exercises[currentIndex + 1];
 }
 
-export function getPreviousExercise({ routine, currentExercise }): Exercise {
+export function getPreviousExercise({
+  routine,
+  currentExercise,
+}: CurrentExerciseParams): Exercise {
   const currentIndex: number = getCurrentExerciseIndex({
     routine,
     currentExercise,
@@ -104,9 +126,9 @@ export function getPreviousExercise({ routine, currentExercise }): Exercise {
 }
 
 export function useExerciseTimer(routine: Routine) {
-  const initialStore = getInitialState(routine.exercises[0]);
+  const initialState: State = getInitialState(routine.exercises[0]);
 
-  const [store, dispatch] = useReducer(reducer, initialStore);
+  const [state, dispatch] = useReducer<ExerciseReducer>(reducer, initialState);
 
   const {
     isPreroutineCountdown,
@@ -116,7 +138,7 @@ export function useExerciseTimer(routine: Routine) {
     shouldTimerReset,
     isRepBreak,
     isExerciseBreak,
-  } = store;
+  } = state;
 
   const timeRemaining = useTimer(
     getTimerDuration({
@@ -206,7 +228,7 @@ export function useExerciseTimer(routine: Routine) {
   }
 
   return {
-    store,
+    store: state,
     dispatch,
     timeRemaining,
   };

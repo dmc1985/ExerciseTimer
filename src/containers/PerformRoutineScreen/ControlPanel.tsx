@@ -1,15 +1,17 @@
-import React, { Dispatch, ReactElement, SetStateAction } from 'react';
+import React, { ReactElement } from 'react';
 import { Colors, IconButton } from 'react-native-paper';
 import { Exercise } from '../../core/typings';
 import { ControlPanelContainer } from './styledComponents';
 
+type SetStateAction<T> = (input: T) => void;
+
 interface Props {
-  toggleReset: Dispatch<SetStateAction<boolean>>;
+  toggleReset: SetStateAction<boolean>;
   isTimerRunning: boolean;
-  toggleTimer: Dispatch<SetStateAction<boolean>>;
+  toggleTimer: SetStateAction<boolean>;
   shouldShowMoreControls: boolean;
-  setShowMoreControls: Dispatch<SetStateAction<boolean>>;
-  setCurrentExercise: Dispatch<SetStateAction<Exercise>>;
+  setShowMoreControls: SetStateAction<boolean>;
+  setCurrentExercise: SetStateAction<Exercise>;
   getPreviousExercise: () => Exercise;
   getNextExercise: () => Exercise;
 }
