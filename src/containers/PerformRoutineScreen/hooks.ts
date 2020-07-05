@@ -1,8 +1,19 @@
 import isEqual from 'lodash/isEqual';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 import { Nullable } from '../../common/typings';
 import { Exercise, Routine } from '../../core/typings';
 import { playSound } from './helper';
+import { getInitialState, reducer } from './store';
+import {
+  setCurrentExercise,
+  setCurrentRep,
+  setIsExerciseBreak,
+  setIsPreroutineCountdown,
+  setIsRepBreak,
+  setIsRoutineFinished,
+  setIsTimerRunning,
+  setShouldTimerReset,
+} from './store/actions';
 
 export function useInterval(callback: () => any, delay: Nullable<number>) {
   const savedCallback = useRef(null);
@@ -27,10 +38,10 @@ export function useInterval(callback: () => any, delay: Nullable<number>) {
 export function useTimer(
   repLengthSeconds: number,
   shouldRun: boolean,
-  isReset: boolean,
+  shouldTimerReset: boolean,
 ) {
   const [remainingTime, setRemainingTime] = useState<number>(repLengthSeconds);
-  if (isReset) {
+  if (shouldTimerReset) {
     setRemainingTime(repLengthSeconds);
   }
 
@@ -44,103 +55,133 @@ export function useTimer(
 
 const PREROUTINE_COUNTDOWN_DURATION_SECONDS: number = 3;
 
+function getCurrentExerciseIndex({ routine, currentExercise }): number {
+  return routine.exercises.findIndex((exercise: Exercise) =>
+    isEqual(exercise, currentExercise),
+  );
+}
+
+export function getTimerDuration({
+  isPreroutineCountdown,
+  isRepBreak,
+  isExerciseBreak,
+  currentExercise,
+}): number {
+  if (isPreroutineCountdown) {
+    return PREROUTINE_COUNTDOWN_DURATION_SECONDS;
+  }
+  if (isExerciseBreak) {
+    return currentExercise.secondsBeforeNextExercise;
+  }
+  if (isRepBreak) {
+    return currentExercise.breakLengthSeconds;
+  }
+  return currentExercise.repLengthSeconds;
+}
+
+export function getNextExercise({ routine, currentExercise }): Exercise {
+  const currentIndex: number = getCurrentExerciseIndex({
+    routine,
+    currentExercise,
+  });
+
+  if (currentIndex === -1 || currentIndex + 1 >= routine.exercises.length) {
+    return routine.exercises[0];
+  }
+  return routine.exercises[currentIndex + 1];
+}
+
+export function getPreviousExercise({ routine, currentExercise }): Exercise {
+  const currentIndex: number = getCurrentExerciseIndex({
+    routine,
+    currentExercise,
+  });
+
+  if (currentIndex === -1 || currentIndex === 0) {
+    return routine.exercises[routine.exercises.length - 1];
+  }
+  return routine.exercises[currentIndex - 1];
+}
+
 export function useExerciseTimer(routine: Routine) {
-  const [isPreroutineCountdown, togglePreroutineCountdown] = useState<boolean>(
-    true,
+  const initialStore = getInitialState(routine.exercises[0]);
+
+  const [store, dispatch] = useReducer(reducer, initialStore);
+
+  const {
+    isPreroutineCountdown,
+    currentExercise,
+    isTimerRunning,
+    currentRep,
+    shouldTimerReset,
+    isRepBreak,
+    isExerciseBreak,
+  } = store;
+
+  const timeRemaining = useTimer(
+    getTimerDuration({
+      isPreroutineCountdown,
+      isRepBreak,
+      isExerciseBreak,
+      currentExercise,
+    }),
+    isTimerRunning,
+    shouldTimerReset,
   );
-  const [currentExercise, setCurrentExercise] = useState<Exercise>(
-    routine.exercises[0],
-  );
-  const [isTimerRunning, toggleTimer] = useState<boolean>(false);
-  const [currentRep, setCurrentRep] = useState<number>(1);
-  const [isRoutineFinished, toggleRoutineFinished] = useState<boolean>(false);
-  const [isReset, toggleReset] = useState<boolean>(false);
-  const [isBreak, toggleBreak] = useState<boolean>(false);
-  const [isExerciseBreak, toggleExerciseBreak] = useState<boolean>(false);
-
-  const timeRemaining = useTimer(getTimerDuration(), isTimerRunning, isReset);
-
-  function getCurrentExerciseIndex(): number {
-    return routine.exercises.findIndex((exercise: Exercise) =>
-      isEqual(exercise, currentExercise),
-    );
-  }
-
-  function getTimerDuration(): number {
-    if (isPreroutineCountdown) {
-      return PREROUTINE_COUNTDOWN_DURATION_SECONDS;
-    }
-    if (isExerciseBreak) {
-      return currentExercise.secondsBeforeNextExercise;
-    }
-    if (isBreak) {
-      return currentExercise.breakLengthSeconds;
-    }
-    return currentExercise.repLengthSeconds;
-  }
-
-  function getNextExercise(): Exercise {
-    const currentIndex: number = getCurrentExerciseIndex();
-
-    if (currentIndex === -1 || currentIndex + 1 >= routine.exercises.length) {
-      return routine.exercises[0];
-    }
-    return routine.exercises[currentIndex + 1];
-  }
-
-  function getPreviousExercise(): Exercise {
-    const currentIndex: number = getCurrentExerciseIndex();
-
-    if (currentIndex === -1 || currentIndex === 0) {
-      return routine.exercises[routine.exercises.length - 1];
-    }
-    return routine.exercises[currentIndex - 1];
-  }
 
   useEffect(() => {
     if (timeRemaining === 0) {
       if (isPreroutineCountdown) {
-        togglePreroutineCountdown(false);
+        setIsPreroutineCountdown(dispatch, false);
         playSound('begin');
-        toggleReset(true);
+        setShouldTimerReset(dispatch, true);
       }
       if (!isPreroutineCountdown) {
         if (!isExerciseBreak) {
-          toggleBreak(!isBreak);
-          if (!isBreak) {
+          setIsRepBreak(dispatch, !isRepBreak);
+          if (!isRepBreak) {
             playSound('break');
           }
         }
-        toggleReset(true);
+        setShouldTimerReset(dispatch, true);
         if (isExerciseBreak) {
-          setCurrentExercise(getNextExercise());
-          setCurrentRep(1);
-          toggleReset(true);
-          toggleExerciseBreak(false);
+          setCurrentExercise(
+            dispatch,
+            getNextExercise({ routine, currentExercise }),
+          );
+          setCurrentRep(dispatch, 1);
+          setShouldTimerReset(dispatch, true);
+          setIsExerciseBreak(dispatch, false);
           playSound('change');
         }
 
-        if (isBreak) {
+        if (isRepBreak) {
           if (currentRep < currentExercise.numReps) {
-            setCurrentRep(currentRep + 1);
-            toggleReset(true);
+            setCurrentRep(dispatch, currentRep + 1);
+            setShouldTimerReset(dispatch, true);
             playSound('next');
           } else {
-            if (getCurrentExerciseIndex() === routine.exercises.length - 1) {
-              toggleRoutineFinished(true);
-              toggleTimer(false);
+            if (
+              getCurrentExerciseIndex({ routine, currentExercise }) ===
+              routine.exercises.length - 1
+            ) {
+              setIsRoutineFinished(dispatch, true);
+              setIsTimerRunning(dispatch, false);
               playSound('finished');
             } else {
               if (!isExerciseBreak) {
-                toggleExerciseBreak(true);
+                setIsExerciseBreak(dispatch, true);
                 playSound('interval');
-                toggleReset(true);
+                setShouldTimerReset(dispatch, true);
               }
               if (isExerciseBreak) {
-                setCurrentExercise(getNextExercise());
-                setCurrentRep(1);
-                toggleReset(true);
-                toggleExerciseBreak(false);
+                setCurrentExercise(
+                  dispatch,
+                  getNextExercise({ routine, currentExercise }),
+                );
+                setCurrentRep(dispatch, 1);
+                setShouldTimerReset(dispatch, true);
+                setIsExerciseBreak(dispatch, false);
                 playSound('change');
               }
             }
@@ -150,35 +191,23 @@ export function useExerciseTimer(routine: Routine) {
     }
   }, [
     timeRemaining,
-    isBreak,
+    routine.exercises.length,
+    isPreroutineCountdown,
+    isExerciseBreak,
     currentRep,
     currentExercise.numReps,
-    getNextExercise,
+    isRepBreak,
     currentExercise,
-    getCurrentExerciseIndex,
-    routine.exercises.length,
-    isExerciseBreak,
-    isPreroutineCountdown,
+    routine,
   ]);
 
-  if (isReset) {
-    toggleReset(false);
+  if (shouldTimerReset) {
+    setShouldTimerReset(dispatch, false);
   }
 
   return {
-    isRoutineFinished,
-    isTimerRunning,
-    currentExercise,
-    currentRep,
+    store,
+    dispatch,
     timeRemaining,
-    getTimerDuration,
-    isBreak,
-    isExerciseBreak,
-    isPreroutineCountdown,
-    toggleReset,
-    toggleTimer,
-    setCurrentExercise,
-    getPreviousExercise,
-    getNextExercise,
   };
 }

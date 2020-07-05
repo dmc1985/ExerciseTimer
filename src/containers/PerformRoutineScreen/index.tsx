@@ -1,11 +1,21 @@
 import React, { ReactElement, useState } from 'react';
 import ControlPanel from './ControlPanel';
+import {
+  setCurrentExercise,
+  setIsTimerRunning,
+  setShouldTimerReset,
+} from './store/actions';
 import { Container } from './styledComponents';
 import { Text } from 'react-native';
 import { Routine } from '../../core/typings';
 import PerformExerciseView from '../../components/PerformExerciseView';
 import { NavigationScreenProp } from 'react-navigation';
-import { useExerciseTimer } from './hooks';
+import {
+  getNextExercise,
+  getPreviousExercise,
+  getTimerDuration,
+  useExerciseTimer,
+} from './hooks';
 
 interface Props {
   navigation: NavigationScreenProp<{}>;
@@ -16,22 +26,17 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
 
   const [shouldShowMoreControls, setShowMoreControls] = useState(false);
 
+  const { store, dispatch, timeRemaining } = useExerciseTimer(routine);
+
   const {
-    isRoutineFinished,
-    isTimerRunning,
-    currentExercise,
-    currentRep,
-    timeRemaining,
-    getTimerDuration,
-    isBreak,
-    isExerciseBreak,
     isPreroutineCountdown,
-    toggleReset,
-    toggleTimer,
-    setCurrentExercise,
-    getPreviousExercise,
-    getNextExercise,
-  } = useExerciseTimer(routine);
+    currentExercise,
+    isTimerRunning,
+    currentRep,
+    isRoutineFinished,
+    isRepBreak,
+    isExerciseBreak,
+  } = store;
 
   return (
     <Container>
@@ -41,20 +46,29 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
         exercise={currentExercise}
         currentRep={currentRep}
         timeRemaining={timeRemaining}
-        timerDuration={getTimerDuration()}
-        isBreak={!!isBreak}
+        timerDuration={getTimerDuration({
+          isPreroutineCountdown,
+          isRepBreak,
+          isExerciseBreak,
+          currentExercise,
+        })}
+        isBreak={!!isRepBreak}
         isExerciseBreak={!!isExerciseBreak}
         isPreroutineCountdown={!!isPreroutineCountdown}
       />
       <ControlPanel
-        toggleReset={toggleReset}
+        toggleReset={isTimerRunning =>
+          setShouldTimerReset(dispatch, isTimerRunning)
+        }
         isTimerRunning={isTimerRunning}
-        toggleTimer={toggleTimer}
+        toggleTimer={() => setIsTimerRunning(dispatch, !isTimerRunning)}
         shouldShowMoreControls={shouldShowMoreControls}
         setShowMoreControls={setShowMoreControls}
-        setCurrentExercise={setCurrentExercise}
-        getPreviousExercise={getPreviousExercise}
-        getNextExercise={getNextExercise}
+        setCurrentExercise={exercise => setCurrentExercise(dispatch, exercise)}
+        getPreviousExercise={() =>
+          getPreviousExercise({ routine, currentExercise })
+        }
+        getNextExercise={() => getNextExercise({ routine, currentExercise })}
       />
     </Container>
   );
