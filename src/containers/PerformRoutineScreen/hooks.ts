@@ -127,9 +127,10 @@ export function useExerciseTimer(routine: Routine) {
     }
 
     if (!isRepBreak && currentRep === currentExercise.numReps) {
-      playSound(soundMap.interval);
       setIsExerciseBreak(dispatch, true);
       setShouldTimerReset(dispatch, true);
+
+      playSound(soundMap.interval);
       return;
     }
 
