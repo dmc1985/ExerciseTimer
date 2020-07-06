@@ -6,6 +6,7 @@ import {
   getNextExercise,
   getTimerDuration,
   playSound,
+  soundMap,
 } from './helper';
 import { getInitialState, reducer } from './store';
 import {
@@ -91,7 +92,7 @@ export function useExerciseTimer(routine: Routine) {
       setIsPreroutineCountdown(dispatch, false);
       setShouldTimerReset(dispatch, true);
 
-      playSound('begin');
+      playSound(soundMap.begin);
       return;
     }
 
@@ -104,7 +105,7 @@ export function useExerciseTimer(routine: Routine) {
       setShouldTimerReset(dispatch, true);
       setIsExerciseBreak(dispatch, false);
 
-      playSound('change');
+      playSound(soundMap.change);
       return;
     }
 
@@ -113,7 +114,7 @@ export function useExerciseTimer(routine: Routine) {
       setCurrentRep(dispatch, currentRep + 1);
       setShouldTimerReset(dispatch, true);
 
-      playSound('next');
+      playSound(soundMap.next);
       return;
     }
 
@@ -121,12 +122,12 @@ export function useExerciseTimer(routine: Routine) {
       setIsRepBreak(dispatch, true);
       setShouldTimerReset(dispatch, true);
 
-      playSound('break');
+      playSound(soundMap.break);
       return;
     }
 
     if (!isRepBreak && currentRep === currentExercise.numReps) {
-      playSound('interval');
+      playSound(soundMap.interval);
       setIsExerciseBreak(dispatch, true);
       setShouldTimerReset(dispatch, true);
       return;
@@ -140,7 +141,7 @@ export function useExerciseTimer(routine: Routine) {
       setIsTimerRunning(dispatch, false);
       setIsRoutineFinished(dispatch, true);
 
-      playSound('finished');
+      playSound(soundMap.finished);
       return;
     }
   }, [

@@ -1,14 +1,43 @@
 import isEqual from 'lodash/isEqual';
-import SoundPlayer from 'react-native-sound-player';
+import Sound from 'react-native-sound';
 import { Exercise, Routine } from '../../core/typings';
 import { State } from './typings';
 
-export function playSound(fileName: string, fileType: string = 'mp3') {
-  try {
-    SoundPlayer.playSoundFile(fileName, fileType);
-  } catch (e) {
-    console.log('cannot play the sound file', e);
-  }
+let begin, change, next, takeBreak, interval, finished;
+
+export const soundMap = {
+  begin,
+  change,
+  next,
+  interval,
+  finished,
+  break: takeBreak,
+};
+
+export function initializeSounds() {
+  Sound.setCategory('Playback');
+
+  const soundKeys = Object.keys(soundMap);
+
+  soundKeys.forEach(key => {
+    soundMap[key] = new Sound(
+      `${key}.mp3`,
+      Sound.MAIN_BUNDLE,
+      (error: Error): void => {
+        console.log('cannot play the sound file', error);
+      },
+    );
+  });
+}
+
+export function playSound(soundName): void {
+  soundName.play((success: boolean) => {
+    if (success) {
+      console.log('successfully finished playing');
+    } else {
+      console.log('playback failed due to audio decoding errors');
+    }
+  });
 }
 
 const PREROUTINE_COUNTDOWN_DURATION_SECONDS: number = 3;
