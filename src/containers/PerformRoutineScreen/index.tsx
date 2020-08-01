@@ -40,7 +40,6 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
 
   return (
     <Container>
-      {isRoutineFinished && <Text>Finished!!</Text>}
       <PerformExerciseView
         isTimerRunning={isTimerRunning}
         exercise={currentExercise}
@@ -52,9 +51,10 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
           isExerciseBreak,
           currentExercise,
         })}
-        isBreak={!!isRepBreak}
-        isExerciseBreak={!!isExerciseBreak}
-        isPreroutineCountdown={!!isPreroutineCountdown}
+        isBreak={isRepBreak}
+        isExerciseBreak={isExerciseBreak}
+        isPreroutineCountdown={isPreroutineCountdown}
+        isRoutineFinished={isRoutineFinished}
       />
       <ControlPanel
         toggleReset={isTimerRunning =>

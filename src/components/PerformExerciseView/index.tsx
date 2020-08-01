@@ -23,6 +23,7 @@ export interface Props {
   isBreak: boolean;
   isExerciseBreak: boolean;
   isPreroutineCountdown: boolean;
+  isRoutineFinished: boolean;
 }
 
 const PerformExerciseView = ({
@@ -33,6 +34,7 @@ const PerformExerciseView = ({
   isBreak,
   isExerciseBreak,
   isPreroutineCountdown,
+  isRoutineFinished,
 }: Props): ReactElement => {
   return (
     <Container>
@@ -51,7 +53,9 @@ const PerformExerciseView = ({
         </TimeDisplayContainer>
       </CircularProgress>
       <ScreenTitle>
-        {isPreroutineCountdown
+        {isRoutineFinished
+          ? 'Finished!'
+          : isPreroutineCountdown
           ? 'Get ready...'
           : isExerciseBreak
           ? 'Interval'
