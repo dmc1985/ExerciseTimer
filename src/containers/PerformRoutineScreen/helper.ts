@@ -20,27 +20,21 @@ export function initializeSounds() {
   const soundKeys = Object.keys(soundMap);
 
   soundKeys.forEach(key => {
-    soundMap[key] = new Sound(
-      `${key}.mp3`,
-      Sound.MAIN_BUNDLE,
-      (error: Error): void => {
-        console.log('cannot play the sound file', error);
-      },
-    );
+    soundMap[key] = new Sound(`${key}.mp3`, Sound.MAIN_BUNDLE, (): void => {
+      return;
+    });
   });
 }
 
 export function playSound(soundName): void {
   soundName.play((success: boolean) => {
-    if (success) {
-      console.log('successfully finished playing');
-    } else {
+    if (!success) {
       console.log('playback failed due to audio decoding errors');
     }
   });
 }
 
-const PREROUTINE_COUNTDOWN_DURATION_SECONDS: number = 3;
+const PREROUTINE_COUNTDOWN_DURATION_SECONDS: number = 5;
 
 interface CurrentExerciseParams {
   routine: Routine;

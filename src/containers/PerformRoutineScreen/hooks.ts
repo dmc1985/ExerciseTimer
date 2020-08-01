@@ -96,6 +96,20 @@ export function useExerciseTimer(routine: Routine) {
       return;
     }
 
+    if (
+      getCurrentExerciseIndex({ routine, currentExercise }) ===
+        routine.exercises.length - 1 &&
+      currentRep === +currentExercise.numReps &&
+      isRepBreak
+    ) {
+      console.log('is finished?');
+      setIsTimerRunning(dispatch, false);
+      setIsRoutineFinished(dispatch, true);
+
+      playSound(soundMap.finished);
+      return;
+    }
+
     if (isExerciseBreak) {
       setCurrentExercise(
         dispatch,
@@ -118,7 +132,10 @@ export function useExerciseTimer(routine: Routine) {
       return;
     }
 
-    if (!isRepBreak && currentRep < currentExercise.numReps) {
+    console.log('curr rep', currentRep);
+    console.log('num reps', currentExercise.numReps);
+
+    if (!isRepBreak && currentRep <= currentExercise.numReps) {
       setIsRepBreak(dispatch, true);
       setShouldTimerReset(dispatch, true);
 
@@ -126,23 +143,11 @@ export function useExerciseTimer(routine: Routine) {
       return;
     }
 
-    if (!isRepBreak && currentRep === currentExercise.numReps) {
+    if (isRepBreak && currentRep === currentExercise.numReps) {
       setIsExerciseBreak(dispatch, true);
       setShouldTimerReset(dispatch, true);
 
       playSound(soundMap.interval);
-      return;
-    }
-
-    if (
-      getCurrentExerciseIndex({ routine, currentExercise }) ===
-        routine.exercises.length - 1 &&
-      currentRep === +currentExercise.numReps
-    ) {
-      setIsTimerRunning(dispatch, false);
-      setIsRoutineFinished(dispatch, true);
-
-      playSound(soundMap.finished);
       return;
     }
   }, [
