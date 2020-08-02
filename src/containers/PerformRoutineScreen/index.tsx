@@ -9,6 +9,10 @@ import {
   setCurrentExercise,
   setIsTimerRunning,
   setShouldTimerReset,
+  setCurrentRep,
+  setIsRepBreak,
+  setIsExerciseBreak,
+  setIsRoutineFinished,
 } from './store/actions';
 import { Container } from './styledComponents';
 import { Text } from 'react-native';
@@ -26,7 +30,7 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
 
   const [shouldShowMoreControls, setShowMoreControls] = useState(false);
 
-  const { store, dispatch, timeRemaining } = useExerciseTimer(routine);
+  const { state, dispatch, timeRemaining } = useExerciseTimer(routine);
 
   const {
     isPreroutineCountdown,
@@ -36,7 +40,16 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
     isRoutineFinished,
     isRepBreak,
     isExerciseBreak,
-  } = store;
+  } = state;
+
+  const resetExercise = (): void => {
+    setCurrentRep(dispatch, 1);
+    setIsTimerRunning(dispatch, false);
+    setShouldTimerReset(dispatch, true);
+    setIsRepBreak(dispatch, false);
+    setIsExerciseBreak(dispatch, false);
+    setIsRoutineFinished(dispatch, false);
+  };
 
   return (
     <Container>
@@ -65,10 +78,19 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
         shouldShowMoreControls={shouldShowMoreControls}
         setShowMoreControls={setShowMoreControls}
         setCurrentExercise={exercise => setCurrentExercise(dispatch, exercise)}
-        getPreviousExercise={() =>
-          getPreviousExercise({ routine, currentExercise })
-        }
-        getNextExercise={() => getNextExercise({ routine, currentExercise })}
+        getPreviousExercise={() => {
+          resetExercise();
+          return getPreviousExercise({ routine, currentExercise });
+        }}
+        getNextExercise={() => {
+          resetExercise();
+          return getNextExercise({ routine, currentExercise });
+        }}
+        resetExercise={resetExercise}
+        resetRoutine={(): void => {
+          setCurrentExercise(dispatch, routine.exercises[0]);
+          resetExercise();
+        }}
       />
     </Container>
   );

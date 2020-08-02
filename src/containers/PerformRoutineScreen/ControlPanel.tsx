@@ -1,7 +1,10 @@
 import React, { ReactElement } from 'react';
-import { Colors, IconButton } from 'react-native-paper';
+import { Button, Colors, IconButton } from 'react-native-paper';
 import { Exercise } from '../../core/typings';
-import { ControlPanelContainer } from './styledComponents';
+import {
+  ControlPanelContainer,
+  ResetButtonContainer,
+} from './styledComponents';
 
 type SetStateAction<T> = (input: T) => void;
 
@@ -14,6 +17,8 @@ interface Props {
   setCurrentExercise: SetStateAction<Exercise>;
   getPreviousExercise: () => Exercise;
   getNextExercise: () => Exercise;
+  resetExercise: () => void;
+  resetRoutine: () => void;
 }
 
 const ControlPanel = ({
@@ -25,6 +30,8 @@ const ControlPanel = ({
   setCurrentExercise,
   getPreviousExercise,
   getNextExercise,
+  resetExercise,
+  resetRoutine,
 }: Props): ReactElement => (
   <ControlPanelContainer>
     {shouldShowMoreControls && (
@@ -73,6 +80,16 @@ const ControlPanel = ({
         setShowMoreControls(!shouldShowMoreControls);
       }}
     />
+    {shouldShowMoreControls && (
+      <ResetButtonContainer>
+        <Button mode="outlined" onPress={resetExercise}>
+          Reset Exercise
+        </Button>
+        <Button mode="outlined" onPress={resetRoutine}>
+          Reset Routine
+        </Button>
+      </ResetButtonContainer>
+    )}
   </ControlPanelContainer>
 );
 

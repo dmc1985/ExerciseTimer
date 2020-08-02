@@ -167,7 +167,7 @@ export function useExerciseTimer(routine: Routine) {
   }
 
   return {
-    store: state,
+    state,
     dispatch,
     timeRemaining,
   };
