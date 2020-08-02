@@ -1,8 +1,13 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Text } from 'react-native';
 import FloatingActionButton from '../../common/components/FloatingActionButton';
-import { getAllRoutineNames, getRoutines } from '../../core/helper';
+import {
+  deleteRoutine,
+  getAllRoutineNames,
+  getRoutines,
+} from '../../core/helper';
 import RoutineList from '../../components/RoutineList';
+import DeleteRoutineModal from './DeleteRoutineModal';
 import { Container } from './styledComponents';
 import { Routine } from '../../core/typings';
 import { NavigationScreenProp } from 'react-navigation';
@@ -16,6 +21,11 @@ export interface Props {
 const HomeScreen = ({ navigation }: Props): ReactElement => {
   const [allRoutines, setAllRoutines] = useState<Routine[]>([]);
   const [shouldReloadList, toggleShouldReloadList] = useState<boolean>(false);
+  const [routineToDelete, setRoutineToDelete] = useState<Nullable<Routine>>(
+    null,
+  );
+
+  const dismissModal = () => setRoutineToDelete(null);
 
   useEffect(() => {
     async function getAllRoutines() {
@@ -37,11 +47,19 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
 
   return (
     <>
+      <DeleteRoutineModal
+        routine={routineToDelete}
+        dismissModal={dismissModal}
+        deleteRoutine={async () => {
+          await deleteRoutine(routineToDelete!.name);
+          toggleShouldReloadList(true);
+        }}
+      />
       <Container>
         <RoutineList
           navigation={navigation}
           routines={allRoutines}
-          toggleShouldReloadList={toggleShouldReloadList}
+          setRoutineToDelete={setRoutineToDelete}
         />
       </Container>
       <FloatingActionButton

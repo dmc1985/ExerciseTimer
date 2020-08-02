@@ -1,5 +1,5 @@
 import React, { Dispatch, ReactElement, SetStateAction } from 'react';
-import { deleteRoutine } from '../../core/helper';
+import { Nullable } from '../../common/typings';
 import { Routine } from '../../core/typings';
 import { NavigationScreenProp } from 'react-navigation';
 import Screen from '../../core/Screen';
@@ -8,13 +8,13 @@ import { Button, Colors, List } from 'react-native-paper';
 interface Props {
   routines: Routine[];
   navigation: NavigationScreenProp<{}>;
-  toggleShouldReloadList: Dispatch<SetStateAction<boolean>>;
+  setRoutineToDelete: Dispatch<SetStateAction<Nullable<Routine>>>;
 }
 
 const RoutineList = ({
   routines,
   navigation,
-  toggleShouldReloadList,
+  setRoutineToDelete,
 }: Props): ReactElement => {
   return (
     <List.Section>
@@ -31,8 +31,7 @@ const RoutineList = ({
             right={() => (
               <Button
                 onPress={() => {
-                  deleteRoutine(routine.name);
-                  toggleShouldReloadList(true);
+                  setRoutineToDelete(routine);
                 }}
               >
                 Delete
