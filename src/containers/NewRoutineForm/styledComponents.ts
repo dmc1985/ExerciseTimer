@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import { Button, TextInput } from 'react-native-paper';
 import styled from 'styled-components';
@@ -13,15 +13,6 @@ export const Container = styled(View)`
 
 export const StyledTextInput = styled(TextInput)`
   margin-bottom: ${em(3)};
-`;
-
-export const InputLabel = styled(Text)`
-  font-size: ${em(1.5)};
-`;
-
-export const ErrorText = styled(Text)`
-  font-size: ${em(1)};
-  color: red;
 `;
 
 export const ButtonContainer = styled(View)`

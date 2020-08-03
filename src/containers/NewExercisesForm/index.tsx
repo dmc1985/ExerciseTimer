@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from 'react';
-import { Animated } from 'react-native';
+import { Animated, Dimensions } from 'react-native';
 import AnimatedDrawer, {
   DRAWER_Z_INDEX,
 } from '../../common/components/AnimatedDrawer';
@@ -74,6 +74,7 @@ const NewExercisesForm = ({ navigation }: Props): ReactElement => {
                 transform: [{ translateX: animatedValue }],
                 opacity: opacityAnimation,
                 zIndex: DRAWER_Z_INDEX,
+                minHeight: Dimensions.get('window').height,
               }}
             >
               <AnimatedDrawer>
