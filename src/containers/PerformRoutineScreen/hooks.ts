@@ -139,7 +139,7 @@ export function useExerciseTimer(routine: Routine) {
       setIsRepBreak(dispatch, true);
       setShouldTimerReset(dispatch, true);
 
-      playSound(soundMap.break);
+      playSound(soundMap.take_break);
       return;
     }
 

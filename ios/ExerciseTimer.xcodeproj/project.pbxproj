@@ -5,9 +5,10 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* ExerciseTimerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ExerciseTimerTests.m */; };
-		11230C912415A0E20098C88D /* break.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11230C8B2415A0E20098C88D /* break.mp3 */; };
+		11230C912415A0E20098C88D /* take_break.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11230C8B2415A0E20098C88D /* take_break.mp3 */; };
 		11230C922415A0E20098C88D /* begin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11230C8C2415A0E20098C88D /* begin.mp3 */; };
 		11230C932415A0E20098C88D /* finished.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11230C8D2415A0E20098C88D /* finished.mp3 */; };
 		11230C942415A0E20098C88D /* change.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11230C8E2415A0E20098C88D /* change.mp3 */; };
@@ -50,7 +51,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ExerciseTimerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExerciseTimerTests.m; sourceTree = "<group>"; };
 		11230C7D24159B620098C88D /* ExerciseTimerDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ExerciseTimerDebug.entitlements; path = ExerciseTimer/ExerciseTimerDebug.entitlements; sourceTree = "<group>"; };
-		11230C8B2415A0E20098C88D /* break.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = break.mp3; sourceTree = "<group>"; };
+		11230C8B2415A0E20098C88D /* take_break.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = take_break.mp3; sourceTree = "<group>"; };
 		11230C8C2415A0E20098C88D /* begin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = begin.mp3; sourceTree = "<group>"; };
 		11230C8D2415A0E20098C88D /* finished.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = finished.mp3; sourceTree = "<group>"; };
 		11230C8E2415A0E20098C88D /* change.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = change.mp3; sourceTree = "<group>"; };
@@ -135,10 +136,10 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		11230C8A2415A0E20098C88D /* Resources1 */ = {
+		11230C8A2415A0E20098C88D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				11230C8B2415A0E20098C88D /* break.mp3 */,
+				11230C8B2415A0E20098C88D /* take_break.mp3 */,
 				11230C8C2415A0E20098C88D /* begin.mp3 */,
 				11230C8D2415A0E20098C88D /* finished.mp3 */,
 				11EF0BF72418BE7A003A0FBE /* next.mp3 */,
@@ -146,7 +147,7 @@
 				11230C8F2415A0E20098C88D /* Fonts */,
 				11230C902415A0E20098C88D /* interval.mp3 */,
 			);
-			path = Resources1;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		11230C8F2415A0E20098C88D /* Fonts */ = {
@@ -160,7 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				112771C5241C074D002EC983 /* ExerciseTimer.entitlements */,
-				11230C8A2415A0E20098C88D /* Resources1 */,
+				11230C8A2415A0E20098C88D /* Resources */,
 				11230C7D24159B620098C88D /* ExerciseTimerDebug.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -392,7 +393,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				11230C952415A0E20098C88D /* interval.mp3 in Resources */,
-				11230C912415A0E20098C88D /* break.mp3 in Resources */,
+				11230C912415A0E20098C88D /* take_break.mp3 in Resources */,
 				11EF0BF82418BE7A003A0FBE /* next.mp3 in Resources */,
 				11230C942415A0E20098C88D /* change.mp3 in Resources */,
 				11230C932415A0E20098C88D /* finished.mp3 in Resources */,

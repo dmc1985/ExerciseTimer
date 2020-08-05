@@ -3,7 +3,7 @@ import Sound from 'react-native-sound';
 import { Exercise, Routine } from '../../core/typings';
 import { State } from './typings';
 
-let begin, change, next, takeBreak, interval, finished;
+let begin, change, next, take_break, interval, finished;
 
 export const soundMap = {
   begin,
@@ -11,7 +11,7 @@ export const soundMap = {
   next,
   interval,
   finished,
-  break: takeBreak,
+  take_break,
 };
 
 export function initializeSounds() {
