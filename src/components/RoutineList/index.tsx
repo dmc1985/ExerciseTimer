@@ -30,6 +30,7 @@ const RoutineList = ({
             left={() => <List.Icon color={Colors.blue500} icon="run-fast" />}
             right={() => (
               <Button
+                color="red"
                 onPress={() => {
                   setRoutineToDelete(routine);
                 }}
