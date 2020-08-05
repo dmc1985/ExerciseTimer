@@ -48,11 +48,7 @@ const PerformExerciseView = ({
         <TotalReps>/{exercise.numReps}</TotalReps>
       </CurrentRepContainer>
       <CircularProgress
-        progress={
-          isNaN(timeRemaining / timerDuration)
-            ? 0
-            : 1 - timeRemaining / timerDuration
-        }
+        progress={!timerDuration ? 0 : 1 - timeRemaining / timerDuration}
       >
         <TimeDisplayContainer>
           <TimeDisplay>{timeRemaining}s</TimeDisplay>
