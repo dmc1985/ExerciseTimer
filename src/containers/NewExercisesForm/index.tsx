@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from 'react';
-import { Animated, Dimensions } from 'react-native';
+import { Animated, Dimensions, Platform } from 'react-native';
 import AnimatedDrawer, {
   DRAWER_Z_INDEX,
 } from '../../common/components/AnimatedDrawer';
@@ -69,26 +69,38 @@ const NewExercisesForm = ({ navigation }: Props): ReactElement => {
         }
         return (
           <>
+            {(Platform.OS === 'ios' || isDrawerOpen) && (
+              <Animated.View
+                style={{
+                  transform: [{ translateX: animatedValue }],
+                  opacity: opacityAnimation,
+                  zIndex: DRAWER_Z_INDEX,
+                  minHeight:
+                    Platform.OS === 'android'
+                      ? Dimensions.get('window').height
+                      : 'auto',
+                }}
+              >
+                <AnimatedDrawer>
+                  <AddExerciseForm
+                    defaultSecondsBeforeNextExercise={secondsBetweenExercises}
+                    onSubmit={(values: ExerciseValues, { resetForm }) => {
+                      toggleDrawer();
+                      setExercises([
+                        ...exercises,
+                        formatExerciseValues(values),
+                      ]);
+                      resetForm();
+                    }}
+                  />
+                </AnimatedDrawer>
+              </Animated.View>
+            )}
             <Animated.View
               style={{
-                transform: [{ translateX: animatedValue }],
-                opacity: opacityAnimation,
-                zIndex: DRAWER_Z_INDEX,
-                minHeight: Dimensions.get('window').height,
+                opacity: reverseOpacityAnimation,
               }}
             >
-              <AnimatedDrawer>
-                <AddExerciseForm
-                  defaultSecondsBeforeNextExercise={secondsBetweenExercises}
-                  onSubmit={(values: ExerciseValues, { resetForm }) => {
-                    toggleDrawer();
-                    setExercises([...exercises, formatExerciseValues(values)]);
-                    resetForm();
-                  }}
-                />
-              </AnimatedDrawer>
-            </Animated.View>
-            <Animated.View style={{ opacity: reverseOpacityAnimation }}>
               <Container>
                 {exercises.length === 0 && (
                   <StyledHeadline>

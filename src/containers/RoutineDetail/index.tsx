@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react';
-import { Animated, KeyboardAvoidingView, Text } from 'react-native';
+import { Animated, Dimensions, Platform, Text } from 'react-native';
 import AnimatedDrawer, {
   DRAWER_Z_INDEX,
 } from '../../common/components/AnimatedDrawer';
@@ -34,6 +34,7 @@ const RoutineDetail = ({ navigation }: Props): ReactElement => {
     animatedValue,
     opacityAnimation,
     reverseOpacityAnimation,
+    isDrawerOpen,
   } = useAnimatedDrawer();
 
   useEffect(() => {
@@ -50,12 +51,16 @@ const RoutineDetail = ({ navigation }: Props): ReactElement => {
 
   return (
     <>
-      {selectedExercise && (
+      {selectedExercise && (Platform.OS === 'ios' || isDrawerOpen) && (
         <Animated.View
           style={{
             transform: [{ translateX: animatedValue }],
             opacity: opacityAnimation,
             zIndex: DRAWER_Z_INDEX,
+            minHeight:
+              Platform.OS === 'android'
+                ? Dimensions.get('window').height
+                : 'auto',
           }}
         >
           <AnimatedDrawer>
