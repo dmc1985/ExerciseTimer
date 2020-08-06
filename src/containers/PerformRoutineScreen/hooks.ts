@@ -102,7 +102,6 @@ export function useExerciseTimer(routine: Routine) {
       currentRep === +currentExercise.numReps &&
       isRepBreak
     ) {
-      console.log('is finished?');
       setIsTimerRunning(dispatch, false);
       setIsRoutineFinished(dispatch, true);
 
@@ -118,6 +117,7 @@ export function useExerciseTimer(routine: Routine) {
       setCurrentRep(dispatch, 1);
       setShouldTimerReset(dispatch, true);
       setIsExerciseBreak(dispatch, false);
+      setIsRepBreak(dispatch, false);
 
       playSound(soundMap.change);
       return;
@@ -131,9 +131,6 @@ export function useExerciseTimer(routine: Routine) {
       playSound(soundMap.next);
       return;
     }
-
-    console.log('curr rep', currentRep);
-    console.log('num reps', currentExercise.numReps);
 
     if (!isRepBreak && currentRep <= currentExercise.numReps) {
       setIsRepBreak(dispatch, true);
