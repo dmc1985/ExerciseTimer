@@ -1,10 +1,13 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Text } from 'react-native';
+import { IconButton } from 'react-native-paper';
 import FloatingActionButton from '../../common/components/FloatingActionButton';
 import {
   deleteRoutine,
   getAllRoutineNames,
+  getPreroutineCountdownLength,
   getRoutines,
+  setPreroutineCountdownLength,
 } from '../../core/helper';
 import RoutineList from '../../components/RoutineList';
 import DeleteRoutineModal from './DeleteRoutineModal';
@@ -18,6 +21,8 @@ export interface Props {
   navigation: NavigationScreenProp<{}>;
 }
 
+const DEFAULT_PREROUTINE_COUNTDOWN_LENGTH = 5;
+
 const HomeScreen = ({ navigation }: Props): ReactElement => {
   const [allRoutines, setAllRoutines] = useState<Routine[]>([]);
   const [shouldReloadList, toggleShouldReloadList] = useState<boolean>(false);
@@ -26,6 +31,19 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
   );
 
   const dismissModal = () => setRoutineToDelete(null);
+
+  useEffect(() => {
+    async function definePreroutineCountdownLength() {
+      const preroutineCountdownLength = await getPreroutineCountdownLength();
+      if (!preroutineCountdownLength) {
+        await setPreroutineCountdownLength(
+          DEFAULT_PREROUTINE_COUNTDOWN_LENGTH.toString(),
+        );
+      }
+    }
+
+    definePreroutineCountdownLength();
+  }, []);
 
   useEffect(() => {
     async function getAllRoutines() {
@@ -73,9 +91,16 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
   );
 };
 
-export function navigationOptions() {
+export function navigationOptions({ navigation }) {
   return {
     headerTitle: <Text>Exercise Timer</Text>,
+    headerRight: (
+      <IconButton
+        icon="settings"
+        animated
+        onPress={() => navigation.navigate(Screen.SettingsScreen)}
+      />
+    ),
   };
 }
 

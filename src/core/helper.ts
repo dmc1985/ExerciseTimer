@@ -7,8 +7,6 @@ export interface AddRoutineResult {
   success: boolean;
 }
 
-export const ROUTINE_IDS_KEY = 'routine_ids';
-
 export async function addRoutine(routine: Routine): Promise<AddRoutineResult> {
   try {
     await AsyncStorage.setItem(routine.name, JSON.stringify(routine));
@@ -57,8 +55,7 @@ export async function getRoutines(
 
 export async function getAllRoutineNames(): Promise<Nullable<string[]>> {
   try {
-    const allRoutineNames = await AsyncStorage.getAllKeys();
-    return allRoutineNames;
+    return AsyncStorage.getAllKeys();
   } catch (error) {
     console.log(error);
     return null;
@@ -89,5 +86,32 @@ export async function editRoutine(
   } catch (err) {
     console.log(err);
     return { success: false };
+  }
+}
+
+const PREROUTINE_COUNTDOWN_KEY = 'preroutineCountdown';
+
+export async function setPreroutineCountdownLength(
+  length: string,
+): Promise<void> {
+  try {
+    await AsyncStorage.setItem(PREROUTINE_COUNTDOWN_KEY, length);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function getPreroutineCountdownLength(): Promise<number> {
+  try {
+    const countdownLength = await AsyncStorage.getItem(
+      PREROUTINE_COUNTDOWN_KEY,
+    );
+    if (countdownLength) {
+      return +countdownLength;
+    }
+    return 0;
+  } catch (err) {
+    console.log(err);
+    return 0;
   }
 }

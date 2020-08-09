@@ -8,11 +8,7 @@ enum Screen {
   RoutineDetail = 'RoutineDetail',
   PerformRoutineScreen = 'PerformRoutineScreen',
 
-  /** Landing */
-  Landing = 'Landing',
-
-  /** Home */
-  BottomTabBarNavigator = 'BottomTabBarNavigator',
+  SettingsScreen = 'SettingsScreen',
 }
 
 export default Screen;

@@ -1,10 +1,6 @@
 import React, { ReactElement, useState } from 'react';
 import ControlPanel from './ControlPanel';
-import {
-  getNextExercise,
-  getPreviousExercise,
-  getTimerDuration,
-} from './helper';
+import { getNextExercise, getPreviousExercise } from './helper';
 import {
   setCurrentExercise,
   setIsTimerRunning,
@@ -30,7 +26,9 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
 
   const [shouldShowMoreControls, setShowMoreControls] = useState(false);
 
-  const { state, dispatch, timeRemaining } = useExerciseTimer(routine);
+  const { state, dispatch, timeRemaining, timerDuration } = useExerciseTimer(
+    routine,
+  );
 
   const {
     isPreroutineCountdown,
@@ -58,12 +56,7 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
         exercise={currentExercise}
         currentRep={currentRep}
         timeRemaining={timeRemaining}
-        timerDuration={getTimerDuration({
-          isPreroutineCountdown,
-          isRepBreak,
-          isExerciseBreak,
-          currentExercise,
-        })}
+        timerDuration={timerDuration}
         isBreak={isRepBreak}
         isExerciseBreak={isExerciseBreak}
         isPreroutineCountdown={isPreroutineCountdown}
