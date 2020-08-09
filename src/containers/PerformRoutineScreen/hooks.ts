@@ -75,33 +75,14 @@ interface ExerciseTimerData {
   timerDuration: number;
 }
 
-export function useExerciseTimer(routine: Routine): ExerciseTimerData {
-  const initialState: State = getInitialState(routine.exercises[0]);
-
-  const [state, dispatch] = useReducer<ExerciseReducer>(reducer, initialState);
-
+export function useExpiredTimer({ state, dispatch, routine, timeRemaining }) {
   const {
     isPreroutineCountdown,
     currentExercise,
-    isTimerRunning,
     currentRep,
-    shouldTimerReset,
     isRepBreak,
     isExerciseBreak,
   } = state;
-
-  const timerDuration = getTimerDuration({
-    isPreroutineCountdown,
-    isRepBreak,
-    isExerciseBreak,
-    currentExercise,
-  });
-
-  const timeRemaining = useTimer(
-    timerDuration,
-    isTimerRunning,
-    shouldTimerReset,
-  );
 
   useEffect(() => {
     if (timeRemaining > 0) {
@@ -181,7 +162,36 @@ export function useExerciseTimer(routine: Routine): ExerciseTimerData {
     currentExercise,
     routine,
     timeRemaining,
+    dispatch,
   ]);
+}
+
+export function useExerciseTimer(routine: Routine): ExerciseTimerData {
+  const initialState: State = getInitialState(routine.exercises[0]);
+
+  const [state, dispatch] = useReducer<ExerciseReducer>(reducer, initialState);
+
+  const {
+    isPreroutineCountdown,
+    currentExercise,
+    isTimerRunning,
+    shouldTimerReset,
+    isRepBreak,
+    isExerciseBreak,
+  } = state;
+
+  const timerDuration = getTimerDuration({
+    isPreroutineCountdown,
+    isRepBreak,
+    isExerciseBreak,
+    currentExercise,
+  });
+
+  const timeRemaining = useTimer(
+    timerDuration,
+    isTimerRunning,
+    shouldTimerReset,
+  );
 
   if (shouldTimerReset) {
     setShouldTimerReset(dispatch, false);
