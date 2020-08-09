@@ -1,4 +1,12 @@
-import { useEffect, useReducer, useRef, useState } from 'react';
+import {
+  Dispatch,
+  ReducerAction,
+  ReducerState,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from 'react';
 import { Nullable } from '../../common/typings';
 import { Routine } from '../../core/typings';
 import {
@@ -21,7 +29,10 @@ import {
 } from './store/actions';
 import { ExerciseReducer, State } from './typings';
 
-export function useInterval(callback: () => any, delay: Nullable<number>) {
+export function useInterval(
+  callback: () => any,
+  delay: Nullable<number>,
+): void {
   const savedCallback = useRef<() => void>();
 
   useEffect(() => {
@@ -57,7 +68,14 @@ export function useTimer(
   return remainingTime;
 }
 
-export function useExerciseTimer(routine: Routine) {
+interface ExerciseTimerData {
+  state: ReducerState<ExerciseReducer>;
+  dispatch: Dispatch<ReducerAction<ExerciseReducer>>;
+  timeRemaining: number;
+  timerDuration: number;
+}
+
+export function useExerciseTimer(routine: Routine): ExerciseTimerData {
   const initialState: State = getInitialState(routine.exercises[0]);
 
   const [state, dispatch] = useReducer<ExerciseReducer>(reducer, initialState);
@@ -72,13 +90,15 @@ export function useExerciseTimer(routine: Routine) {
     isExerciseBreak,
   } = state;
 
+  const timerDuration = getTimerDuration({
+    isPreroutineCountdown,
+    isRepBreak,
+    isExerciseBreak,
+    currentExercise,
+  });
+
   const timeRemaining = useTimer(
-    getTimerDuration({
-      isPreroutineCountdown,
-      isRepBreak,
-      isExerciseBreak,
-      currentExercise,
-    }),
+    timerDuration,
     isTimerRunning,
     shouldTimerReset,
   );
@@ -128,7 +148,9 @@ export function useExerciseTimer(routine: Routine) {
       setCurrentRep(dispatch, currentRep + 1);
       setShouldTimerReset(dispatch, true);
 
-      playSound(soundMap.next);
+      if (currentExercise.repLengthSeconds) {
+        playSound(soundMap.next);
+      }
       return;
     }
 
@@ -136,7 +158,9 @@ export function useExerciseTimer(routine: Routine) {
       setIsRepBreak(dispatch, true);
       setShouldTimerReset(dispatch, true);
 
-      playSound(soundMap.take_break);
+      if (currentExercise.breakLengthSeconds) {
+        playSound(soundMap.take_break);
+      }
       return;
     }
 
@@ -148,7 +172,6 @@ export function useExerciseTimer(routine: Routine) {
       return;
     }
   }, [
-    timeRemaining,
     routine.exercises.length,
     isPreroutineCountdown,
     isExerciseBreak,
@@ -157,6 +180,7 @@ export function useExerciseTimer(routine: Routine) {
     isRepBreak,
     currentExercise,
     routine,
+    timeRemaining,
   ]);
 
   if (shouldTimerReset) {
@@ -167,5 +191,6 @@ export function useExerciseTimer(routine: Routine) {
     state,
     dispatch,
     timeRemaining,
+    timerDuration,
   };
 }
