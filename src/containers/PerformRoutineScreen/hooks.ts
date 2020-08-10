@@ -75,7 +75,12 @@ interface ExerciseTimerData {
   timerDuration: number;
 }
 
-export function useExpiredTimer({ state, dispatch, routine, timeRemaining }) {
+export function handleExpiredTimer({
+  state,
+  dispatch,
+  routine,
+  timeRemaining,
+}) {
   const {
     isPreroutineCountdown,
     currentExercise,
@@ -84,93 +89,76 @@ export function useExpiredTimer({ state, dispatch, routine, timeRemaining }) {
     isExerciseBreak,
   } = state;
 
-  useEffect(() => {
-    if (timeRemaining > 0) {
-      return;
+  if (timeRemaining > 0) {
+    return;
+  }
+
+  if (isPreroutineCountdown) {
+    setIsPreroutineCountdown(dispatch, false);
+    setShouldTimerReset(dispatch, true);
+
+    playSound(soundMap.begin);
+    return;
+  }
+
+  if (
+    getCurrentExerciseIndex({ routine, currentExercise }) ===
+      routine.exercises.length - 1 &&
+    currentRep === +currentExercise.numReps &&
+    isRepBreak
+  ) {
+    setIsTimerRunning(dispatch, false);
+    setIsRoutineFinished(dispatch, true);
+
+    playSound(soundMap.finished);
+    return;
+  }
+
+  if (isExerciseBreak) {
+    setCurrentExercise(dispatch, getNextExercise({ routine, currentExercise }));
+    setCurrentRep(dispatch, 1);
+    setShouldTimerReset(dispatch, true);
+    setIsExerciseBreak(dispatch, false);
+    setIsRepBreak(dispatch, false);
+
+    playSound(soundMap.change);
+    return;
+  }
+
+  if (isRepBreak && currentRep < currentExercise.numReps) {
+    setIsRepBreak(dispatch, false);
+    setCurrentRep(dispatch, currentRep + 1);
+    setShouldTimerReset(dispatch, true);
+
+    if (currentExercise.repLengthSeconds) {
+      playSound(soundMap.next);
     }
+    return;
+  }
 
-    if (isPreroutineCountdown) {
-      setIsPreroutineCountdown(dispatch, false);
-      setShouldTimerReset(dispatch, true);
+  if (!isRepBreak && currentRep <= currentExercise.numReps) {
+    setIsRepBreak(dispatch, true);
+    setShouldTimerReset(dispatch, true);
 
-      playSound(soundMap.begin);
-      return;
+    if (currentExercise.breakLengthSeconds) {
+      playSound(soundMap.take_break);
     }
+    return;
+  }
 
-    if (
-      getCurrentExerciseIndex({ routine, currentExercise }) ===
-        routine.exercises.length - 1 &&
-      currentRep === +currentExercise.numReps &&
-      isRepBreak
-    ) {
-      setIsTimerRunning(dispatch, false);
-      setIsRoutineFinished(dispatch, true);
+  if (isRepBreak && currentRep === currentExercise.numReps) {
+    setIsExerciseBreak(dispatch, true);
+    setShouldTimerReset(dispatch, true);
 
-      playSound(soundMap.finished);
-      return;
-    }
-
-    if (isExerciseBreak) {
-      setCurrentExercise(
-        dispatch,
-        getNextExercise({ routine, currentExercise }),
-      );
-      setCurrentRep(dispatch, 1);
-      setShouldTimerReset(dispatch, true);
-      setIsExerciseBreak(dispatch, false);
-      setIsRepBreak(dispatch, false);
-
-      playSound(soundMap.change);
-      return;
-    }
-
-    if (isRepBreak && currentRep < currentExercise.numReps) {
-      setIsRepBreak(dispatch, false);
-      setCurrentRep(dispatch, currentRep + 1);
-      setShouldTimerReset(dispatch, true);
-
-      if (currentExercise.repLengthSeconds) {
-        playSound(soundMap.next);
-      }
-      return;
-    }
-
-    if (!isRepBreak && currentRep <= currentExercise.numReps) {
-      setIsRepBreak(dispatch, true);
-      setShouldTimerReset(dispatch, true);
-
-      if (currentExercise.breakLengthSeconds) {
-        playSound(soundMap.take_break);
-      }
-      return;
-    }
-
-    if (isRepBreak && currentRep === currentExercise.numReps) {
-      setIsExerciseBreak(dispatch, true);
-      setShouldTimerReset(dispatch, true);
-
-      playSound(soundMap.interval);
-      return;
-    }
-  }, [
-    routine.exercises.length,
-    isPreroutineCountdown,
-    isExerciseBreak,
-    currentRep,
-    currentExercise.numReps,
-    isRepBreak,
-    currentExercise,
-    routine,
-    timeRemaining,
-    dispatch,
-  ]);
+    playSound(soundMap.interval);
+    return;
+  }
 }
 
 export function useExerciseTimer(routine: Routine): ExerciseTimerData {
   const initialState: State = getInitialState(routine.exercises[0]);
 
   const [state, dispatch] = useReducer<ExerciseReducer>(reducer, initialState);
-
   const {
     isPreroutineCountdown,
     currentExercise,
@@ -192,6 +180,10 @@ export function useExerciseTimer(routine: Routine): ExerciseTimerData {
     isTimerRunning,
     shouldTimerReset,
   );
+
+  useEffect(() => {
+    handleExpiredTimer({ state, dispatch, timeRemaining, routine });
+  });
 
   if (shouldTimerReset) {
     setShouldTimerReset(dispatch, false);
