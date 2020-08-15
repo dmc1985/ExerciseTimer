@@ -75,21 +75,27 @@ interface ExerciseTimerData {
   timerDuration: number;
 }
 
+interface HandleExerciseTimerParams
+  extends Pick<ExerciseTimerData, 'state' | 'dispatch' | 'timeRemaining'> {
+  routine: Routine;
+}
+
 export function handleExpiredTimer({
   state,
   dispatch,
   routine,
   timeRemaining,
-}) {
+}: HandleExerciseTimerParams): void {
   const {
     isPreroutineCountdown,
     currentExercise,
     currentRep,
     isRepBreak,
     isExerciseBreak,
+    isRoutineFinished,
   } = state;
 
-  if (timeRemaining > 0) {
+  if (timeRemaining > 0 || isRoutineFinished) {
     return;
   }
 
@@ -157,7 +163,7 @@ export function handleExpiredTimer({
 
 export function useExerciseTimer(
   routine: Routine,
-  preroutineCountdownLength,
+  preroutineCountdownLength: number,
 ): ExerciseTimerData {
   const initialState: State = getInitialState(routine.exercises[0]);
 
@@ -187,7 +193,7 @@ export function useExerciseTimer(
 
   useEffect(() => {
     handleExpiredTimer({ state, dispatch, timeRemaining, routine });
-  });
+  }, [state, dispatch, timeRemaining, routine]);
 
   if (shouldTimerReset) {
     setShouldTimerReset(dispatch, false);
