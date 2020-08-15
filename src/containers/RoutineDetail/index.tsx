@@ -23,6 +23,9 @@ const RoutineDetail = ({ navigation }: Props): ReactElement => {
   const [routine, setRoutine] = useState<Routine>(
     navigation.getParam('routine'),
   );
+  const preroutineCountdownLength = navigation.getParam(
+    'preroutineCountdownLength',
+  );
   const [selectedExercise, setSelectedExercise] = useState<Nullable<Exercise>>(
     null,
   );
@@ -98,7 +101,10 @@ const RoutineDetail = ({ navigation }: Props): ReactElement => {
         small
         icon="play"
         onPress={() =>
-          navigation.navigate(Screen.PerformRoutineScreen, { routine })
+          navigation.navigate(Screen.PerformRoutineScreen, {
+            routine,
+            preroutineCountdownLength,
+          })
         }
       />
     </>

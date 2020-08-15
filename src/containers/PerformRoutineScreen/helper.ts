@@ -34,8 +34,6 @@ export function playSound(soundName): void {
   });
 }
 
-const PREROUTINE_COUNTDOWN_DURATION_SECONDS: number = 5;
-
 interface CurrentExerciseParams {
   routine: Routine;
   currentExercise: Exercise;
@@ -57,16 +55,19 @@ interface TimerDurationParams
     | 'isRepBreak'
     | 'isExerciseBreak'
     | 'currentExercise'
-  > {}
+  > {
+  preroutineCountdownLength: number;
+}
 
 export function getTimerDuration({
   isPreroutineCountdown,
+  preroutineCountdownLength,
   isRepBreak,
   isExerciseBreak,
   currentExercise,
 }: TimerDurationParams): number {
   if (isPreroutineCountdown) {
-    return PREROUTINE_COUNTDOWN_DURATION_SECONDS;
+    return preroutineCountdownLength;
   }
   if (isExerciseBreak) {
     return currentExercise.secondsBeforeNextExercise;

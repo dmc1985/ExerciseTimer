@@ -1,44 +1,51 @@
-import React, { ReactElement, useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import React, { ReactElement, useState } from 'react';
+import { Text } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
-import { Nullable } from '../../common/typings';
-import {
-  getPreroutineCountdownLength,
-  setPreroutineCountdownLength,
-} from '../../core/helper';
+import { setPreroutineCountdownLength } from '../../core/helper';
+import { NavigationScreenProp } from 'react-navigation';
+import Screen from '../../core/Screen';
+import { ButtonContainer, Container } from './styledComponents';
 
-const SettingsScreen = (): ReactElement => {
-  const [preroutineCountdownLength, modifyPreroutineCountdownLength] = useState<
-    Nullable<string>
-  >();
-  useEffect(() => {
-    async function getCountdownLength() {
-      const countdownLength = await getPreroutineCountdownLength();
-      modifyPreroutineCountdownLength(countdownLength);
-    }
+interface Props {
+  navigation: NavigationScreenProp<{}>;
+}
 
-    getCountdownLength();
-  }, []);
+const SettingsScreen = ({ navigation }: Props): ReactElement => {
+  const countdownLength = navigation.getParam('countdownLength');
+  const setCountdownLength = navigation.getParam('setCountdownLength');
+
+  const [inputLength, setInputLength] = useState(countdownLength.toString());
 
   return (
-    <View>
-      <Text>Preroutine Countdown Length</Text>
+    <Container>
       <TextInput
         label="Preroutine Countdown (seconds)"
-        onChangeText={(input: string): void => {
-          modifyPreroutineCountdownLength(input);
-        }}
-        value={preroutineCountdownLength || undefined}
+        onChangeText={setInputLength}
+        value={inputLength}
         keyboardType="number-pad"
       />
-      <Button
-        disabled={!preroutineCountdownLength}
-        onPress={() => setPreroutineCountdownLength(preroutineCountdownLength!)}
-      >
-        Set Countdown Length
-      </Button>
-    </View>
+      <ButtonContainer>
+        <Button
+          disabled={!inputLength}
+          onPress={() => {
+            setCountdownLength(+inputLength);
+            navigation.navigate(Screen.HomeScreen);
+            return setPreroutineCountdownLength(inputLength!);
+          }}
+        >
+          Set Countdown Length
+        </Button>
+      </ButtonContainer>
+    </Container>
   );
 };
+
+export function navigationOptions() {
+  return {
+    headerTitle: <Text>Settings</Text>,
+  };
+}
+
+SettingsScreen.navigationOptions = navigationOptions;
 
 export default SettingsScreen;

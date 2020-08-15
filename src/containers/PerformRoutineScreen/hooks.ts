@@ -155,7 +155,10 @@ export function handleExpiredTimer({
   }
 }
 
-export function useExerciseTimer(routine: Routine): ExerciseTimerData {
+export function useExerciseTimer(
+  routine: Routine,
+  preroutineCountdownLength,
+): ExerciseTimerData {
   const initialState: State = getInitialState(routine.exercises[0]);
 
   const [state, dispatch] = useReducer<ExerciseReducer>(reducer, initialState);
@@ -170,6 +173,7 @@ export function useExerciseTimer(routine: Routine): ExerciseTimerData {
 
   const timerDuration = getTimerDuration({
     isPreroutineCountdown,
+    preroutineCountdownLength,
     isRepBreak,
     isExerciseBreak,
     currentExercise,

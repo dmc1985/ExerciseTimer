@@ -1,9 +1,24 @@
 import styled from 'styled-components';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 
 export const Container = styled(ScrollView)`
   height: 100%;
   width: 100%;
+`;
+
+export const TitleContainer = styled(View)`
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const Title = styled(Text)`
+  padding-left: 10px;
+  font-size: 16px;
+  font-weight: 600;
 `;
 
 export const DeleteModalContentContainer = styled(View)`

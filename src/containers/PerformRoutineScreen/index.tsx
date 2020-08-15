@@ -23,11 +23,15 @@ interface Props {
 
 const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
   const routine = navigation.getParam('routine');
+  const preroutineCountdownLength = navigation.getParam(
+    'preroutineCountdownLength',
+  );
 
   const [shouldShowMoreControls, setShowMoreControls] = useState(false);
 
   const { state, dispatch, timeRemaining, timerDuration } = useExerciseTimer(
     routine,
+    preroutineCountdownLength,
   );
 
   const {

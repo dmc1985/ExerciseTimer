@@ -11,7 +11,7 @@ import {
 } from '../../core/helper';
 import RoutineList from '../../components/RoutineList';
 import DeleteRoutineModal from './DeleteRoutineModal';
-import { Container } from './styledComponents';
+import { Container, Title, TitleContainer } from './styledComponents';
 import { Routine } from '../../core/typings';
 import { NavigationScreenProp } from 'react-navigation';
 import Screen from '../../core/Screen';
@@ -30,6 +30,8 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
     null,
   );
 
+  const [countdownLength, setCountdownLength] = useState(100);
+
   const dismissModal = () => setRoutineToDelete(null);
 
   useEffect(() => {
@@ -40,10 +42,11 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
           DEFAULT_PREROUTINE_COUNTDOWN_LENGTH.toString(),
         );
       }
+      setCountdownLength(preroutineCountdownLength);
     }
 
     definePreroutineCountdownLength();
-  }, []);
+  });
 
   useEffect(() => {
     async function getAllRoutines() {
@@ -74,10 +77,24 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
         }}
       />
       <Container>
+        <TitleContainer>
+          <Title>My Routines</Title>
+          <IconButton
+            icon="settings"
+            animated
+            onPress={(): void => {
+              navigation.navigate(Screen.SettingsScreen, {
+                countdownLength,
+                setCountdownLength,
+              });
+            }}
+          />
+        </TitleContainer>
         <RoutineList
           navigation={navigation}
           routines={allRoutines}
           setRoutineToDelete={setRoutineToDelete}
+          preroutineCountdownLength={countdownLength}
         />
       </Container>
       <FloatingActionButton
@@ -91,16 +108,9 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
   );
 };
 
-export function navigationOptions({ navigation }) {
+export function navigationOptions() {
   return {
     headerTitle: <Text>Exercise Timer</Text>,
-    headerRight: (
-      <IconButton
-        icon="settings"
-        animated
-        onPress={() => navigation.navigate(Screen.SettingsScreen)}
-      />
-    ),
   };
 }
 

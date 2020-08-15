@@ -9,40 +9,42 @@ interface Props {
   routines: Routine[];
   navigation: NavigationScreenProp<{}>;
   setRoutineToDelete: Dispatch<SetStateAction<Nullable<Routine>>>;
+  preroutineCountdownLength: number;
 }
 
 const RoutineList = ({
   routines,
   navigation,
   setRoutineToDelete,
-}: Props): ReactElement => {
-  return (
-    <List.Section>
-      <List.Subheader>My Routines</List.Subheader>
-      {routines.map(
-        (routine: Routine): ReactElement => (
-          <List.Item
-            title={routine.name}
-            key={routine.name}
-            onPress={() => {
-              navigation.navigate(Screen.RoutineDetail, { routine });
-            }}
-            left={() => <List.Icon color={Colors.blue500} icon="run-fast" />}
-            right={() => (
-              <Button
-                color="red"
-                onPress={() => {
-                  setRoutineToDelete(routine);
-                }}
-              >
-                Delete
-              </Button>
-            )}
-          />
-        ),
-      )}
-    </List.Section>
-  );
-};
+  preroutineCountdownLength,
+}: Props): ReactElement => (
+  <List.Section>
+    {routines.map(
+      (routine: Routine): ReactElement => (
+        <List.Item
+          title={routine.name}
+          key={routine.name}
+          onPress={() => {
+            navigation.navigate(Screen.RoutineDetail, {
+              routine,
+              preroutineCountdownLength,
+            });
+          }}
+          left={() => <List.Icon color={Colors.blue500} icon="run-fast" />}
+          right={() => (
+            <Button
+              color="red"
+              onPress={() => {
+                setRoutineToDelete(routine);
+              }}
+            >
+              Delete
+            </Button>
+          )}
+        />
+      ),
+    )}
+  </List.Section>
+);
 
 export default RoutineList;
