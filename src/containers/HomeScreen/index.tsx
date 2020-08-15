@@ -66,6 +66,9 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
     getAllRoutines();
   }, [shouldReloadList]);
 
+  console.log('allRoutines', allRoutines);
+  console.log('allRoutines length', allRoutines.length);
+
   return (
     <>
       <DeleteRoutineModal

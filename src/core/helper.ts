@@ -7,6 +7,8 @@ export interface AddRoutineResult {
   success: boolean;
 }
 
+const PREROUTINE_COUNTDOWN_KEY: string = 'preroutineCountdown';
+
 export async function addRoutine(routine: Routine): Promise<AddRoutineResult> {
   try {
     await AsyncStorage.setItem(routine.name, JSON.stringify(routine));
@@ -55,7 +57,10 @@ export async function getRoutines(
 
 export async function getAllRoutineNames(): Promise<Nullable<string[]>> {
   try {
-    return AsyncStorage.getAllKeys();
+    const keys: string[] = await AsyncStorage.getAllKeys();
+    const preroutineCountdownIndex = keys.indexOf(PREROUTINE_COUNTDOWN_KEY);
+    keys.splice(preroutineCountdownIndex, 1);
+    return keys;
   } catch (error) {
     console.log(error);
     return null;
@@ -88,8 +93,6 @@ export async function editRoutine(
     return { success: false };
   }
 }
-
-const PREROUTINE_COUNTDOWN_KEY = 'preroutineCountdown';
 
 export async function setPreroutineCountdownLength(
   length: string,
