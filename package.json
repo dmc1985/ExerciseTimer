@@ -12,6 +12,9 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "react-native-community/async-storage",
+    "appcenter": "3.1.1",
+    "appcenter-analytics": "3.1.1",
+    "appcenter-crashes": "3.1.1",
     "formik": "^2.0.3",
     "lodash": "^4.17.15",
     "react": "16.9.0",
