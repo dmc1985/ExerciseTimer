@@ -20,6 +20,16 @@ before_all do
   git_pull
 end
 
+desc 'Fetch certificates and provisioning profiles'
+  lane :certificates do
+    register_devices(
+      devices_file: File.expand_path("./devices.txt"),
+      username: ENV['IOS_USERNAME']
+    )
+
+    match(app_identifier: ENV['APP_STORE_BUNDLE_ID'], type: 'development', readonly: false)
+  end
+
 platform :ios do
   desc "Description of what the lane does"
   lane :custom_lane do
@@ -42,9 +52,9 @@ platform :ios do
     appcenter_upload(
       api_token: ENV['APPCENTER_API_TOKEN'],
       owner_name: ENV['APPCENTER_OWNER_NAME'],
-      app_name: options[:app_name],
-      ipa: options[:ipa],
-      dsym: './' + options[:ipa].gsub('.ipa', '.app.dSYM.zip'),
+      app_name: 'ExceriseTimer',
+      file: './ExerciseTimer.ipa',
+      dsym: './ExerciseTimer.app.dSYM.zip',
       notify_testers: true,
       destinations: 'Collaborators'
     )
@@ -53,11 +63,8 @@ platform :ios do
 
 
   desc 'Build and upload app'
-  lane :build_and_upload do
-    build(method:'ad-hoc', configuration: 'Release')
-    upload(
-        app_name: 'ExerciseTimer',
-        ipa: 'ExerciseTimer release.ipa',
-    )
+  lane :appcenter_upload do
+    build(method:'development', configuration: 'Release')
+    upload()
   end
 end

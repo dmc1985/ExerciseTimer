@@ -15,6 +15,14 @@ Install _fastlane_ using
 or alternatively using `brew install fastlane`
 
 # Available Actions
+### certificates
+```
+fastlane certificates
+```
+Fetch certificates and provisioning profiles
+
+----
+
 ## iOS
 ### ios custom_lane
 ```
@@ -26,9 +34,9 @@ Description of what the lane does
 fastlane ios upload
 ```
 Upload to AppCenter
-### ios build_and_upload
+### ios appcenter_upload
 ```
-fastlane ios build_and_upload
+fastlane ios appcenter_upload
 ```
 Build and upload app
 
