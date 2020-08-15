@@ -1,0 +1,63 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+before_all do
+  ensure_git_status_clean
+  git_pull
+end
+
+platform :ios do
+  desc "Description of what the lane does"
+  lane :custom_lane do
+    # add actions here: https://docs.fastlane.tools/actions
+  end
+
+  desc 'Build the iOS application.'
+  private_lane :build do |options|
+    certificates
+    gym(
+      workspace: ENV['IOS_WORKSPACE'],
+      scheme: ENV['IOS_PROJECT_SCHEME'],
+      export_method: options[:method],
+      configuration: options.fetch(:configuration, 'Release')
+    )
+  end
+
+  desc 'Upload to AppCenter'
+  lane :upload do |options|
+    appcenter_upload(
+      api_token: ENV['APPCENTER_API_TOKEN'],
+      owner_name: ENV['APPCENTER_OWNER_NAME'],
+      app_name: options[:app_name],
+      ipa: options[:ipa],
+      dsym: './' + options[:ipa].gsub('.ipa', '.app.dSYM.zip'),
+      notify_testers: true,
+      destinations: 'Collaborators'
+    )
+  end
+
+
+
+  desc 'Build and upload app'
+  lane :build_and_upload do
+    build(method:'ad-hoc', configuration: 'Release')
+    upload(
+        app_name: 'ExerciseTimer',
+        ipa: 'ExerciseTimer release.ipa',
+    )
+  end
+end
