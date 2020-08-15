@@ -80,85 +80,90 @@ interface HandleExerciseTimerParams
   routine: Routine;
 }
 
-export function handleExpiredTimer({
+export function useExpiredTimer({
   state,
   dispatch,
   routine,
   timeRemaining,
 }: HandleExerciseTimerParams): void {
-  const {
-    isPreroutineCountdown,
-    currentExercise,
-    currentRep,
-    isRepBreak,
-    isExerciseBreak,
-    isRoutineFinished,
-  } = state;
+  useEffect(() => {
+    const {
+      isPreroutineCountdown,
+      currentExercise,
+      currentRep,
+      isRepBreak,
+      isExerciseBreak,
+      isRoutineFinished,
+    } = state;
 
-  if (timeRemaining > 0 || isRoutineFinished) {
-    return;
-  }
-
-  if (isPreroutineCountdown) {
-    setIsPreroutineCountdown(dispatch, false);
-    setShouldTimerReset(dispatch, true);
-
-    playSound(soundMap.begin);
-    return;
-  }
-
-  if (
-    getCurrentExerciseIndex({ routine, currentExercise }) ===
-      routine.exercises.length - 1 &&
-    currentRep === +currentExercise.numReps &&
-    isRepBreak
-  ) {
-    setIsTimerRunning(dispatch, false);
-    setIsRoutineFinished(dispatch, true);
-
-    playSound(soundMap.finished);
-    return;
-  }
-
-  if (isExerciseBreak) {
-    setCurrentExercise(dispatch, getNextExercise({ routine, currentExercise }));
-    setCurrentRep(dispatch, 1);
-    setShouldTimerReset(dispatch, true);
-    setIsExerciseBreak(dispatch, false);
-    setIsRepBreak(dispatch, false);
-
-    playSound(soundMap.change);
-    return;
-  }
-
-  if (isRepBreak && currentRep < currentExercise.numReps) {
-    setIsRepBreak(dispatch, false);
-    setCurrentRep(dispatch, currentRep + 1);
-    setShouldTimerReset(dispatch, true);
-
-    if (currentExercise.repLengthSeconds) {
-      playSound(soundMap.next);
+    if (timeRemaining > 0 || isRoutineFinished) {
+      return;
     }
-    return;
-  }
 
-  if (!isRepBreak && currentRep <= currentExercise.numReps) {
-    setIsRepBreak(dispatch, true);
-    setShouldTimerReset(dispatch, true);
+    if (isPreroutineCountdown) {
+      setIsPreroutineCountdown(dispatch, false);
+      setShouldTimerReset(dispatch, true);
 
-    if (currentExercise.breakLengthSeconds) {
-      playSound(soundMap.take_break);
+      playSound(soundMap.begin);
+      return;
     }
-    return;
-  }
 
-  if (isRepBreak && currentRep === currentExercise.numReps) {
-    setIsExerciseBreak(dispatch, true);
-    setShouldTimerReset(dispatch, true);
+    if (
+      getCurrentExerciseIndex({ routine, currentExercise }) ===
+        routine.exercises.length - 1 &&
+      currentRep === +currentExercise.numReps &&
+      isRepBreak
+    ) {
+      setIsTimerRunning(dispatch, false);
+      setIsRoutineFinished(dispatch, true);
 
-    playSound(soundMap.interval);
-    return;
-  }
+      playSound(soundMap.finished);
+      return;
+    }
+
+    if (isExerciseBreak) {
+      setCurrentExercise(
+        dispatch,
+        getNextExercise({ routine, currentExercise }),
+      );
+      setCurrentRep(dispatch, 1);
+      setShouldTimerReset(dispatch, true);
+      setIsExerciseBreak(dispatch, false);
+      setIsRepBreak(dispatch, false);
+
+      playSound(soundMap.change);
+      return;
+    }
+
+    if (isRepBreak && currentRep < currentExercise.numReps) {
+      setIsRepBreak(dispatch, false);
+      setCurrentRep(dispatch, currentRep + 1);
+      setShouldTimerReset(dispatch, true);
+
+      if (currentExercise.repLengthSeconds) {
+        playSound(soundMap.next);
+      }
+      return;
+    }
+
+    if (!isRepBreak && currentRep <= currentExercise.numReps) {
+      setIsRepBreak(dispatch, true);
+      setShouldTimerReset(dispatch, true);
+
+      if (currentExercise.breakLengthSeconds) {
+        playSound(soundMap.take_break);
+      }
+      return;
+    }
+
+    if (isRepBreak && currentRep === currentExercise.numReps) {
+      setIsExerciseBreak(dispatch, true);
+      setShouldTimerReset(dispatch, true);
+
+      playSound(soundMap.interval);
+      return;
+    }
+  }, [timeRemaining, routine, state, dispatch]);
 }
 
 export function useExerciseTimer(
@@ -191,9 +196,7 @@ export function useExerciseTimer(
     shouldTimerReset,
   );
 
-  useEffect(() => {
-    handleExpiredTimer({ state, dispatch, timeRemaining, routine });
-  }, [state, dispatch, timeRemaining, routine]);
+  useExpiredTimer({ state, dispatch, routine, timeRemaining });
 
   if (shouldTimerReset) {
     setShouldTimerReset(dispatch, false);
