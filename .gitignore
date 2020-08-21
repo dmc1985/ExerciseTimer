@@ -69,3 +69,4 @@ buck-out/
 
 #Fastlane
 /ios/fastlane/.env.default
+/android/fastlane/.env.default
