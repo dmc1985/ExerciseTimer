@@ -48,7 +48,7 @@ platform :android do
 
   desc 'Build for app center.'
   lane :build_app_center do
-    # build()
+    build()
     appcenter_upload(
       api_token: ENV['APPCENTER_API_TOKEN'],
       owner_name: ENV['APPCENTER_OWNER_NAME'],
