@@ -6,6 +6,7 @@ export const Container = styled(View)`
   display: flex;
   width: 100%;
   padding: ${em(2)};
+  justify-content: center;
 `;
 
 export const ExerciseNameContainer = styled(View)`
@@ -20,12 +21,19 @@ export const ExerciseName = styled(Text)`
   font-size: ${em(2)};
 `;
 
-export const CurrentRepContainer = styled(View)`
+export const RepInfoContainer = styled(View)`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   margin-bottom: ${em(1.5)};
+`;
+
+export const RepNumberContainer = styled(View)`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 export const InfoTitle = styled(Text)`
@@ -46,8 +54,7 @@ export const TotalReps = styled(Text)`
   font-weight: 700;
 `;
 
-export const ScreenTitle = styled(Text)`
-  width: 100%;
+export const RepContext = styled(Text)`
   font-size: ${em(2)};
 `;
 

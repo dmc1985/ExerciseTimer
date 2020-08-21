@@ -3,14 +3,15 @@ import CircularProgress from './CircularProgress';
 import {
   Container,
   CurrentRep,
-  CurrentRepContainer,
+  RepInfoContainer,
   ExerciseName,
   ExerciseNameContainer,
   InfoTitle,
-  ScreenTitle,
+  RepContext,
   TimeDisplay,
   TimeDisplayContainer,
   TotalReps,
+  RepNumberContainer,
 } from './styledComponents';
 import { Exercise } from '../../core/typings';
 
@@ -42,11 +43,24 @@ const PerformExerciseView = ({
         <InfoTitle>Exercise Name: </InfoTitle>
         <ExerciseName>{exercise.name}</ExerciseName>
       </ExerciseNameContainer>
-      <CurrentRepContainer>
-        <InfoTitle>Current Rep:</InfoTitle>
-        <CurrentRep> {currentRep}</CurrentRep>
-        <TotalReps>/{exercise.numReps}</TotalReps>
-      </CurrentRepContainer>
+      <RepInfoContainer>
+        <RepNumberContainer>
+          <InfoTitle>Rep:</InfoTitle>
+          <CurrentRep> {currentRep}</CurrentRep>
+          <TotalReps>/{exercise.numReps}</TotalReps>
+        </RepNumberContainer>
+        <RepContext>
+          {isRoutineFinished
+            ? 'Finished!'
+            : isPreroutineCountdown
+            ? 'Get ready...'
+            : isExerciseBreak
+            ? 'Interval'
+            : isBreak
+            ? 'Break'
+            : 'Rep'}
+        </RepContext>
+      </RepInfoContainer>
       <CircularProgress
         progress={!timerDuration ? 0 : 1 - timeRemaining / timerDuration}
       >
@@ -54,17 +68,6 @@ const PerformExerciseView = ({
           <TimeDisplay>{timeRemaining}s</TimeDisplay>
         </TimeDisplayContainer>
       </CircularProgress>
-      <ScreenTitle>
-        {isRoutineFinished
-          ? 'Finished!'
-          : isPreroutineCountdown
-          ? 'Get ready...'
-          : isExerciseBreak
-          ? 'Interval'
-          : isBreak
-          ? 'Break'
-          : 'Rep'}
-      </ScreenTitle>
     </Container>
   );
 };
