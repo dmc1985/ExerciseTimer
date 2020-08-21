@@ -1,51 +1,36 @@
-# :space_invader: React Native Template TypeScript
+# :muscle: ExerciseTimer :watch:
 
-<p>
-  <a href="https://travis-ci.org/react-native-community/react-native-template-typescript">
-    <img alt="Build Status" src="https://img.shields.io/travis/react-native-community/react-native-template-typescript.svg" target="_blank" />
-  </a>
-  <a href="https://github.com/react-native-community/react-native-template-typescript#readme">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
-  </a>
-  <a href="https://github.com/react-native-community/react-native-template-typescript/graphs/commit-activity">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" target="_blank" />
-  </a>
-  <a href="https://github.com/react-native-community/react-native-template-typescript/blob/master/LICENSE">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
-  </a>
-</p>
-
-> Clean and minimalist React Native template for a quick start with TypeScript.
+> A React Native application for doing timed exercises without having to worry about a stopwatch
+ 
+Between having a young child and working an office job, I have had my fair share of back problems. In spite of the theatrics, I have found this YouTube video: https://www.youtube.com/watch?v=ydT74SAts7M&list=PLVhCKQfUJK_0N9mxzd5Vql5tmzCTlp6w2&index=3&t=274s to be extremely useful. The only problem is that it involves four timed exercises that are impossible to do correctly while holding a stopwatch. That is the inspiration behind this application.    
 
 ## :star: Features
 
-- Elegant usage directly within the [React Native CLI](https://github.com/react-native-community/cli)
-- Consistent with the default React Native template
-- Minimal additional dependencies
+- Simple form to create routines composed of exercises with a customizable rep length, break length, and time before the next one
+- The app verbally alerts you when to to take a break, start a new rep, start a new exercise, and when the routine is finished
+- Routines are modifiable and deletable after they have been created
+- Possible to cycle through exercises, reset a particular exercise or the whole routine
+- Customizable countdown time to get prepared before the routine begins
+- The app remains visible and audible without requiring any adjustment to the phone's settings
+- Available for download on AppCenter using Fastlane
 
 ## :arrow_forward: Usage
 
-> `react-native@0.61.0` or higher
+> `For android`
 
 ```sh
-npx react-native init MyApp --template react-native-template-typescript
+yarn install
+
+react-native run-android
 ```
 
-> `react-native@0.60.x`
+> `For iOS`
 
 ```sh
-npx react-native init MyApp --template react-native-template-typescript@6.2.0
+yarn install
+
+yarn install:pods
+
+react-native run-ios
 ```
 
-### Note on the legacy CLI
-There seems to be quite some confusion about the legacy CLI. This template only works with the new CLI. Make sure you have uninstalled the legacy `react-native-cli` first (`npm uninstall -g react-native-cli`), for the above command to work. If you wish to not use `npx`, you can also install the new CLI globally (`npm i -g @react-native-community/cli` or `yarn global add @react-native-community/cli`).
-
-Further information can be found here: https://github.com/react-native-community/cli#about
-
-## :computer: Contributing
-
-Contributions are very welcome. Please check out the [contributing document](CONTRIBUTING.md).
-
-## :bookmark: License
-
-This project is [MIT](LICENSE) licensed.
