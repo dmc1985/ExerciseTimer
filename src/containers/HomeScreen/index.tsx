@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react';
-import { Text } from 'react-native';
+import { Platform, Text } from 'react-native';
 import { IconButton } from 'react-native-paper';
 import FloatingActionButton from '../../common/components/FloatingActionButton';
 import {
@@ -11,7 +11,12 @@ import {
 } from '../../core/helper';
 import RoutineList from '../../components/RoutineList';
 import DeleteRoutineModal from './DeleteRoutineModal';
-import { Container, Title, TitleContainer } from './styledComponents';
+import {
+  Container,
+  HeaderTitleContainer,
+  Title,
+  TitleContainer,
+} from './styledComponents';
 import { Routine } from '../../core/typings';
 import { NavigationScreenProp } from 'react-navigation';
 import Screen from '../../core/Screen';
@@ -110,7 +115,14 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
 
 export function navigationOptions() {
   return {
-    headerTitle: <Text>Exercise Timer</Text>,
+    headerTitle: (
+      <HeaderTitleContainer>
+        <Text>Exercise Timer</Text>
+      </HeaderTitleContainer>
+    ),
+    headerStyle: {
+      padding: Platform.OS === 'android' ? 10 : 0,
+    },
   };
 }
 

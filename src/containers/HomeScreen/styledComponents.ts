@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { ScrollView, View, Text } from 'react-native';
+import { ScrollView, View, Text, Platform } from 'react-native';
+import { em } from '../../common/helper';
+
+export const HeaderTitleContainer = styled(View)`
+  margin-left: ${Platform.OS === 'android' ? em(1) : 0};
+`;
 
 export const Container = styled(ScrollView)`
   height: 100%;
