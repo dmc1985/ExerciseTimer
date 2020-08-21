@@ -65,6 +65,7 @@ buck-out/
 
 #AppCenter Config
 /ios/ExerciseTimer/AppCenter-Config.plist
+/android/app/src/main/assets/appcenter-config.json
 
 #Fastlane
 /ios/fastlane/.env.default
