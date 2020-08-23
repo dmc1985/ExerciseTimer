@@ -23,7 +23,7 @@ Between having a young child and working an office job, I have had my fair share
 - Formik to handle all the forms
 - Animated library provided by react native to create sliding drawers  
 - React-native-reanimated and react-native-svg to create the circular progress bar
-- Fastlane to distribute the app to AppCenter for both Android and iOS
+- Fastlane to distribute the app to AppCenter for Android
 
 
 ## :arrow_forward: Usage
