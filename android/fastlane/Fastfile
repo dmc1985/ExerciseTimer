@@ -58,4 +58,15 @@ platform :android do
       destinations: 'Collaborators'
     )
   end
+
+  desc 'Prepare version code for next release'
+  lane :bump_version do |options|
+    gradle(task: 'bumpVersionCode', project_dir: './')
+    version_properties_file_path = "./app/version.properties"
+    properties = property_file_read(file: version_properties_file_path)
+    git_commit(
+      path: version_properties_file_path,
+      message: ":bookmark: :robot: Build bump #{properties['VERSION_CODE']}"
+    )
+  end
 end

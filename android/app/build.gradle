@@ -97,6 +97,19 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
+tasks.register("bumpVersionCode") {
+    description = "Bump version code"
+
+    doLast {
+        def versionPropsFile = file('version.properties')
+        Properties versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionPropsFile))
+        def code = versionProps['VERSION_CODE'].toInteger() + 1
+        versionProps['VERSION_CODE'] = code.toString()
+        versionProps.store(versionPropsFile.newWriter(), null)
+    }
+}
+
 /**
  * The preferred build flavor of JavaScriptCore.
  *

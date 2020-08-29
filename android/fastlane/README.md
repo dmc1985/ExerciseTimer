@@ -36,6 +36,11 @@ Deploy a new version to the Google Play
 fastlane android build_app_center
 ```
 Build for app center.
+### android bump_version
+```
+fastlane android bump_version
+```
+Prepare version code for next release
 
 ----
 
