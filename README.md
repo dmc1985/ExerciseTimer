@@ -11,6 +11,7 @@ Between having a young child and working an office job, I have had my fair share
 - Routines are modifiable and deletable after they have been created
 - Possible to cycle through exercises, reset a particular exercise or the whole routine
 - Customizable countdown time to get prepared before the routine begins
+- The app remains visible and audible while the user is exercising without requiring any adjustment to the phone's settings
 
 ## :oncoming_automobile: Under the Hood
 
@@ -23,6 +24,7 @@ Between having a young child and working an office job, I have had my fair share
 - Formik to handle all the forms
 - Animated library provided by react native to create sliding drawers  
 - React-native-reanimated and react-native-svg to create the circular progress bar
+- React-native-keep-awake to prevent the screen from turning black while the user is exercising
 - Fastlane to distribute the app to AppCenter for Android
 
 
@@ -33,7 +35,7 @@ Between having a young child and working an office job, I have had my fair share
 ```sh
 yarn install
 
-react-native run-android
+yarn android
 ```
 
 > `For iOS`
@@ -43,7 +45,7 @@ yarn install
 
 yarn install:pods
 
-react-native run-ios
+yarn ios
 ```
 
 ## :camera: Screenshots
