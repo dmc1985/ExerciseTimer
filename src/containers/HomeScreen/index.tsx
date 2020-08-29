@@ -126,9 +126,6 @@ export function navigationOptions() {
         <Text>Exercise Timer</Text>
       </HeaderTitleContainer>
     ),
-    headerStyle: {
-      padding: Platform.OS === 'android' ? 10 : 0,
-    },
   };
 }
 

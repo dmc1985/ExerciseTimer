@@ -16,6 +16,7 @@ import { Routine } from '../../core/typings';
 import PerformExerciseView from '../../components/PerformExerciseView';
 import { NavigationScreenProp } from 'react-navigation';
 import { useExerciseTimer } from './hooks';
+import KeepAwake from 'react-native-keep-awake';
 
 interface Props {
   navigation: NavigationScreenProp<{}>;
@@ -55,6 +56,7 @@ const PerformExerciseScreen = ({ navigation }: Props): ReactElement => {
 
   return (
     <Container>
+      <KeepAwake />
       <PerformExerciseView
         isTimerRunning={isTimerRunning}
         exercise={currentExercise}
