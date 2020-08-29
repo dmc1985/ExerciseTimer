@@ -18,7 +18,13 @@ const ExerciseDetail = ({
   toggleDrawer,
 }: Props): ReactElement => (
   <Container>
-    <TouchableOpacity onLongPress={(): void => toggleDrawer()}>
+    <TouchableOpacity
+      onLongPress={(): void => {
+        if (toggleDrawer) {
+          toggleDrawer();
+        }
+      }}
+    >
       <List.Section>
         <List.Accordion title={exercise.name}>
           <List.Item title={`Number of Reps: ${exercise.numReps}`} />

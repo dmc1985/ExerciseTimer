@@ -1,6 +1,6 @@
 {
   "name": "ExerciseTimer",
-  "version": "0.0.1",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -8,7 +8,9 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "install:pods": "cd ios && pod install && cd .."
+    "install:pods": "cd ios && pod install && cd ..",
+    "android:app_center": "cd android && fastlane build_app_center",
+    "android:bump": "cd android && fastlane bump_verison"
   },
   "dependencies": {
     "@react-native-community/async-storage": "react-native-community/async-storage",
