@@ -71,6 +71,12 @@ const HomeScreen = ({ navigation }: Props): ReactElement => {
     getAllRoutines();
   }, [shouldReloadList]);
 
+  useEffect(() => {
+    navigation.addListener('didFocus', () => {
+      toggleShouldReloadList(true);
+    });
+  }, [navigation]);
+
   return (
     <>
       <DeleteRoutineModal
